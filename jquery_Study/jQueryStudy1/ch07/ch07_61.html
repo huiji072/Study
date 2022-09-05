@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Enter some text in the fields below, reset the form.</p>
+<form id="myForm" name="form1">
+    First name : <input type="text" id="fname" ><br>
+    List name : <input type="text" id="lname" ><br>
+    <input type="button" onclick="myFunction()" value="Reset Form">
+</form>
+
+<script>
+    function myFunction() {
+        document.getElementById("myForm").reset();
+        }
+</script>
+
+</body>
+</html>

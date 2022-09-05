@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" onclick="storeQuestion()" value="btn">
+<p id="answer"></p>
+
+<script>
+
+function storeQuestion() {
+        var answer = {
+            "questionContents" : "huiji",
+            "contents" : "좋아요"
+        }
+
+        var param = JSON.stringify(answer);
+
+        localStorage.setItem("question", param);
+        var text = localStorage.getItem("question");
+        var obj = JSON.parse(text);
+
+        for(x in obj) {
+            document.getElementById("answer").innerHTML += x + "<br>";
+        }
+}
+
+
+
+
+</script>
+
+</body>
+</html>

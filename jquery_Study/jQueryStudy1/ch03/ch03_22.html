@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+    function Calc() {
+      var x = Number(document.calculator.number1.value);
+      var y = Number(document.calculator.number2.value);
+      var result_add = x + y;
+      document.calculator.result.value = result_add;
+    }
+  </script>
+</head>
+<body>
+
+<form name="calculator">
+    입력1 : <input type="text" name="number1" size="10">
+    입력2 : <input type="text" name="number2" size="10">
+    결과 : <input type="text" name="result">
+</form>
+
+<button onclick="Calc()">ADD</button>
+
+</body>
+</html>

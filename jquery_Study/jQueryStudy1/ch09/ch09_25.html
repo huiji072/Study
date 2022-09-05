@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#yellow").click(function() {
+                $("a[href$='.org']").css("background-color", "yellow"); });
+            });
+    </script>
+
+</head>
+<body>
+
+<p title="Tommorow" name="nationality">This is a paragraph</p>
+<p title="tomorrow" name="nation" value="English">This is a paragraph</p>
+
+<p title="Tom">this is a tom</p>
+<p title="see you tomorrow">this is a para</p>
+<a href="http://www.wikipedia.org">wiki.org</a>
+
+<button id="yellow">B</button>
+
+</body>
+</html>

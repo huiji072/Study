@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+
+        .sample1 {
+            color : red;
+            font-weight : bold;
+         }
+
+         .sample2 {
+            color : blue;
+         }
+
+    </style>
+
+    <script>
+
+        $(function() {
+
+<!--            $("div:eq(0)").css("color", "red");-->
+<!--            $("div:eq(0)").css("font-weight", "bold");-->
+<!--                $("div:eq(0)").attr("style", "color:green; font-weight:bold;")-->
+
+<!--            $("div:eq(1)").css("color", "blue");-->
+
+
+<!--addClass("클래스명") =  클래스명을 지정된 셀렉터에 추가한다. -->
+<!-- removeClass("클래스명") = 클래스명을 지정된 셀렉터로부터 지운다.-->
+<!--hasClass("클래스명") = 클래스명이 지정된 셀렉터로부터 존재하는지 여부를 판단한다.(true/false)-->
+
+<!--                $("#sampleDiv1").addClass("sample2");-->
+<!--                $("#sampleDiv2").addClass("sample1");-->
+
+        })
+
+    </script>
+
+</head>
+<body>
+
+<div id="sampleDiv1" class="sample1">스타일 제어1</div>
+<div id="sampleDiv2" class="sample2">스타일 제어2</div>
+
+</body>
+</html>

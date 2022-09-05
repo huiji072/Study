@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script>
+
+    $(document).ready(function() {
+      $("form").submit(function() {
+        alert("제출되었습니다.");
+      });
+    });
+
+  </script>
+</head>
+<body>
+
+<form action="">
+    First Nme : <input type="text" name="Firstname" value="Mickey"><br>
+    Last Name : <input type="text" name="lastName" value="Mouse">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

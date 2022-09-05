@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+
+<!--전역함수-->
+    function area(x,y) {
+<!--    지역함수-->
+      var calculate = function(a, b) {
+            sum = (x*y)/2;
+            return sum;
+         }
+             var result = calculate(x, y);
+             document.write("삼각형의 면적 : " + result);
+     }
+
+  </script>
+</head>
+<body>
+
+<h2>함수 내부의 지역함수를 호출</h2>
+<script>
+
+    area(100, 200);
+    document.write(calculate(x, y));
+
+</script>
+
+</body>
+</html>
