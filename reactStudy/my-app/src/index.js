@@ -10,7 +10,7 @@ import Clock from './chapter_04/Clock';
 setInterval(() => {
   ReactDOM.render(
     <React.StrictMode>
-      <Clock />
+      <Library />
     </React.StrictMode>,
     document.getElementById('root')
   );
