@@ -9,11 +9,12 @@ import Clock from './chapter_04/Clock';
 import CommentList from './chapter_05/CommentList';
 import NotificationList from './chapter_06/NotificationList';
 import Accomodate from './chapter_07/Accomodate';
-import ConfirmButton from './chapter_08/ConfirmButton'
+import ConfirmButton from './chapter_08/ConfirmButton';
+import LandingPage from './chapter_09/LandingPage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ConfirmButton />
+    <LandingPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
