@@ -18,7 +18,7 @@ function MainPage(props) {
             <Title>
                 안녕, 리액트!
             </Title>
-        </Wrapper>
+        </Wrapper> 
     )
 }
 
