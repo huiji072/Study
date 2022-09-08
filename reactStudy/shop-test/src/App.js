@@ -4,10 +4,12 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Login from './login/Login';
+import Join from './login/Join';
 
 function App() {
   return (
-    <Login></Login>
+    // <Login></Login>
+    <Join></Join>
   );
 }
 
