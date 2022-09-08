@@ -5,11 +5,13 @@ import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Login from './login/Login';
 import Join from './login/Join';
+import Header from './fragment/Header';
 
 function App() {
   return (
     // <Login></Login>
-    <Join></Join>
+    <Header></Header>
+    // <Join></Join>
   );
 }
 
