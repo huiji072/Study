@@ -8,7 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode:'welcome',
+      mode:'read',
+      selected_content_id:2,
       subject:{title:'WEB', sub:'World Wide Web!'},
       welcome:{title:'welcome', desc:'Hello React!!'},
       contents:[
@@ -28,33 +29,45 @@ class App extends Component {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
     } else if(this.state.mode === 'read') {
-      _title = this.state.contents[0].title;
-      _desc = this.state.contents[0].desc;
+      var i = 0;
+      while(i < this.state.contents.length) {
+        var data = this.state.contents[i];
+        if(data.id === this.state.selected_content_id) {
+          _title = data.title;
+          _desc = data.desc;
+          break;
+        }
+        i = i + 1;
+      }
+
     }
 
+    console.log('render', this);
     return (
       <div className="App">
 
-        {/* <Subject 
+        <Subject 
           title={this.state.subject.title} 
-          sub={this.state.subject.sub}>
-        </Subject> */}
+          sub={this.state.subject.sub}
+            onChangePage={function() {
+              alert("subject");
+              this.setState({mode:'welcome'});
+            }.bind(this)}
+            >
+        </Subject>
 
-        <header>
-          <h1><a href="/" onClick={function(e) {
-            console.log(e);
-            e.preventDefault();
-            this.state.mode = 'welcome';
+        <TOC 
+          onChangePage={function(id){
+            alert("TOC");
             this.setState({
-              mode:'welcome'
-            });
-            // debugger;
-            alert("hi");
-          }.bind(this)}>{this.state.subject.title}</a></h1>
-          {this.props.sub}
-        </header>
+              mode:'read',
+              selected_content_id:Number(id)
+          });
+          }.bind(this)} 
+          data={this.state.contents}>
 
-        <TOC data={this.state.contents}></TOC>
+        </TOC>
+        
         <Content title={_title} desc={_desc}></Content>
       </div>
     );
