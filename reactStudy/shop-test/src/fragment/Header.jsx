@@ -8,6 +8,7 @@ class Header extends Component {
     render() {
         return(
             <div>
+                
                 <div>
                     <h1>Donators Market</h1>
                 </div>
@@ -16,7 +17,7 @@ class Header extends Component {
                     <Navbar bg="primary" variant="dark">
                         <Container>
                             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                                <Nav className="me-auto">
+                                <Nav className="me-auto" class="navbar navbar-dark bg-primary">
                                     <Nav.Link href="#home">Home</Nav.Link>
                                     <Nav.Link href="#features">Features</Nav.Link>
                                     <Nav.Link href="#pricing">Pricing</Nav.Link>
@@ -24,6 +25,7 @@ class Header extends Component {
                         </Container>
                     </Navbar>
                 </div>
+
             </div>
         );
     }
