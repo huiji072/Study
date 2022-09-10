@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Join.css';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
@@ -8,53 +9,68 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 class Join extends Component {
     render() {
         return(
-            <div className="Join">
-                <FormControlLabel 
-                control={<Checkbox value="기부자"/>}
-                label="기부자"
-                />
-                <br></br>
-                <FormControlLabel 
-                control={<Checkbox value="일반회원"/>}
-                label="일반회원"
-                />
-                <br></br>
-                <label>이름</label>
-                <br></br>
-                <TextField 
-                label="이름을 입력해주세요" 
-                required 
-                name="name"
-                autoComplete="name"
-                autoFocus
-                /> 
-                <br></br>
-                <label>이메일주소</label>
-                <br></br>
-                <TextField 
-                label="이메일 주소를 입력해주세요" 
-                required 
-                name="email"
-                /> 
-                <br></br>
-                <TextField 
-                label="Password" 
-                type="password" 
-                required
-                name="password"
-                autoComplete="current-password"
-                />
-                <br></br>
-                <label>주소</label>
-                <br></br>
-                <TextField 
-                label="주소를 입력해주세요" 
-                required 
-                name="address"
-                /> 
-                <br></br>
+            <div>
+                <form class="loginForm">
+                    <h3>Join</h3>
 
-                <Button type='submit' variant="contained" sx={{ mt: 3, ml: 1, mr:1, mb: 2 }} >회원가입</Button>
+                    <div class="form-group">
+                    <input type="checkbox" id="chkseller" name="chkseller" className="custom-control-input"/>
+                    <label className="custom-control-label">기부자</label>
+                    <br/>
+                    <input type="checkbox" id="chkbuyer" name="chkbuyer" className="custom-control-input"/>
+                    <label className="custom-control-label">일반회원</label>
+                    </div>
+
+                    <div className="mb-3">
+                      <label>Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter name"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label>Email address</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter email"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label>Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter password"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label>Address</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter address"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      {/* <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          id="customCheck1"
+                        />
+                        <label className="custom-control-label" htmlFor="customCheck1">
+                          Remember me
+                        </label>
+                      </div> */}
+                    </div>
+                    <div className="d-grid">
+                      <button type="submit" className="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
             </div>
         );
     }

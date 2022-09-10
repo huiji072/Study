@@ -9,20 +9,42 @@ class Login extends Component {
     render() {
         return(
             <div>
-                <form role="form" method="post" action="/members/login" class="loginForm">
-                  <div class="form-group">
-                    <label >이메일주소</label>
-                    <input type="email" name="email" class="form-control" placeholder="이메일을 입력해주세요"/>
-                  </div>
-                  <div class="form-group">
-                    <label>비밀번호</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호 입력"/>
-                  </div>
-                  <p class="error"></p>
-                  <button class="btn btn-primary">로그인</button>
-                  <button type="button" class="btn btn-primary" onClick="location.href='/members/new'">회원가입</button>
-                  <input type="hidden" />
-              </form>
+                 <form class="loginForm">
+                    <h3>Sign In</h3>
+                    <div className="mb-3">
+                      <label>Email address</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter email"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label>Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter password"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          id="customCheck1"
+                        />
+                        <label className="custom-control-label" htmlFor="customCheck1">
+                          Remember me
+                        </label>
+                      </div>
+                    </div>
+                    <div className="d-grid">
+                      <button type="submit" className="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
           </div>
         );
     }
