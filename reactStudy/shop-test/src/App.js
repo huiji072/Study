@@ -6,11 +6,12 @@ import Header from './fragment/Header';
 import ItemForm from './item/ItemForm';
 import Main from './main/Main';
 import ItemDtl from './item/ItemDtl';
+import CartList from './cart/CartList';
 
 function App() {
   return (
     // <Login></Login>
-    <ItemDtl></ItemDtl>
+    <CartList></CartList>
     // <Join></Join>
   );
 }
