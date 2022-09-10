@@ -7,11 +7,12 @@ import ItemForm from './item/ItemForm';
 import Main from './main/Main';
 import ItemDtl from './item/ItemDtl';
 import CartList from './cart/CartList';
+import OrderHist from './order/OrderHist';
 
 function App() {
   return (
     // <Login></Login>
-    <CartList></CartList>
+    <OrderHist></OrderHist>
     // <Join></Join>
   );
 }
