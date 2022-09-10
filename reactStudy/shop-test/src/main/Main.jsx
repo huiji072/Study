@@ -20,6 +20,7 @@ class Main extends Component {
                             <div className="card-body">
                                 <h4 className="card-title">itemName</h4>
                                 <p className="card-text">itemDetail</p>
+                                <h3 class="card-title text-danger">itemCount</h3>
                             </div>
                         </a>
                     </div>
@@ -32,6 +33,7 @@ class Main extends Component {
                             <div className="card-body">
                                 <h4 className="card-title">itemName</h4>
                                 <p className="card-text">itemDetail</p>
+                                <h3 class="card-title text-danger">itemCount</h3>
                             </div>
                         </a>
                     </div>
@@ -44,6 +46,7 @@ class Main extends Component {
                             <div className="card-body">
                                 <h4 className="card-title">itemName</h4>
                                 <p className="card-text">itemDetail</p>
+                                <h3 class="card-title text-danger">itemCount</h3>
                             </div>
                         </a>
                     </div>
@@ -60,6 +63,7 @@ class Main extends Component {
                             <div className="card-body">
                                 <h4 className="card-title">itemName</h4>
                                 <p className="card-text">itemDetail</p>
+                                <h3 class="card-title text-danger">itemCount</h3>
                             </div>
                         </a>
                     </div>
@@ -72,6 +76,7 @@ class Main extends Component {
                             <div className="card-body">
                                 <h4 className="card-title">itemName</h4>
                                 <p className="card-text">itemDetail</p>
+                                <h3 class="card-title text-danger">itemCount</h3>
                             </div>
                         </a>
                     </div>
@@ -84,6 +89,7 @@ class Main extends Component {
                             <div className="card-body">
                                 <h4 className="card-title">itemName</h4>
                                 <p className="card-text">itemDetail</p>
+                                <h3 class="card-title text-danger">itemCount</h3>
                             </div>
                         </a>
                     </div>
