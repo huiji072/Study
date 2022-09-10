@@ -11,12 +11,10 @@ import OrderHist from './order/OrderHist';
 
 function App() {
   return (
-    // <Login></Login><
     <>
     <Header></Header>
     <Login></Login>
     </>
-    // <Join></Join>
   );
 }
 
