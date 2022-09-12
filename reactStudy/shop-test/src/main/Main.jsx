@@ -9,8 +9,8 @@ class Main extends Component {
         return (
             <div>
 
-            <Container className="container">
-            
+            <Container className="mainContainer">
+
             <Row>
 
                 <Col >
@@ -18,7 +18,7 @@ class Main extends Component {
                         <a href='item.jsx'>
                             <img className="card-img-top" src='/img/bed.jpg' />
                             <div className="card-body">
-                                <h4 className="card-title">itemName</h4>
+                                <h4 className="card-title">테스트1</h4>
                                 <p className="card-text">itemDetail</p>
                                 <h3 class="card-title text-danger">itemCount</h3>
                             </div>
@@ -88,7 +88,7 @@ class Main extends Component {
                             <img className="card-img-top" src='/img/table.jpg' />
                             <div className="card-body">
                                 <h4 className="card-title">임금님표 이천쌀(추청) 10kg</h4>
-                                <p className="card-text">명성에 걸맞는 입맛(10kg/1포)</p>
+                                <p className="card-text">걸맞는 입맛(10kg/1포)</p>
                                 <h3 class="card-title text-danger">70개</h3>
                             </div>
                         </a>

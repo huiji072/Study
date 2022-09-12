@@ -15,7 +15,7 @@ class ItemDtl extends Component {
 
             <div class="d-flex" >
                 <div class="repImgDiv" >
-                    <img src="/img/sopa.jpg" class="itemDtlImg" />
+                    <img src="/img/sopa.jpg" class = "itemDtlImg" />
                 </div>
                 <div class="wd50">
                     <span class="badge badge-primary mgb-15">

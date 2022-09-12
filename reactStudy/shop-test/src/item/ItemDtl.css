@@ -81,6 +81,10 @@ tr, td{
     padding: 20px;
 }
 .itemDtlImg{
-    width: 250px;
+    width: 270px;
     height: 330px;
+}
+.itemFormContainer{
+    width: 950px;
+    margin: auto;
 }

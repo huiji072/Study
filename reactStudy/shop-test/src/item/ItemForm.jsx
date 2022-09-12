@@ -9,7 +9,7 @@ import './ItemForm.css';
 class ItemForm extends Component {
     render() {
         return(
-            <div className="container">
+            <div className="itemFormContainer">
 
                 <div>
                     <h2>상품 등록</h2>

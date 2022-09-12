@@ -9,9 +9,9 @@
     margin: auto;
     text-align: center;
 }
-.container{
+.mainContainer{
     width: 950px;
-    font-family: 'Noto Sans KR', sans-serif;
+    /* font-family: 'Noto Sans KR', sans-serif; */
 }
 .col{
     margin: auto;
@@ -24,4 +24,7 @@
     padding: 30px;
     width: 250px;
     height: 10px;
+}
+a{
+    text-decoration: none;
 }
