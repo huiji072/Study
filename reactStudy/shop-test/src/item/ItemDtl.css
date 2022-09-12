@@ -83,6 +83,7 @@ tr, td{
 .itemDtlImg{
     width: 270px;
     height: 330px;
+    border-radius: 10px;
 }
 .itemFormContainer{
     width: 950px;
