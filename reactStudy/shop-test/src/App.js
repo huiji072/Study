@@ -13,7 +13,6 @@ function App() {
   return (
     <>
     <Header></Header>
-    <Join></Join>
     </>
   );
 }

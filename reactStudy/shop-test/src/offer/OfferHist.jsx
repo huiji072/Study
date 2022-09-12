@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './OrderHist.css';
+import './OfferHist.css';
 
-class OrderHist extends Component{
+class OfferHist extends Component{
     render() {
         return(
             <>
@@ -75,4 +75,4 @@ class OrderHist extends Component{
     }
 }
 
-export default OrderHist;
+export default OfferHist;
