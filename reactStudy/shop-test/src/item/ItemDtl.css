@@ -17,10 +17,11 @@
     width:270px;
     height:350px;
 }
-.wd50{
+.wd50ItemDtl{
     padding:5px;
     height:auto;
     width:65%;
+    margin-left: 200px;
 }
 
 .table-1 {

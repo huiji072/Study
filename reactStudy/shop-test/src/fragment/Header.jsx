@@ -12,21 +12,23 @@ import OrderHist from '../order/OrderHist';
 import OfferHist from '../offer/OfferHist';
 import Join from '../login/Join';
 import Main from '../main/Main';
+import ItemMng from '../item/ItemMng';
 
 class Header extends Component {
     render() {
         return(
             <>
             
-            <div>
-                <h1>❝Donators Market❞</h1> <br/>
+            <div class="titleHeader">
+                <h1><a class="title" href="/main/Main">❝Donators Market❞</a></h1> <br/>
             </div>
+
             <Navbar bg="primary" variant="dark">
                 <Container>
                 <Navbar.Brand href="/main/Main">DonatorsMarket</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
-                    <Nav.Link href="/item/ItemDtl">상품관리</Nav.Link>
+                    <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
                     <Nav.Link href="/cart/CartList">장바구니</Nav.Link>
                     <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
                     <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
@@ -40,7 +42,7 @@ class Header extends Component {
                 <Routes>
                     <Route path='/Main/main' element={<Main/>} />
                     <Route path='/item/ItemForm' element={<ItemForm/>} />
-                    <Route path='/item/ItemDtl' element={<ItemDtl/>} />
+                    <Route path='/item/ItemMng' element={<ItemMng/>} />
                     <Route path='/cart/CartList' element={<CartList/>} />
                     <Route path='/order/OrderHist' element={<OrderHist/>} />
                     <Route path='/offer/OfferHist' element={<OfferHist/>} />

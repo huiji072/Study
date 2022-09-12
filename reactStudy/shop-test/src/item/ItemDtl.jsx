@@ -17,7 +17,7 @@ class ItemDtl extends Component {
                 <div class="repImgDiv" >
                     <img src="/img/sopa.jpg" class = "itemDtlImg" />
                 </div>
-                <div class="wd50">
+                <div class="wd50ItemDtl">
                     <span class="badge badge-primary mgb-15">
                         판매중
                     </span>

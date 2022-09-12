@@ -9,9 +9,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 class Join extends Component {
     render() {
         return(
-            <div>
-                <form class="loginForm">
-                    <h3>Join</h3>
+            <div class="joinContainer">
+              <h2 class="mb-4">회원가입</h2>
+                <form class="JoinForm">
+                
 
                     <div class="form-group">
                     <input type="checkbox" id="chkseller" name="chkseller" className="custom-control-input"/>

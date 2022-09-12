@@ -5,23 +5,32 @@
     margin-bottom:100px;
 }
 .repImgDiv{
-    margin-right:15px;
-    margin-left:15px;
+    margin: 10px;
+    width: 100px;
     height:auto;
 }
-.repImg{
+.imgOrderHist{
     height:100px;
     width:100px;
-}
-.card{
-    width:750px;
-    height:100%;
-    padding:30px;
-    margin-bottom:20px;
+    border-radius: 10px;
+    margin: 10px;
 }
 .fs18{
     font-size:18px
 }
 .fs24{
     font-size:24px
+}
+.containerOrderHist{
+    margin: auto;
+    width: 950px;
+}
+.cardOrderHist{
+    width : 900px;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.contentsOrderHist{
+    margin-top: 35px;
+    margin-left: 50px;
 }

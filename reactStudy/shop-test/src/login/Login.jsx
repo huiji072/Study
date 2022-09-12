@@ -8,9 +8,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 class Login extends Component {
     render() {
         return(
-            <div>
+            <div class="loginContainer">
+            <h2 class="mb-4">로그인</h2>
                  <form class="loginForm">
-                    <h3>Sign In</h3>
                     <div className="mb-3">
                       <label>Email address</label>
                       <input
