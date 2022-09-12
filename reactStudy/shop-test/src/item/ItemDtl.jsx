@@ -15,7 +15,7 @@ class ItemDtl extends Component {
 
             <div class="d-flex" >
                 <div class="repImgDiv" >
-                    <img src="img/bed.jpg" class = "rounded repImg" />
+                    <img src="/img/sopa.jpg" class="itemDtlImg" />
                 </div>
                 <div class="wd50">
                     <span class="badge badge-primary mgb-15">
@@ -49,14 +49,14 @@ class ItemDtl extends Component {
                         <button type="button" class="btn btn-primary btn-lg" onclick="order();">주문하기</button>
                     </div>
                     <div  class="text-right">
-                        <button type="button" class="btn btn-danger btn-lg">품절</button>
+                        {/* <button type="button" class="btn btn-danger btn-lg">품절</button> */}
                     </div>
                 </div>
             </div>
 
             <div class="jumbotron jumbotron-fluid mgt-30" >
-                <div class="container">
-                    <h4 class="display-5">상품 상세 설명</h4>
+                <div class="itemDtlExplain">
+                    <h3 class="display-5">상품 상세 설명</h3>
                     <hr class="my-4"/>
                     <p class="lead">상품 상세 설명을 적는 곳입니다. <br></br> 두번째 줄입니다.</p>
                 </div>
