@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './ItemMng.css';
 
-class ItemMng extends Component{
-    render() {
+function ItemMng(props) {
         return(
             <div class="containerItemMng">
 
@@ -34,7 +33,7 @@ class ItemMng extends Component{
                     <tbody>
                     <tr >
 
-                        <td >item.id</td>
+                        <td >{props.itemId}</td>
                         <td>
                             <a>item.itemNm</a>
                         </td>
@@ -71,7 +70,6 @@ class ItemMng extends Component{
 
             </div>
         );
-    }
 }
 
 export default ItemMng;

@@ -13,7 +13,7 @@ import OfferHist from '../offer/OfferHist';
 import Join from '../login/Join';
 import Main from '../main/Main';
 import ItemMng from '../item/ItemMng';
-import ItemList from '../main/ItemList';
+import ItemList from '../data/ItemList';
 
 class Header extends Component {
     render() {
@@ -21,12 +21,12 @@ class Header extends Component {
             <>
             
             <div class="titleHeader">
-                <h1><a class="title" href="/main/ItemList">❝Donators Market❞</a></h1> <br/>
+                <h1><a class="title" href="/data/ItemList">❝Donators Market❞</a></h1> <br/>
             </div>
 
             <Navbar bg="primary" variant="dark">
                 <Container>
-                <Navbar.Brand href="/main/ItemList">DonatorsMarket</Navbar.Brand>
+                <Navbar.Brand href="/data/ItemList">DonatorsMarket</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
                     <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
@@ -41,7 +41,7 @@ class Header extends Component {
             </Navbar>
             <Router>
                 <Routes>
-                    <Route path='/Main/main' element={<Main/>} />
+                    <Route path='/data/ItemList' element={<ItemList/>} />
                     <Route path='/item/ItemForm' element={<ItemForm/>} />
                     <Route path='/item/ItemMng' element={<ItemMng/>} />
                     <Route path='/cart/CartList' element={<CartList/>} />
