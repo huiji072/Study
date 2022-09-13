@@ -8,6 +8,7 @@ import Main from './main/Main';
 import ItemDtl from './item/ItemDtl';
 import CartList from './cart/CartList';
 import OrderHist from './order/OrderHist';
+import OfferHist from './offer/OfferHist';
 
 function App() {
   return (

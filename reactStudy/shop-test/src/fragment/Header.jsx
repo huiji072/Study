@@ -13,6 +13,7 @@ import OfferHist from '../offer/OfferHist';
 import Join from '../login/Join';
 import Main from '../main/Main';
 import ItemMng from '../item/ItemMng';
+import ItemList from '../main/ItemList';
 
 class Header extends Component {
     render() {
@@ -20,12 +21,12 @@ class Header extends Component {
             <>
             
             <div class="titleHeader">
-                <h1><a class="title" href="/main/Main">❝Donators Market❞</a></h1> <br/>
+                <h1><a class="title" href="/main/ItemList">❝Donators Market❞</a></h1> <br/>
             </div>
 
             <Navbar bg="primary" variant="dark">
                 <Container>
-                <Navbar.Brand href="/main/Main">DonatorsMarket</Navbar.Brand>
+                <Navbar.Brand href="/main/ItemList">DonatorsMarket</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
                     <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
