@@ -35,4 +35,7 @@ function ItemMngList(props) {
     )
 }
 
-export default ItemMngList;
+export default ItemMngList
+
+
+
