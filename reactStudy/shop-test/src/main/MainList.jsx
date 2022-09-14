@@ -1,7 +1,5 @@
 import React from "react";
 import Main from "../main/Main";
-import ItemMng from "../item/ItemMng";
-import item from './item.json';
 
 const itemList = [
     {
@@ -24,7 +22,7 @@ const itemList = [
     },
 ]
 
-function ItemList(props) {
+function MainList(props) {
     return(
         <div>
             {itemList.map(( item) => {
@@ -37,4 +35,4 @@ function ItemList(props) {
     );
 }
 
-export default ItemList;
+export default MainList;

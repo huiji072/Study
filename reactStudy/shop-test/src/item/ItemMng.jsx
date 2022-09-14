@@ -35,12 +35,12 @@ function ItemMng(props) {
 
                         <td >{props.itemId}</td>
                         <td>
-                            <a>item.itemNm</a>
+                            <a>{props.itemNm}</a>
                         </td>
-                        <th>stockNumver</th>
-                        <td>itemSellStatus</td>
-                        <td>item.createdBy</td>
-                        <td>iten.regTime</td>
+                        <th>{props.stockNumber}</th>
+                        <td>{props.itemSellStatus}</td>
+                        <td>{props.createdBy}</td>
+                        <td>{props.regTime}</td>
                     </tr>
                     </tbody>
                 </table>
