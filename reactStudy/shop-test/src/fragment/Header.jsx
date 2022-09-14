@@ -7,7 +7,7 @@ import {  BrowserRouter as Router,  Routes,  Route} from "react-router-dom";
 import Login from '../login/Login';
 import ItemForm from '../item/ItemForm';
 import ItemDtl from '../item/ItemDtl';
-import CartList from '../cart/CartList';
+import Cart from '../cart/Cart';
 import OrderHist from '../order/OrderHist';
 import OfferHist from '../offer/OfferHist';
 import Join from '../login/Join';
@@ -15,6 +15,7 @@ import Main from '../main/Main';
 import ItemMng from '../item/ItemMng';
 import MainList from '../main/MainList';
 import ItemMngList from '../item/ItemMngList';
+import CartList from '../cart/CartList';
 
 class Header extends Component {
     render() {
