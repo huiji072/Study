@@ -16,6 +16,7 @@ import ItemMng from '../item/ItemMng';
 import MainList from '../main/MainList';
 import ItemMngList from '../item/ItemMngList';
 import CartList from '../cart/CartList';
+import OrderHistList from '../order/OrderHistList';
 
 class Header extends Component {
     render() {
@@ -33,7 +34,7 @@ class Header extends Component {
                     <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
                     <Nav.Link href="/item/ItemMngList">상품관리</Nav.Link>
                     <Nav.Link href="/cart/CartList">장바구니</Nav.Link>
-                    <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
+                    <Nav.Link href="/order/OrderHistList">구매이력</Nav.Link>
                     <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
                     <Nav.Link href="/login/Login">로그인</Nav.Link>
                     <Nav.Link href="/login/Join">회원가입</Nav.Link>
@@ -47,7 +48,7 @@ class Header extends Component {
                     <Route path='/item/ItemForm' element={<ItemForm/>} />
                     <Route path='/item/ItemMngList' element={<ItemMngList/>} />
                     <Route path='/cart/CartList' element={<CartList/>} />
-                    <Route path='/order/OrderHist' element={<OrderHist/>} />
+                    <Route path='/order/OrderHistList' element={<OrderHistList/>} />
                     <Route path='/offer/OfferHist' element={<OfferHist/>} />
                     <Route path='/login/Login' element={<Login/>} />
                     <Route path='/login/Join' element={<Join/>} />
