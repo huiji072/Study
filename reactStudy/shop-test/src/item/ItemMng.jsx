@@ -21,7 +21,6 @@ function ItemMng(props) {
 
             <form role="form" method="get" >
                 <table class="table">
-
                     <thead>
                     <tr>
                         <td>상품아이디</td>

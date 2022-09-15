@@ -1,5 +1,4 @@
 import React from "react";
-import ItemMng from "./ItemMng";
 import './ItemMng.css';
 
 const itemList = [
@@ -26,29 +25,22 @@ const itemList = [
 
 function ItemMngList() {
     return(
-        <div>
+        <>
             {itemList.map((item) => {
                 return(
-                    <>
-                    <div>
-                        <tr >
+                        <tr>
                             <td >{item.itemId}</td>
                             <td>
                                 <a>{item.itemNm}</a>
                             </td>
-                            <th>{item.stockNumber}</th>
+                            <td>{item.stockNumber}</td>
                             <td>{item.itemSellStatus}</td>
                             <td>{item.createdBy}</td>
                             <td>{item.regTime}</td>
                         </tr>
-                    </div>
-                    {/* <ItemMngForm itemId={item.itemId} itemNm={item.itemNm} stockNumber={item.stockNumber}
-                    itemSellStatus={item.itemSellStatus} createdBy={item.createdBy} regTime={item.regTime} /> */}
-                    </>
-                    
                 )
             })}
-        </div>
+        </>
     )
 }
 
