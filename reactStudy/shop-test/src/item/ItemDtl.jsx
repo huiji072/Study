@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './ItemDtl.css';
-import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import Comment from '../comment/Comment';
 
 const itemList = [
     {
@@ -76,6 +73,10 @@ function ItemDtl() {
                                     <p class="lead">상품 상세 설명을 적는 곳입니다. <br></br> 두번째 줄입니다.</p>
                                 </div>
                             </div>
+
+                            <br/>
+
+                            <Comment/>
                             </>
 
                     );
