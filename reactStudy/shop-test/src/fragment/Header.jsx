@@ -18,7 +18,6 @@ import ItemMngList from '../item/ItemMngList';
 import CartList from '../cart/CartList';
 import OrderHistList from '../order/OrderHistList';
 import OfferHistList from '../offer/OfferHistList';
-
 class Header extends Component {
     render() {
         return(
@@ -53,6 +52,7 @@ class Header extends Component {
                     <Route path='/offer/OfferHist' element={<OfferHist/>} />
                     <Route path='/login/Login' element={<Login/>} />
                     <Route path='/login/Join' element={<Join/>} />
+                    <Route path='/item/ItemDtl' element={<ItemDtl/>} />
                 </Routes>
             </Router>
             </>

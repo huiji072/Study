@@ -48,7 +48,7 @@ function MainList() {
             {itemList.map((item) => {
                 return(
                         <Card className="card">
-                            <a href='item.jsx'>
+                            <a href='item/ItemDtl'>
                                 <img className="card-img-top" src='/img/bed.jpg' />
                                 <div className="card-body">
                                     <h4 className="card-title">{item.itemNm}</h4>
