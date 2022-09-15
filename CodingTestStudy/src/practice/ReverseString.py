@@ -14,4 +14,7 @@ isNum.sort()
 
 result = isAlpha + isNum
 
-print(''.join(result))
+print(''.join(result))         
+
+
+ 
