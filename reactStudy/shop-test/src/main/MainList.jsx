@@ -1,5 +1,7 @@
 import React from "react";
-import Main from "../main/Main";
+import 'bootstrap/dist/css/bootstrap.min.css';  
+import {Container ,Card,Row, Col, Button} from 'react-bootstrap';  
+import './Main.css';
 
 const itemList = [
     {
@@ -20,18 +22,44 @@ const itemList = [
         createdBy: "seller1@gmail.com",
         regTime: "2022-08-230"
     },
+    {
+        itemId: 3,
+        itemNm: "test2",
+        itemDetail: "props를 이용하여 출력된 값입니다2!!",
+        stockNumber: 200,
+        itemSellStatus: "SOLD_OUT",
+        createdBy: "seller1@gmail.com",
+        regTime: "2022-08-230"
+    },
+    {
+        itemId: 4,
+        itemNm: "test2",
+        itemDetail: "props를 이용하여 출력된 값입니다2!!",
+        stockNumber: 200,
+        itemSellStatus: "SOLD_OUT",
+        createdBy: "seller1@gmail.com",
+        regTime: "2022-08-230"
+    }
 ]
 
-function MainList(props) {
+function MainList() {
     return(
-        <div>
-            {itemList.map(( item) => {
+        <>
+            {itemList.map((item) => {
                 return(
-                    <Main itemNm={item.itemNm} itemDetail={item.itemDetail} stockNumber={item.stockNumber}/>
-                    // <ItemMng itemId={item.itemId} />
+                        <Card className="card">
+                            <a href='item.jsx'>
+                                <img className="card-img-top" src='/img/bed.jpg' />
+                                <div className="card-body">
+                                    <h4 className="card-title">{item.itemNm}</h4>
+                                    <p className="card-text">{item.itemDetail}</p>
+                                    <h3 class="card-title text-danger">{item.stockNumber}</h3>
+                                </div>
+                            </a>
+                        </Card>
                 );
             })}
-        </div>
+        </>
     );
 }
 
