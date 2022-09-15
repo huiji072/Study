@@ -1,5 +1,6 @@
 import React from "react";
 import ItemMng from "./ItemMng";
+import './ItemMng.css';
 
 const itemList = [
     {
@@ -12,6 +13,7 @@ const itemList = [
         regTime: "2022-08-25"
     },
     {
+        
         itemId: 2,
         itemNm: "test2",
         itemDetail: "props를 이용하여 출력된 값입니다2!!",
@@ -22,13 +24,28 @@ const itemList = [
     },
 ]
 
-function ItemMngList(props) {
+function ItemMngList() {
     return(
         <div>
             {itemList.map((item) => {
                 return(
-                    <ItemMng itemId={item.itemId} itemNm={item.itemNm} stockNumber={item.stockNumber}
-                    itemSellStatus={item.itemSellStatus} createdBy={item.createdBy} regTime={item.regTime} />
+                    <>
+                    <div>
+                        <tr >
+                            <td >{item.itemId}</td>
+                            <td>
+                                <a>{item.itemNm}</a>
+                            </td>
+                            <th>{item.stockNumber}</th>
+                            <td>{item.itemSellStatus}</td>
+                            <td>{item.createdBy}</td>
+                            <td>{item.regTime}</td>
+                        </tr>
+                    </div>
+                    {/* <ItemMngForm itemId={item.itemId} itemNm={item.itemNm} stockNumber={item.stockNumber}
+                    itemSellStatus={item.itemSellStatus} createdBy={item.createdBy} regTime={item.regTime} /> */}
+                    </>
+                    
                 )
             })}
         </div>

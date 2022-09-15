@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ItemMng.css';
+import ItemMngList from './ItemMngList';
 
 function ItemMng(props) {
         return(
@@ -20,6 +21,7 @@ function ItemMng(props) {
 
             <form role="form" method="get" >
                 <table class="table">
+
                     <thead>
                     <tr>
                         <td>상품아이디</td>
@@ -30,19 +32,11 @@ function ItemMng(props) {
                         <td>등록일</td>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr >
 
-                        <td >{props.itemId}</td>
-                        <td>
-                            <a>{props.itemNm}</a>
-                        </td>
-                        <th>{props.stockNumber}</th>
-                        <td>{props.itemSellStatus}</td>
-                        <td>{props.createdBy}</td>
-                        <td>{props.regTime}</td>
-                    </tr>
+                    <tbody> 
+                        <ItemMngList/>
                     </tbody>
+
                 </table>
 
 
