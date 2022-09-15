@@ -37,6 +37,7 @@ const commentList = [
         content: "질문입니다.123456789",
         depth: 0
     }
+    
 ]
 
 function QuestionComment() {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
-function Hello() {
+function ItemDtlTest() {
   // 요청받은 정보를 담아줄 변수 선언
   const [ testStr, setTestStr ] = useState('');
 
@@ -23,12 +23,10 @@ function Hello() {
   );
 
   return (
-      <div className="App">
-          <header className="App-header">
-              {testStr}
-          </header>
-      </div>
+      <>
+      <h1> {testStr} </h1>
+      </>
   );
 }
 
-export default Hello;
+export default ItemDtlTest;

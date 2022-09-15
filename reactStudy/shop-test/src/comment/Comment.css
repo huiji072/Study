@@ -51,6 +51,7 @@
     background-color: white;
     float: right;
     margin-right: 30px;
+    text-decoration-line: underline;
 }
 .commentRegisterBtn2{
     border: none;

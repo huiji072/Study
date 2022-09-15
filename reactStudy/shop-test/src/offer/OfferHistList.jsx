@@ -32,7 +32,8 @@ function OfferHistList() {
                         <h4 >{item.regTime}  </h4>
                         <div class="ml-3">
                             <th>
-                                <button type="button" class="btn btn-outline-secondary"  onclick="cancelOrder(this.value)"> 주문취소</button>
+                                <button type="button" class="btn btn-outline-secondary"  
+                                onclick="{this.cancelOrder}"> 주문취소</button>
                             </th>
                             {/* <th >
                                 <h4>(취소 완료)</h4>
