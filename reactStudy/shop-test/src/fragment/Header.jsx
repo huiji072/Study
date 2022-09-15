@@ -34,7 +34,7 @@ class Header extends Component {
                 <Nav className="me-auto">
                     <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
                     <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
-                    <Nav.Link href="/cart/CartList">장바구니</Nav.Link>
+                    <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
                     <Nav.Link href="/order/OrderHistList">구매이력</Nav.Link>
                     <Nav.Link href="/offer/OfferHistList">판매이력</Nav.Link>
                     <Nav.Link href="/login/Login">로그인</Nav.Link>
@@ -48,7 +48,7 @@ class Header extends Component {
                     <Route path='/main/MainList' element={<MainList/>} />
                     <Route path='/item/ItemForm' element={<ItemForm/>} />
                     <Route path='/item/ItemMng' element={<ItemMng/>} />
-                    <Route path='/cart/CartList' element={<CartList/>} />
+                    <Route path='/cart/Cart' element={<Cart/>} />
                     <Route path='/order/OrderHistList' element={<OrderHistList/>} />
                     <Route path='/offer/OfferHistList' element={<OfferHistList/>} />
                     <Route path='/login/Login' element={<Login/>} />

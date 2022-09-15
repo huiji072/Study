@@ -24,13 +24,37 @@ const itemList = [
 
 function CartList(props) {
     return(
-        <div>
+        <>
             {itemList.map((item) => {
                 return(
-                    <Cart  itemNm={item.itemNm} stockNumber={item.stockNumber}/>
+                    <tr>
+                    <td class="text-center align-middle">
+                        <input type="checkbox" name="cartChkBox" />
+                    </td>
+                    <td class="d-flex">
+                        <div >
+                            <img src='/img/bed.jpg' class = "cartImg"/>
+                        </div>
+                        <div class="align-self-center">
+                            <span class="fs24 font-weight-bold">{item.itemNm}</span>
+                            <div class="fs18 font-weight-light">
+                                <span class="input-group mt-2">
+
+                                    <input type="number" name="count" 
+                                         min="1" value={item.stockNumber}
+                                        onchange="changeCount(this)" class="form-control mr-2"/>
+                                    <button type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true" onclick="deleteCartItem(this)">&times;</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
                 )
             })}
-       </div>
+       </>
     )
 }
 

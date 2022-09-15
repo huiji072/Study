@@ -43,10 +43,10 @@
     display:block;
 }
 
-tr, td{
+/* tr, td{
     text-align: left;
     width : 900px;
-}
+} */
 
 .btn-1 {
     background-color: white;

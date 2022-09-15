@@ -19,7 +19,7 @@ function ItemMng(props) {
             <br/>
 
 
-            <form role="form" method="get" >
+            <form role="form" method="get" className='itemMngForm'>
                 <table class="table">
                     <thead>
                     <tr>

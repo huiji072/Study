@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import './Cart.css';
-import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
-import FormControlLabel from '@mui/material/FormControlLabel';
-
+import CartList from './CartList';
 function Cart(props) {
         return(
             <div class="cartContainer">
@@ -14,7 +10,7 @@ function Cart(props) {
 
                 <table class="table">
                     <thead>
-                    <tr class="tr1">
+                    <tr class="cartListTr1">
                         <td>
                             <input type="checkbox" id="checkall" onclick="checkAll()"/> 
                         </td>
@@ -22,34 +18,7 @@ function Cart(props) {
                     </tr>
                     </thead>
                     <tbody>
-
-                    <tr>
-                        <td class="text-center align-middle">
-                            <input type="checkbox" name="cartChkBox" />
-                        </td>
-                        <td class="d-flex">
-                            <div >
-                                <img src='/img/bed.jpg' class = "cartImg"/>
-                            </div>
-                            <div class="align-self-center">
-                                <span class="fs24 font-weight-bold">{props.itemNm}</span>
-                                <div class="fs18 font-weight-light">
-                                    <span class="input-group mt-2">
-
-                                        <input type="number" name="count" 
-                                             min="1" value={props.stockNumber}
-                                            onchange="changeCount(this)" class="form-control mr-2"/>
-                                        <button type="button" class="close" aria-label="Close">
-                                            <span aria-hidden="true" onclick="deleteCartItem(this)">&times;</span>
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                   
+                        <CartList/>
                     </tbody>
                 </table>
 
