@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';  
 import {Container ,Card,Row, Col, Button} from 'react-bootstrap';  
 import './Main.css';
@@ -43,9 +44,27 @@ const itemList = [
 ]
 
 function MainList() {
+
+    const [ testStr, setTestStr ] = useState('');
+    // 변수 초기화
+    function callback(str) {
+      setTestStr(str);
+    }
+
+    useEffect(
+        () => {
+          axios({
+              url: '/main/items',
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+          })
+        }, []
+    );
+  
     return(
         <>
-            {itemList.map((item) => {
+            {testStr.item.map((item) => {
                 return(
                         <Card className="card">
                             <a href='item/ItemDtl'>
