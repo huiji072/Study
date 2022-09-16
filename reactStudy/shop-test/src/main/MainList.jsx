@@ -22,12 +22,10 @@ function MainList() {
           })
         }, []
     );
-
-    console.log(testStr.item)
   
     return(
         <>
-            {testStr.item.map((item) => {
+            {testStr.item && testStr.item.map((item) => {
                 return(
                         <Card className="card">
                             <a href='item/ItemDtl'>

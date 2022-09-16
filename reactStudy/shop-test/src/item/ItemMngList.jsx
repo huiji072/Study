@@ -1,40 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import './ItemMng.css';
 
-const itemList = [
-    {
-        itemId: 1,
-        itemNm: "test1",
-        itemDetail: "props를 이용하여 출력된 값입니다.",
-        stockNumber: 10,
-        itemSellStatus: "SELL",
-        createdBy: "seller1@gmail.com",
-        regTime: "2022-08-25"
-    },
-    {
-        
-        itemId: 2,
-        itemNm: "test2",
-        itemDetail: "props를 이용하여 출력된 값입니다2!!",
-        stockNumber: 200,
-        itemSellStatus: "SOLD_OUT",
-        createdBy: "seller1@gmail.com",
-        regTime: "2022-08-230"
-    },
-]
 
 function ItemMngList() {
+
+    const [ testStr, setTestStr ] = useState('');
+    // 변수 초기화
+    function callback(str) {
+      setTestStr(str);
+    }
+
+    useEffect(
+        () => {
+          axios({
+              url: '/item/itemMng',
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+          })
+        }, []
+    );
+
     return(
         <>
-            {itemList.map((item) => {
+            {testStr.item && testStr.item.map((item) => {
+                <li key={item.id}/>
                 return(
                         <tr>
-                            <td >{item.itemId}</td>
+                            <td >{item.id}</td>
                             <td>
-                                <a>{item.itemNm}</a>
+                                <a>{item.name}</a>
                             </td>
                             <td>{item.stockNumber}</td>
-                            <td>{item.itemSellStatus}</td>
+                            <td>{item.sellStatus}</td>
                             <td>{item.createdBy}</td>
                             <td>{item.regTime}</td>
                         </tr>
@@ -44,7 +43,7 @@ function ItemMngList() {
     )
 }
 
-export default ItemMngList
+export default ItemMngList;
 
 
 

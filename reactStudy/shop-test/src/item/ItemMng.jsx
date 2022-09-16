@@ -4,15 +4,15 @@ import ItemMngList from './ItemMngList';
 
 function ItemMng(props) {
         return(
-            <div class="containerItemMng">
+            <div className="containerItemMng">
 
-                <div class="orderByItemMng" >
+                <div className="orderByItemMng" >
                     <div>
                         {/* <form action="/admin/items"> */}
-                            <button class="btn btn-primary" type="submit" >아이디 내림차순</button>
+                            <button className="btn btn-primary" type="submit" >아이디 내림차순</button>
                         {/* </form>
                         <form action="/admin/item/itemMngOrderByItemNmAsc"> */}
-                            <button class="btn btn-primary" type="submit">이름 오름차순</button>
+                            <button className="btn btn-primary" type="submit">이름 오름차순</button>
                         {/* </form> */}
                     </div>
                 </div>
@@ -20,7 +20,7 @@ function ItemMng(props) {
 
 
             <form role="form" method="get" className='itemMngForm'>
-                <table class="table">
+                <table className="table">
                     <thead>
                     <tr>
                         <td>상품아이디</td>
@@ -58,7 +58,7 @@ function ItemMng(props) {
                     </select>
 
                     <input type="text" placeholder="검색어를 입력해주세요"/>
-                    <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+                    <button id="searchBtn" type="submit" className="btn btn-primary">검색</button>
                 </div>
             </form>
 
