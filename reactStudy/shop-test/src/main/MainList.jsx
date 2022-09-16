@@ -15,13 +15,15 @@ function MainList() {
     useEffect(
         () => {
           axios({
-              url: '/main/items',
+              url: '/main',
               method: 'GET'
           }).then((res) => {
               callback(res.data);
           })
         }, []
     );
+
+    console.log(testStr.item)
   
     return(
         <>
@@ -29,7 +31,7 @@ function MainList() {
                 return(
                         <Card className="card">
                             <a href='item/ItemDtl'>
-                                <img className="card-img-top" src='/img/bed.jpg' />
+                                <img className="card-img-top" src={item.imgUrl} />
                                 <div className="card-body">
                                     <h4 className="card-title">{item.name}</h4>
                                     <p className="card-text">{item.dtl}</p>
