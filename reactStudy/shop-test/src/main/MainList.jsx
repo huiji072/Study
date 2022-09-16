@@ -28,7 +28,7 @@ function MainList() {
             {testStr.item && testStr.item.map((item) => {
                 return(
                         <Card className="card">
-                            <a href='item/ItemDtl'>
+                            <a href={item.id}>
                                 <img className="card-img-top" src={item.imgUrl} />
                                 <div className="card-body">
                                     <h4 className="card-title">{item.name}</h4>

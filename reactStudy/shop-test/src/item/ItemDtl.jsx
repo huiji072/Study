@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import './ItemDtl.css';
 import Comment from '../comment/Comment';
 
@@ -14,12 +15,29 @@ const itemList = [
     }
 ]
 
-
 function ItemDtl() {
+
+    const [ testStr, setTestStr ] = useState('');
+    // 변수 초기화
+    function callback(str) {
+      setTestStr(str);
+    }
+
+    useEffect(
+        () => {
+          axios({
+              url: '/item/150',
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+          })
+        }, []
+    );
+
         return(
             <div className="itemDtl">
 
-                {itemList.map ((item) => {
+                {testStr.item && testStr.item.map ((item) => {
                     return(
                         <>
 
@@ -27,7 +45,7 @@ function ItemDtl() {
 
                             <div class="d-flex" >
                                 <div class="repImgDiv" >
-                                    <img src="/img/sopa.jpg" class = "itemDtlImg" />
+                                    <img src={item.imgDtoList[0].imgUrl} class = "itemDtlImg" />
                                 </div>
                                 <div class="wd50ItemDtl">
                                     <span class="badge badge-primary mgb-15">
@@ -36,11 +54,11 @@ function ItemDtl() {
                                     <span class="badge btn-danger mgb-15" >
                                         품절
                                     </span>
-                                    <div class="h4" >{item.itemNm}</div>
+                                    <div class="h4" >{item.name}</div>
                                     <hr class="my-4"/>
 
                                     <div class="wd50">
-                                        <div class="h4" >50</div>
+                                        <div class="h4">{item.stockNumber}</div>
                                         <hr class="my-4"/>
                                     </div>
 
@@ -61,7 +79,7 @@ function ItemDtl() {
                                         <button type="button" class="btn btn-primary btn-lg" onclick="order();">주문하기</button>
                                     </div>
                                     <div  class="text-right">
-                                        {/* <button type="button" class="btn btn-danger btn-lg">품절</button> */}
+                                        {/* <button type="button" class="btn btn-danger btn-lg">{item.sellStatus}</button> */}
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +88,7 @@ function ItemDtl() {
                                 <div class="itemDtlExplain">
                                     <h3 class="display-5">상품 상세 설명</h3>
                                     <hr class="my-4"/>
-                                    <p class="lead">상품 상세 설명을 적는 곳입니다. <br></br> 두번째 줄입니다.</p>
+                                    <p class="lead">{item.dtl}</p>
                                 </div>
                             </div>
 
