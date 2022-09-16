@@ -1,35 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import OrderHist from "./OrderHist";
 
-const itemList = [
-    {
-        itemId: 1,
-        itemNm: "test1",
-        itemDetail: "props를 이용하여 출력된 값입니다.",
-        stockNumber: 10,
-        itemSellStatus: "SELL",
-        createdBy: "seller1@gmail.com",
-        regTime: "2022-08-25"
-    },
-    {
-        itemId: 2,
-        itemNm: "test2",
-        itemDetail: "props를 이용하여 출력된 값입니다2!!",
-        stockNumber: 200,
-        itemSellStatus: "SOLD_OUT",
-        createdBy: "seller1@gmail.com",
-        regTime: "2022-08-23"
-    },
-]
-
 function OrderHistList() {
+
+    const [ testStr, setTestStr ] = useState('');
+    // 변수 초기화
+    function callback(str) {
+      setTestStr(str);
+    }
+
+    useEffect(
+        () => {
+          axios({
+              url: '/orders',
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+          })
+        }, []
+    );
+
+    console.log(testStr)
+
     return(
         <>
-            {itemList.map((item) => {
+            {testStr.orderItem && testStr.orderItem.map((orderItem) => {
                 return(
                     <div className="orderHistListForm">
                             <div class="d-flex mb-3 align-self-center">
-                            <h4 >{item.regTime}</h4>
+                            <h4 >{orderItem.date}</h4>
                             <div class="ml-3">
                                 <th>
                                     <button type="button" class="btn btn-outline-secondary"  onclick="cancelOrder(this.value)"> 주문취소</button>
@@ -45,17 +45,17 @@ function OrderHistList() {
                             <div class="d-flex mb-3">
 
                                 <div class="repImgDiv">
-                                    <img src='/img/sopa.jpg' class = "imgOrderHist" />
+                                    <img src={orderItem.itemDtoList[0].imgUrl} class = "imgOrderHist" />
                                 </div>
 
                                 <div class="contentsOrderHist">
-                                    <span  class="fs24 font-weight-bold">{item.itemNm}</span>
+                                    <span  class="fs24 font-weight-bold">{orderItem.itemDtoList[0].itemNm}</span>
                                     <div class="fs18 font-weight-light">
-                                        <span>{item.stockNumber}</span>
+                                        <span>{orderItem.itemDtoList[0].count}</span>
                                     </div>
                                     <div class="fs18 font-weight-light">
                                         <span>판매자 </span>
-                                        <span >{item.createdBy}</span>
+                                        <span >{orderItem.itemDtoList[0].itemSeller}</span>
                                     </div>
                                 </div>
                                 
