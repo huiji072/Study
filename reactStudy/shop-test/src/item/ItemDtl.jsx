@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import {useParams} from "react-router"
 import axios from 'axios'
 import './ItemDtl.css';
 import Comment from '../comment/Comment';
 
-const itemList = [
-    {
-        itemId: 1,
-        itemNm: "test1",
-        itemDetail: "props를 이용하여 출력된 값입니다.",
-        stockNumber: 10,
-        itemSellStatus: "SELL",
-        createdBy: "seller1@gmail.com",
-        regTime: "2022-08-25"
-    }
-]
-
 function ItemDtl() {
+
+    const { itemId } = useParams();
+    const url = '/item/'+itemId
+    console.log(url);
 
     const [ testStr, setTestStr ] = useState('');
     // 변수 초기화
@@ -26,7 +19,7 @@ function ItemDtl() {
     useEffect(
         () => {
           axios({
-              url: '/item/150',
+              url: url,
               method: 'GET'
           }).then((res) => {
               callback(res.data);
