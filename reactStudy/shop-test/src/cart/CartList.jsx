@@ -1,20 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Cart from "./Cart";
-const cartItem = [
-    {
-        itemId: 1,
-        itemNm: "test1",
-        count: 10,
-        itemSeller: "seller1@gmail.com",
-    },
-    {
-        itemId: 2,
-        itemNm: "test2",
-        count: 200,
-        itemSeller: "seller1@gmail.com",
-    },
-]
+
 function CartList(props) {
 
     const [ testStr, setTestStr ] = useState('');
@@ -36,8 +23,8 @@ function CartList(props) {
 
     return(
         <>
-            {/* {testStr.cartItem && testStrcartItem.map((cartItem) => { */}
-            {cartItem && cartItem.map((cartItem) => {
+            {testStr.cartItem && testStr.cartItem.map((cartItem) => {
+            {/* {cartItem && cartItem.map((cartItem) => { */}
                 return(
                     <tr>
                     <td class="text-center align-middle">
