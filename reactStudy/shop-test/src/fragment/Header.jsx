@@ -55,6 +55,7 @@ class Header extends Component {
                     <Route path='/login/Login' element={<Login/>} />
                     <Route path='/login/Join' element={<Join/>} />
                     <Route path='/:itemId' element={<ItemDtl/>} />
+                    {/* <Route path='/:itemId' element={<Comment/>} /> */}
                     <Route path='/test/Hello' element={<Hello/>} />
                     <Route path='/test/itemDtlTest' element={<ItemDtlTest/>} />
                 </Routes>
