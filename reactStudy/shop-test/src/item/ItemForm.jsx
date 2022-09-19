@@ -14,7 +14,7 @@ function ItemForm(props) {
         e.preventDefault();
     }
 
-    const[itemSellStatus, setItemSellStatus] = useState("");
+    const[itemSellStatus, setItemSellStatus] = useState("SELL");
     const[itemNm, setItemNm] = useState("");
     const[stockNumber, setStockNumber] = useState("");
     const[itemDtl, setItemDtl] = useState("");
@@ -44,58 +44,41 @@ function ItemForm(props) {
         alert(`상품명 : ${itemNm}`);
         event.preventDefault();
     }
+
+    const data = {
+        itemSellStatus: itemSellStatus,
+        itemNm: itemNm,
+        stockNumber: stockNumber,
+        itemDtl: itemDtl,
+        itemImgDto: itemImgDto,
+        itemImgDtoList: [{imgUrl: itemImgDto,
+                          oriImgName: itemImgDto,
+                          imgName: itemImgDto}]
+    }
+
+
+    const jsonData = JSON.stringify(data)
+
  
-    
+    console.log(jsonData);
     useEffect(
         () => {
           itemNew()
         }, []
     );
+    
     function itemNew(e) {
         axios({
             url: '/item/new',
             method: 'POST',
-            data : {
-            itemNm: "testName"
-            }
+            headers: { 'Content-Type': 'application/json' },
+            data : jsonData
+            
         }).then((res) => {
             callback(res.data);
-            console.log(res.data)
-            setItemNm("");
+            console.log(res.data);
         })
     }
-    // async function itemForm() {  
-    //     await axios
-    //     .get("/admin/item/new")
-    //     .then((res) => {
-    //         callback(res.data);
-    //     })
-    // }
-
-
-
-    // function itemNew(e) {
-    //     e.preventDefault();
-
-    //     alert(`상품명 : ${itemNm}`);
-
-    //     const itemNew = async () => {
-    //         await axios
-    //             .post("/admin/item/new", {
-    //                 ItemFormDto: itemNm,
-    //                 itemNm : itemNm
-    //             })
-    //             .then((res) => {
-    //                 console.log(res.data);
-    //             })
-    //             .catch((error) => {
-    //                 console.error(error);
-    //             })
-    //     }
-    //     itemNew()
-    //     console.log("itemNew ", itemNm);
-    // }
-    
 
 
         return(
@@ -140,10 +123,11 @@ function ItemForm(props) {
 
                 {/* 이미지 */}
                 <div >
-                    <div class="form-group">
+                    <div class="form-group" each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
                         <div class="custom-file img-div">
                             <input value={itemImgDto} onChange={handleChangeItemImgDto}
                             type="file" class="custom-file-input" name="itemImgFile"/>
+                            <input type="hidden" name="itemImgIds" value="${itemImgDto.id}"></input>
                             <label class="custom-file-label" ></label>
                         </div>
                     </div>
