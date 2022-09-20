@@ -3,12 +3,12 @@ import axios from 'axios'
 import './Login.css';
 // axios.defaults.xsrfCookieName = 'csrftoken';
 // axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
-
+    //   headers: { xsrfCookieName: 'XSRF-TOKEN',
+    //               xsrfHeaderName: 'X-XSRF-TOKEN',
+    //               "X-XSRF-TOKEN": csrfToken,
+    //               "Content-Type": "application/x-www-form-urlencoded" 
+    // }
 function Login() {
-
-  function sendLoginRequest() {
-    // console.log("Im sending a request")
-  }
 
   const [ testStr, setTestStr ] = useState('');
   // 변수 초기화
@@ -33,39 +33,26 @@ function Login() {
   }
 
   const loginData = {
-    email: "testtest"
+    email: email,
+    password: password
   }
 
   const jsonData = JSON.stringify(loginData)
 
-    useEffect(
-        () => {
-          login()
-        }, []
-    );
-
-console.log(jsonData);
-
 const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
-function login(e) {
+const sendLoginRequest = () => {
   axios({
-      url: '/members/login',
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      data: jsonData
-    //   headers: { xsrfCookieName: 'XSRF-TOKEN',
-    //               xsrfHeaderName: 'X-XSRF-TOKEN',
-    //               "X-XSRF-TOKEN": csrfToken,
-    //               "Content-Type": "application/x-www-form-urlencoded" 
-    // }
-      
+    url: '/members/login',
+    method: "post",
+    body: jsonData,
+    headers: { 'Content-Type': 'application/json' }
   }).then((res) => {
-      callback(res.data);
-      console.log(res.data);
-  }).catch((error) => {
-    console.log(error)
+    callback(res.data);
+    console.log(res.data);
   })
+  console.log(jsonData)
+  console.log("sending Request");
 }
 
   return(
@@ -111,7 +98,7 @@ function login(e) {
             </div>
 
             <div className="d-grid">
-              <button className="btn btn-primary" type='submit'
+              <button className="btn btn-primary"
               onClick={() => sendLoginRequest()}>
                 Submit
               </button>
