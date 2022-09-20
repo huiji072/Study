@@ -20,6 +20,8 @@ import OrderHistList from '../order/OrderHistList';
 import OfferHistList from '../offer/OfferHistList';
 import Hello from '../test/Hello';
 import ItemDtlTest from '../test/ItemDtlTest';
+import LoginSuccess from '../login/LoginSuccess';
+
 class Header extends Component {
     render() {
         return(
@@ -58,6 +60,7 @@ class Header extends Component {
                     {/* <Route path='/:itemId' element={<Comment/>} /> */}
                     <Route path='/test/Hello' element={<Hello/>} />
                     <Route path='/test/itemDtlTest' element={<ItemDtlTest/>} />
+                    <Route path='/login/success' element={<LoginSuccess/>} />
                 </Routes>
             </Router>
             </>

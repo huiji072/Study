@@ -73,7 +73,9 @@ function ItemForm(props) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             data : jsonData
-            
+            // params: {
+            //     "itemImgFile": itemImgDto
+            // }
         }).then((res) => {
             callback(res.data);
             console.log(res.data);
@@ -87,7 +89,7 @@ function ItemForm(props) {
                 <div>
                     <h2>상품 등록</h2>
                 </div>
-            <form onSubmit={itemNew} object={testStr}>
+            <form onSubmit={itemNew} object={testStr} action='/admin/item/new' >
                 <div class="form-group">
                     <select class="form-select" value={itemSellStatus} onChange={handleChangeItemSellStatue}>
                         <option value="SELL">판매중</option>
@@ -137,7 +139,7 @@ function ItemForm(props) {
 
                 <div className="d-grid">
                     {/* 저장 버튼 */}
-                    <button type="submit" className="btn btn-primary" formAction='/admin/item/new'>
+                    <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
 
