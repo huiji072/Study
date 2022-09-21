@@ -11,9 +11,9 @@ function Join() {
     setTestStr(str);
   }
 
-  // function join(e){
-  //   e.preventDefault();
-  // }
+  function joinNew(e){
+    e.preventDefault();
+  }
 
   const checkData = [
     {id: 0, title: '기부자', name: 'chkseller'},
@@ -54,20 +54,19 @@ function Join() {
     name: name,
     email: email,
     password: password,
-    address: address
+    address: address,
+    checkItems: checkItems
   }
 const jsonData = JSON.stringify(joinData)
 
-const join = (e) => {
-  e.preventDefault();
+const sendJoinRequest = () => {
   axios({
-    url: '/members/new2',
+    url: '/members/new',
     method: "post",
-    body: jsonData,
-    headers: { 'Content-Type': 'application/json; charset=utf-8' }
+    headers: { 'Content-Type': 'application/json' },
+    data: jsonData
   }).then((res) => {
     callback(res.data);
-    console.log(res.data);
   }).catch((error) => {
     console.log(error);
   })
@@ -75,10 +74,11 @@ const join = (e) => {
   console.log("sending Join Request");
 }
 
+
 return(
   <div class="joinContainer">
     <h2 class="mb-4">회원가입</h2>
-      <form class="JoinForm" onSubmit={join} object={joinData}>
+      <form class="JoinForm" onSubmit={joinNew} object={joinData}>
 
         <div className='form-group'>
         {checkData?.map((data, key) => (
@@ -149,6 +149,7 @@ return(
 
           <div className="d-grid">
             <button type="submit" className="btn btn-primary"
+            onClick={() => sendJoinRequest()}
              >
               Submit
             </button>

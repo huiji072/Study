@@ -40,10 +40,10 @@ function ItemForm(props) {
         setItemImgDto(event.target.value);
     }
 
-    const handleSubmit = (event) => {
-        alert(`상품명 : ${itemNm}`);
-        event.preventDefault();
-    }
+    // const handleSubmit = (event) => {
+    //     alert(`상품명 : ${itemNm}`);
+    //     event.preventDefault();
+    // }
 
     const data = {
         itemSellStatus: itemSellStatus,
@@ -89,7 +89,7 @@ function ItemForm(props) {
                 <div>
                     <h2>상품 등록</h2>
                 </div>
-            <form onSubmit={itemNew} object={testStr} action='/admin/item/new' >
+            <form onSubmit={itemNew} object={testStr}  >
                 <div class="form-group">
                     <select class="form-select" value={itemSellStatus} onChange={handleChangeItemSellStatue}>
                         <option value="SELL">판매중</option>

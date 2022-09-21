@@ -45,8 +45,8 @@ const sendLoginRequest = () => {
   axios({
     url: '/members/login',
     method: "post",
-    body: jsonData,
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json' },
+    body: jsonData
   }).then((res) => {
     callback(res.data);
     console.log(res.data);
