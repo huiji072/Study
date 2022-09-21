@@ -50,6 +50,8 @@ const sendLoginRequest = () => {
   }).then((res) => {
     callback(res.data);
     console.log(res.data);
+  }).catch((error) => {
+    console.log(error);
   })
   console.log(jsonData)
   console.log("sending Request");
