@@ -16,13 +16,13 @@ function Login() {
     setTestStr(str);
   }
 
-  function login(e){
+  function loginSubmit(e){
     e.preventDefault();
   }
 
 
-  const [email, setEmail] = useState("vmvm@naver.com");
-  const [password, setPassword] = useState("bothboth");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -43,10 +43,13 @@ const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;
 
 const sendLoginRequest = () => {
   axios({
-    url: '/members/login',
-    method: "post",
-    headers: { 'Content-Type': 'application/json' },
-    body: jsonData
+    url: '/members/login/success2',
+    method: "get",
+    // headers: { 'Content-Type': 'application/json' },
+    // data: jsonData,
+    params: {
+      email: email
+    }
   }).then((res) => {
     callback(res.data);
     console.log(res.data);
@@ -54,13 +57,13 @@ const sendLoginRequest = () => {
     console.log(error);
   })
   console.log(jsonData)
-  console.log("sending Request");
+  console.log("sending login Request");
 }
 
   return(
     <div class="loginContainer">
     <h2 class="mb-4">로그인</h2>
-         <form class="loginForm" onSubmit={login}>
+         <form class="loginForm" onSubmit={loginSubmit}>
             <div className="mb-3">
               
               <label>Email address</label>

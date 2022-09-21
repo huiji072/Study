@@ -18,7 +18,7 @@ function ItemForm(props) {
     const[itemNm, setItemNm] = useState("");
     const[stockNumber, setStockNumber] = useState("");
     const[itemDtl, setItemDtl] = useState("");
-    const[itemImgDto, setItemImgDto] = useState("");
+    const[itemImgFile, setItemImgFile] = useState("");
 
     const handleChangeItemSellStatue = (event) => {
         setItemSellStatus(event.target.value);
@@ -37,51 +37,37 @@ function ItemForm(props) {
     }
 
     const handleChangeItemImgDto = (event) => {
-        setItemImgDto(event.target.value);
+        setItemImgFile(event.target.value);
     }
-
-    // const handleSubmit = (event) => {
-    //     alert(`상품명 : ${itemNm}`);
-    //     event.preventDefault();
-    // }
 
     const data = {
         itemSellStatus: itemSellStatus,
         itemNm: itemNm,
         stockNumber: stockNumber,
-        itemDtl: itemDtl,
-        itemImgDto: itemImgDto,
-        itemImgDtoList: [{imgUrl: itemImgDto,
-                          oriImgName: itemImgDto,
-                          imgName: itemImgDto}]
+        itemDtl: itemDtl
     }
 
 
     const jsonData = JSON.stringify(data)
 
- 
-    console.log(jsonData);
-    useEffect(
-        () => {
-          itemNew()
-        }, []
-    );
-    
-    function itemNew(e) {
+    const sendItemRegisterRequest = () => {
         axios({
-            url: '/item/new',
+            url: '/admin/item/new',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            data : jsonData
-            // params: {
-            //     "itemImgFile": itemImgDto
-            // }
+            data : jsonData,
+            params: {
+                "itemImgFile": itemImgFile
+            }
         }).then((res) => {
             callback(res.data);
             console.log(res.data);
+        }).catch((error) => {
+          console.log(error);
         })
+        console.log(jsonData)
+        console.log("sending item Register Request");
     }
-
 
         return(
             <div className="itemFormContainer">
@@ -89,7 +75,7 @@ function ItemForm(props) {
                 <div>
                     <h2>상품 등록</h2>
                 </div>
-            <form onSubmit={itemNew} object={testStr}  >
+            <form onSubmit={itemNew}>
                 <div class="form-group">
                     <select class="form-select" value={itemSellStatus} onChange={handleChangeItemSellStatue}>
                         <option value="SELL">판매중</option>
@@ -124,10 +110,11 @@ function ItemForm(props) {
                 </div>
 
                 {/* 이미지 */}
+
                 <div >
                     <div class="form-group" each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
                         <div class="custom-file img-div">
-                            <input value={itemImgDto} onChange={handleChangeItemImgDto}
+                            <input value={itemImgFile} onChange={handleChangeItemImgDto}
                             type="file" class="custom-file-input" name="itemImgFile"/>
                             <input type="hidden" name="itemImgIds" value="${itemImgDto.id}"></input>
                             <label class="custom-file-label" ></label>
@@ -139,7 +126,8 @@ function ItemForm(props) {
 
                 <div className="d-grid">
                     {/* 저장 버튼 */}
-                    <button type="submit" className="btn btn-primary">
+                    <button className="btn btn-primary"
+                    onClick={() => sendItemRegisterRequest()}>
                         Submit
                     </button>
 
