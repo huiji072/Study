@@ -86,7 +86,7 @@ function ItemForm(props) {
         }).catch((error) => {
           console.log(error);
         })
-        console.log(jsonData)
+        console.log("imgFile: ", imgFile)
         console.log("sending item Register Request");
     }
 
