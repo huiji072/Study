@@ -18,7 +18,7 @@ function ItemForm(props) {
     const[itemNm, setItemNm] = useState("");
     const[stockNumber, setStockNumber] = useState("");
     const[itemDtl, setItemDtl] = useState("");
-    const[itemImgFile, setItemImgFile] = useState("");
+    const[itemImgDtoList, setItemImgDtoList] = useState("");
 
     const handleChangeItemSellStatue = (event) => {
         setItemSellStatus(event.target.value);
@@ -37,14 +37,19 @@ function ItemForm(props) {
     }
 
     const handleChangeItemImgDto = (event) => {
-        setItemImgFile(event.target.value);
+        setItemImgDtoList(event.target.value);
     }
 
     const data = {
         itemSellStatus: itemSellStatus,
         itemNm: itemNm,
         stockNumber: stockNumber,
-        itemDtl: itemDtl
+        itemDtl: itemDtl,
+        itemImgDtoList: [
+            {
+                oriImgName: itemImgDtoList
+            }
+        ]
     }
 
 
@@ -57,9 +62,8 @@ function ItemForm(props) {
             headers: { 'Content-Type': 'application/json' },
             data : jsonData,
             params: {
-                "itemImgFile": {
-                    imgName: itemImgFile,
-                    imgUrl: itemImgFile
+                "imgFile": {
+                    oriImgName: itemImgDtoList
                 }
             }
         }).then((res) => {
@@ -69,7 +73,6 @@ function ItemForm(props) {
           console.log(error);
         })
         console.log(jsonData)
-        console.log(itemImgFile)
         console.log("sending item Register Request");
     }
 
@@ -118,7 +121,7 @@ function ItemForm(props) {
                 <div >
                     <div class="form-group" each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
                         <div class="custom-file img-div">
-                            <input value={itemImgFile} onChange={handleChangeItemImgDto}
+                            <input value={itemImgDtoList} onChange={handleChangeItemImgDto}
                             type="file" class="custom-file-input" name="itemImgFile"/>
                             <input type="hidden" name="itemImgIds" value="${itemImgDto.id}"></input>
                             <label class="custom-file-label" ></label>
