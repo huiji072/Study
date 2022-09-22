@@ -4,6 +4,8 @@ import './ItemForm.css';
 
 function ItemForm(props) {
 
+    let formData = new FormData();
+
     const [ testStr, setTestStr ] = useState('');
     // 변수 초기화
     function callback(str) {
@@ -18,7 +20,6 @@ function ItemForm(props) {
     const[itemNm, setItemNm] = useState("");
     const[stockNumber, setStockNumber] = useState("");
     const[itemDtl, setItemDtl] = useState("");
-    const[itemImgDtoList, setItemImgDtoList] = useState("");
 
     const handleChangeItemSellStatue = (event) => {
         setItemSellStatus(event.target.value);
@@ -36,58 +37,38 @@ function ItemForm(props) {
         setItemDtl(event.target.value);
     }
 
-    const handleChangeItemImgDto = (event) => {
-        const img = event.target.files[0];
-        console.log("img: ", img);
-        setItemImgDtoList(event.target.value);
+    // const handleChangeItemImgDto = (e) => {
+    //     formData.append("imgFile", e.target.files[0]);
+    // }
+
+    const onFileChange = (e) => {
+        formData.append("imgFile", e.target.files[0]);
     }
 
     const data = {
         itemSellStatus: itemSellStatus,
         itemNm: itemNm,
         stockNumber: stockNumber,
-        itemDtl: itemDtl,
-        itemImgDtoList: [
-            {
-                oriImgName: itemImgDtoList
-            }
-        ]
+        itemDetail: itemDtl
     }
-
-    const imgData = {
-        "imgFile": [
-                {
-                oriImgName: itemImgDtoList
-            }
-        ]
-    }
-
 
     const jsonData = JSON.stringify(data)
+    
+    formData.append("data", new Blob([jsonData], {type: "application/json"}));
 
     const sendItemRegisterRequest = (event) => {
-        
-        let formData = new FormData();
 
-        formData.append("imgFile", itemImgDtoList);
-        formData.append("data", new Blob([jsonData], {type: "application/json"}));
-
-        
         axios({
-            url: '/item/new/test',
+            url: '/admin/item/new',
             method: 'POST',
             headers: { 'Content-Type': 'multipart/form-data' },
-            data : {
-                imgFile: "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg"
-            }
+            data : formData
         }).then((res) => {
             callback(res.data);
             console.log(res.data);
         }).catch((error) => {
           console.log(error);
         })
-        console.log("imgFile: ", imgFile)
-        console.log("sending item Register Request");
     }
 
         return(
@@ -132,18 +113,20 @@ function ItemForm(props) {
 
                 {/* 이미지 */}
 
-                <div >
+                {/* <div >
                     <div class="form-group" each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
                         <div class="custom-file img-div">
-                            <input multiple value={itemImgDtoList} 
-                            onChange={handleChangeItemImgDto}
+                            <input onChange={handleChangeItemImgDto}
                             type="file" class="custom-file-input" name="imgFile"/>
                             <input type="hidden" name="itemImgIds" value="${itemImgDto.id}"></input>
                             <label class="custom-file-label" ></label>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
+                <div>
+                    <input type="file" name="imgFile" onChange={onFileChange}/>
+                </div>
             
 
                 <div className="d-grid">
