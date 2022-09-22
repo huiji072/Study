@@ -57,7 +57,10 @@ function ItemForm(props) {
             headers: { 'Content-Type': 'application/json' },
             data : jsonData,
             params: {
-                "itemImgFile": itemImgFile
+                "itemImgFile": {
+                    imgName: itemImgFile,
+                    imgUrl: itemImgFile
+                }
             }
         }).then((res) => {
             callback(res.data);
@@ -66,6 +69,7 @@ function ItemForm(props) {
           console.log(error);
         })
         console.log(jsonData)
+        console.log(itemImgFile)
         console.log("sending item Register Request");
     }
 
