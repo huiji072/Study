@@ -12,4 +12,11 @@ Integer[] temp = Arrays.stream(array).boxed().toArray(Integer[]::new);
 Arrays.sort(temp, Comparator.reverseOrder());
 
 
+파이썬 
+result = sorted(result, key=lambda r:(-r[1]))
 
+result 리스트에 1이 몇 개 있는지 찾을 때
+result.count(1)
+
+result에 첫번째만 출력하고 싶을때
+print([i[0] for i in result])
