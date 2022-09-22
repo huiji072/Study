@@ -37,6 +37,8 @@ function ItemForm(props) {
     }
 
     const handleChangeItemImgDto = (event) => {
+        const img = event.target.files[0];
+        console.log("img: ", img);
         setItemImgDtoList(event.target.value);
     }
 
@@ -52,19 +54,31 @@ function ItemForm(props) {
         ]
     }
 
+    const imgData = {
+        "imgFile": [
+                {
+                oriImgName: itemImgDtoList
+            }
+        ]
+    }
+
 
     const jsonData = JSON.stringify(data)
 
-    const sendItemRegisterRequest = () => {
+    const sendItemRegisterRequest = (event) => {
+        
+        let formData = new FormData();
+
+        formData.append("imgFile", itemImgDtoList);
+        formData.append("data", new Blob([jsonData], {type: "application/json"}));
+
+        
         axios({
-            url: '/admin/item/new',
+            url: '/item/new/test',
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            data : jsonData,
-            params: {
-                "imgFile": {
-                    oriImgName: itemImgDtoList
-                }
+            headers: { 'Content-Type': 'multipart/form-data' },
+            data : {
+                imgFile: "http://news.samsungdisplay.com/wp-content/uploads/2018/08/8.jpg"
             }
         }).then((res) => {
             callback(res.data);
@@ -121,8 +135,9 @@ function ItemForm(props) {
                 <div >
                     <div class="form-group" each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
                         <div class="custom-file img-div">
-                            <input value={itemImgDtoList} onChange={handleChangeItemImgDto}
-                            type="file" class="custom-file-input" name="itemImgFile"/>
+                            <input multiple value={itemImgDtoList} 
+                            onChange={handleChangeItemImgDto}
+                            type="file" class="custom-file-input" name="imgFile"/>
                             <input type="hidden" name="itemImgIds" value="${itemImgDto.id}"></input>
                             <label class="custom-file-label" ></label>
                         </div>
