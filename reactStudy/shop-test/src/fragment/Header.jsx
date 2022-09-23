@@ -23,6 +23,7 @@ import ItemDtlTest from '../test/ItemDtlTest';
 import LoginSuccess from '../login/LoginSuccess';
 import LoginError from '../login/LoginError';
 import ItemFormTest from '../test/ItemFormTest';
+import Login2 from '../test/Login2';
 
 class Header extends Component {
     render() {
@@ -65,6 +66,8 @@ class Header extends Component {
                     <Route path='/login/success' element={<LoginSuccess/>} />
                     <Route path='/login/error' element={<LoginError/>} />
                     <Route path='/test/itemForm' element={<ItemFormTest/>} />
+
+                    <Route path='/test/login' element={<Login2/>} />
                 </Routes>
             </Router>
             </>

@@ -69,6 +69,7 @@ function ItemForm(props) {
         }).catch((error) => {
           console.log(error);
         })
+        window.location.href = "/";
     }
 
         return(

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import './Login.css';
+import { signin } from '../test/ApiService';
 // axios.defaults.xsrfCookieName = 'csrftoken';
 // axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
     //   headers: { xsrfCookieName: 'XSRF-TOKEN',
@@ -9,6 +10,8 @@ import './Login.css';
     //               "Content-Type": "application/x-www-form-urlencoded" 
     // }
 function Login() {
+
+  let formData = new FormData();
 
   const [ testStr, setTestStr ] = useState('');
   // 변수 초기화
@@ -32,31 +35,26 @@ function Login() {
     setPassword(event.target.value);
   }
 
-  const loginData = {
-    email: email,
-    password: password
-  }
-
-  const jsonData = JSON.stringify(loginData)
+  formData.append("email", email);
+  formData.append("password", password);
 
 const csrfToken = document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
 const sendLoginRequest = () => {
   axios({
-    url: '/members/login/success2',
-    method: "get",
-    // headers: { 'Content-Type': 'application/json' },
-    // data: jsonData,
-    params: {
-      email: email
-    }
+    url: '/members/login',
+    method: "post",
+    headers: { 'Content-Type': 'application/json' },
+    data: formData,
   }).then((res) => {
     callback(res.data);
     console.log(res.data);
+    alert(res.data);
+    localStorage.setItem("ACCESS_TOKEN", res.data);
+    // window.location.href = "/";
   }).catch((error) => {
     console.log(error);
   })
-  console.log(jsonData)
   console.log("sending login Request");
 }
 
