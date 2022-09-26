@@ -3,6 +3,7 @@ import {useParams} from "react-router"
 import axios from 'axios'
 import './ItemDtl.css';
 import Comment from '../comment/Comment';
+import { alertTitleClasses } from '@mui/material';
 
 function ItemDtl() {
 
@@ -57,12 +58,14 @@ function ItemDtl() {
       }
 
     const registerQuestion = (id) => {
-        const paramData = {
-            itemId: id,
-            questionInput: question
-        }
 
+        const itemId = id;
+        const paramData = {
+            question: question,
+            itemId: itemId
+        }
         const param = JSON.stringify(paramData);
+        
         axios({
             url: '/registerQuestion',
             method: 'POST',
@@ -73,7 +76,46 @@ function ItemDtl() {
             alert("질문이 등록되었습니다.");
             window.location.href='/'+id;
         }).error((err) => {
-            alert(err);
+            console.log(err);
+        })        
+    }    
+
+    // 답변 클릭 시 답변 폼
+
+    const [answerForm, setAnswerForm] = useState(false);
+
+    const showAnswerForm = () => {
+        setAnswerForm(!answerForm)
+    }
+
+    //답변 등록
+    const [answer, setAnswer] = useState('');
+
+    const inputAnswer = (event) => {
+        setAnswer(event.target.value);
+    }
+
+    const registerAnswer = (itemId, questionId) => {
+
+        const paramData = {
+            questionId: questionId,
+            itemId: itemId,
+            answerInput: answer
+        }
+
+        const param = JSON.stringify(paramData);
+
+        axios({
+            url: '/registerAnswer',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            alert("답변이 등록되었습니다.");
+            window.location.href='/'+itemId;
+        }).error((err) => {
+            console.log(err);
         })        
     }    
 
@@ -167,6 +209,7 @@ function ItemDtl() {
             onClick={() => registerQuestion(item.id)}>등록</button>
         </div>
 
+
         {testStr.comment && testStr.comment.map((comment) => {
             return(
         <>                
@@ -176,14 +219,15 @@ function ItemDtl() {
                     <img className="commentImage"
                         src="/img/comment.png" />
                 </div>
-                    
                 <div className="commentCotentContainer">
                     <span className="commentNameText">{comment.answerEmail}</span>
                     <span className="commentRegTime">{comment.answerRegTime}</span>
                     <span className="commentCommentText">{comment.answerContent}.</span>
-                    <input type="button" value="답변" className="commentRegisterBtn2"/>
+                    <input type="button" value="답변" className="commentRegisterBtn2"
+                    onClick={()=>showAnswerForm(item.id, comment.questionId)}/>
                 </div>
             </div>
+            
         }
 
         {comment.answerDepth == 1 &&
@@ -200,6 +244,14 @@ function ItemDtl() {
                 </div>
             </div>        
         }
+
+        {answerForm && (
+             <div class="commentAnswerForm" >
+             <textarea onChange={inputAnswer} placeholder=" 답변을 입력하세요." class="question-1"></textarea>
+             <button value="등록" class="commentRegisterBtn"
+             onClick={() => registerAnswer(item.id, comment.groupId)}>등록</button>
+         </div>
+        )}
 
 
                         

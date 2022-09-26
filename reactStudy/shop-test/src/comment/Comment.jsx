@@ -1,43 +1,28 @@
-// import React from "react";
-// import './Comment.css';
-// import QuestionComment from "./QuestionComment";
+import React from "react";
+import './Comment.css';
 
-// function Comment() {
+function Comment() {
 
-//     // const registerQuestion = () => {
 
-//     //     const paramData = {
-//     //         itemId: id,
-//     //         count: count
-//     //     }
 
-//     //     const param = JSON.stringify(paramData);
+    return (
+        <>
+<div className="commentWrapper2">
+                <div>
+                    <img className="commentImage"
+                    src="/img/comment.png" />
+                </div>
 
-//     //     axios({
-//     //         url: '/registerQuestion',
-//     //         method: 'POST',
-//     //         headers: { 'Content-Type': 'application/json' },
-//     //         data: param
-//     //     }).then((res) => {
-//     //         callback(res.data);
-//     //         alert("상품을 장바구니에 담았습니다.");
-//     //         window.location.href='/cart/Cart';
-//     //     })
-//     // }
-
-//     return (
-//         <>
-//         {/* <div class="commentQuestionForm" >
-//             <textarea id="questionInput" placeholder=" 질문을 입력하세요." class="question-1"></textarea>
-//             <input type="button" value="등록" class="commentRegisterBtn"
-//             onClick={() => registerQuestion()}/>
-//         </div> */}
-
-//         <QuestionComment/>
+                <div className="commentCotentContainer">
+                    <span className="commentNameText"></span>
+                    <span className="commentRegTime"></span>
+                    <span className="commentCommentText"></span>                    
+                </div>
+            </div>
         
-//         </>
+        </>
 
-//     );
-// }
+    );
+}
 
-// export default Comment;
+export default Comment;
