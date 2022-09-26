@@ -17,25 +17,12 @@ function ItemUpdate(props) {
         e.preventDefault();
     }
 
-    const params = useParams();
-
-    useEffect(
-        () => {
-            const itemId = params.itemId;
-          axios({
-              url: '/admin/item/'+itemId,
-              method: 'GET'
-          }).then((res) => {
-              callback(res.data);
-          })
-        }, []
-    );
-
     const[itemSellStatus, setItemSellStatus] = useState("SELL");
     const[itemNm, setItemNm] = useState("");
     const[stockNumber, setStockNumber] = useState("");
     const[itemDtl, setItemDtl] = useState("");
     const[itemImgIds, setItemImgIds] = useState("");
+    const[itemId, setItemId] = useState("");
 
     const handleChangeItemSellStatue = (event) => {
         setItemSellStatus(event.target.value);
@@ -53,21 +40,43 @@ function ItemUpdate(props) {
         setItemDtl(event.target.value);
     }
 
-    const handleItemImgIds = (event) => {
-        setItemImgIds(event.target.value);
+    const handleChangeItemImgIds = (itemImgIds) => {
+        console.log(itemImgIds);
+        setItemImgIds(itemImgIds);
     }
-   console.log(itemImgIds);
+
+    const handleChangeItemId = () => {
+        setItemId(testStr.item[0].id)
+    }
+
     const onFileChange = (e) => {
         formData.append("imgFile", e.target.files[0]);
     }
 
+    const params = useParams();
+
+    useEffect(
+        () => {
+            const itemId = params.itemId;
+          axios({
+              url: '/admin/item/'+itemId,
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+              setItemImgIds(res.data.item[0].itemDtoList[0].id);
+              setItemId(res.data.item[0].id)
+          })
+        }, []
+    );
+
+    
     const data = {
         itemSellStatus: itemSellStatus,
         itemNm: itemNm,
         stockNumber: stockNumber,
         itemDetail: itemDtl,
-        id: 334,
-        itemImgIds: [335]
+        id: itemId,
+        itemImgIds: [itemImgIds]
     }
     
     const jsonData = JSON.stringify(data);
@@ -102,6 +111,11 @@ function ItemUpdate(props) {
                     
                 </div>
             <form onSubmit={itemNew}>
+
+                <div>
+                    <input type='hidden' onChange={handleChangeItemId} />
+                </div>
+
                 <div class="form-group">
                     <select class="form-select" value={itemSellStatus} onChange={handleChangeItemSellStatue}>
                         <option value="SELL">판매중</option>
@@ -137,9 +151,8 @@ function ItemUpdate(props) {
 
                 <div>
                     <input type="file" name="imgFile" onChange={onFileChange}/>
-                    <input type="hidden" name="itemImgIds" value={item.itemDtoList[0].id}
-                    onChange={handleItemImgIds}/>
-                    {item.itemDtoList[0].id}
+                    <input type="hidden" name="itemImgIds"
+                    onChange={()=>handleChangeItemImgIds(item.itemDtoList[0].id)}/>
                 </div>
         
 
