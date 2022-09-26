@@ -27,9 +27,7 @@ function ItemUpdate(props) {
               method: 'GET'
           }).then((res) => {
               callback(res.data);
-              const itemNm2= res.data.item[0].itemNm
           })
-          
         }, []
     );
 
@@ -37,6 +35,7 @@ function ItemUpdate(props) {
     const[itemNm, setItemNm] = useState("");
     const[stockNumber, setStockNumber] = useState("");
     const[itemDtl, setItemDtl] = useState("");
+    const[itemImgIds, setItemImgIds] = useState("");
 
     const handleChangeItemSellStatue = (event) => {
         setItemSellStatus(event.target.value);
@@ -54,10 +53,10 @@ function ItemUpdate(props) {
         setItemDtl(event.target.value);
     }
 
-    // const handleChangeItemImgDto = (e) => {
-    //     formData.append("imgFile", e.target.files[0]);
-    // }
-
+    const handleItemImgIds = (event) => {
+        setItemImgIds(event.target.value);
+    }
+   console.log(itemImgIds);
     const onFileChange = (e) => {
         formData.append("imgFile", e.target.files[0]);
     }
@@ -68,11 +67,10 @@ function ItemUpdate(props) {
         stockNumber: stockNumber,
         itemDetail: itemDtl,
         id: 334,
-        itemImgIds: [335, 1]
+        itemImgIds: [335]
     }
     
     const jsonData = JSON.stringify(data);
-    console.log(jsonData)
 
     formData.append("data", new Blob([jsonData], {type: "application/json"}));
 
@@ -137,23 +135,10 @@ function ItemUpdate(props) {
 
                 </div>
 
-                {/* 이미지 */}
-
-                {/* <div >
-                    <div class="form-group" each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
-                        <div class="custom-file img-div">
-                            <input onChange={handleChangeItemImgDto}
-                            type="file" class="custom-file-input" name="imgFile"/>
-                            <input type="hidden" name="itemImgIds" value="${itemImgDto.id}"></input>
-                            <label class="custom-file-label" ></label>
-                        </div>
-                    </div>
-                </div> */}
-
                 <div>
                     <input type="file" name="imgFile" onChange={onFileChange}/>
-                    <input type="hidden" name="itemImgIds" 
-                    value={item.itemDtoList[0].id}/>
+                    <input type="hidden" name="itemImgIds" value={item.itemDtoList[0].id}
+                    onChange={handleItemImgIds}/>
                     {item.itemDtoList[0].id}
                 </div>
         
