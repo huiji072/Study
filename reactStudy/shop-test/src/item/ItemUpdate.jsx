@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import './ItemForm.css';
+import { useParams } from 'react-router-dom';
 
-function ItemForm(props) {
+function ItemUpdate(props) {
 
     let formData = new FormData();
 
@@ -15,6 +16,22 @@ function ItemForm(props) {
     function itemNew(e){
         e.preventDefault();
     }
+
+    const params = useParams();
+
+    useEffect(
+        () => {
+            const itemId = params.itemId;
+          axios({
+              url: '/admin/item/'+itemId,
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+              const itemNm2= res.data.item[0].itemNm
+          })
+          
+        }, []
+    );
 
     const[itemSellStatus, setItemSellStatus] = useState("SELL");
     const[itemNm, setItemNm] = useState("");
@@ -49,34 +66,21 @@ function ItemForm(props) {
         itemSellStatus: itemSellStatus,
         itemNm: itemNm,
         stockNumber: stockNumber,
-        itemDetail: itemDtl
+        itemDetail: itemDtl,
+        id: 334,
+        itemImgIds: [335, 1]
     }
-
-    const jsonData = JSON.stringify(data)
     
+    const jsonData = JSON.stringify(data);
+    console.log(jsonData)
+
     formData.append("data", new Blob([jsonData], {type: "application/json"}));
-
-    // 상품 등록
-    const sendItemRegisterRequest = (event) => {
-
-        axios({
-            url: '/admin/item/new',
-            method: 'POST',
-            headers: { 'Content-Type': 'multipart/form-data' },
-            data : formData
-        }).then((res) => {
-            callback(res.data);
-            console.log(res.data);
-        }).catch((error) => {
-          console.log(error);
-        })
-        window.location.href = "/";
-    }
 
     // 상품 수정
     const updateItem = () => {
+        const itemId = params.itemId
         axios({
-            url: '/admin/item/334',
+            url: '/admin/item/'+itemId,
             method: 'POST',
             headers: { 'Content-Type': 'multipart/form-data' },
             data : formData
@@ -91,9 +95,13 @@ function ItemForm(props) {
 
         return(
             <div className="itemFormContainer">
-
-                <div>
-                    <h2>상품 등록</h2>
+            {testStr.item && testStr.item.map ((item) => {
+                <li key={item.id}/>
+                return(
+                    <>
+                     <div>
+                    <h2>상품 수정</h2>
+                    
                 </div>
             <form onSubmit={itemNew}>
                 <div class="form-group">
@@ -108,7 +116,7 @@ function ItemForm(props) {
                         <span class="input-group-text">상품명</span>
                         
                     </div>
-                    <input value={itemNm} onChange={handleChangeItemNm}
+                    <input value={itemNm} onChange={handleChangeItemNm} 
                     class="form-control" type="text" placeholder="상품명을 입력해주세요"></input>
                 </div>
 
@@ -144,32 +152,29 @@ function ItemForm(props) {
 
                 <div>
                     <input type="file" name="imgFile" onChange={onFileChange}/>
+                    <input type="hidden" name="itemImgIds" 
+                    value={item.itemDtoList[0].id}/>
+                    {item.itemDtoList[0].id}
                 </div>
-            
-
-                {/* 저장 버튼 */}
-                <div className="d-grid">
-                    <button className="btn btn-primary"
-                    onClick={() => sendItemRegisterRequest()}
-                    formAction='/admin/item/new'
-                    >
-                        Submit
-                    </button>
-                </div>
+        
 
                 {/* 수정 버튼 */}
-                {/* <div className="d-grid">
+                <div className="d-grid">
                     <button type="submit" className="btn btn-primary"
                     onClick={()=>updateItem()}
-                    formAction='/admin/item/334'
+                    formAction={'/admin/item/'+item.id}
                     >
                         Update
                     </button>
-                </div> */}
+                </div>
 
             </form>
+                    </>
+                );
+               
+            })}
             </div>
         );
 }
 
-export default ItemForm;
+export default ItemUpdate;

@@ -30,7 +30,7 @@ function ItemMngList() {
                         <tr>
                             <td >{item.id}</td>
                             <td>
-                                <a>{item.name}</a>
+                                <a href={'/item/update/'+item.id}>{item.name}</a>
                             </td>
                             <td>{item.stockNumber}</td>
                             <td>{item.sellStatus}</td>
