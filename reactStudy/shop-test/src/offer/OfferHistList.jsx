@@ -22,7 +22,26 @@ function OfferHistList() {
         }, []
     );
 
-    console.log(testStr)
+    // 주문취소
+    const cancelOffer = (id) => {
+
+        const paramData = {
+            offerId: id
+        }
+
+        const param = JSON.stringify(paramData);
+
+        axios({
+            url: '/offer/'+id+"/cancel",
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            alert("해당 주문이 취소되었습니다.");
+            window.location.href='/offer/OfferHist';
+        })
+    }
 
     return(
         <>
@@ -32,13 +51,14 @@ function OfferHistList() {
                     <div class="d-flex mb-3 align-self-center">
                         <h4 >{offerItem.date}  </h4>
                         <div class="ml-3">
-                            <th>
-                                <button type="button" class="btn btn-outline-secondary"  
-                                onclick="{this.cancelOrder}"> 주문취소</button>
-                            </th>
-                            {/* <th >
-                                <h4>(취소 완료)</h4>
-                            </th> */}
+
+                            {
+                                offerItem.status == "Offer"
+                                ? <button type="button" class="btn btn-outline-secondary"  
+                                onClick={()=>cancelOffer(offerItem.id)}> 주문취소</button>
+                                : <h4>(취소 완료)</h4>
+                            }
+
                         </div>
                     </div>
 
