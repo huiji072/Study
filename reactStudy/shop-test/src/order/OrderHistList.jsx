@@ -54,13 +54,14 @@ function OrderHistList() {
                                 <div class="d-flex mb-3 align-self-center">
                                 <h4 >{orderItem.orderDate}</h4>
                                 <div class="ml-3">
-                                    <th>
-                                        <button type="button" class="btn btn-outline-secondary"
-                                        onClick={()=>cancelOrder(orderItem.id)}> 주문취소</button>
-                                    </th>
-                                    {/* <th >
-                                        <h4>(취소 완료)</h4>
-                                    </th> */}
+
+                                {
+                                orderItem.status == "Order"
+                                ? <button type="button" class="btn btn-outline-secondary"  
+                                onClick={()=>cancelOrder(orderItem.id)}> 주문취소</button>
+                                : <h4>(취소 완료)</h4>
+                                }
+
                                 </div>
                                 </div>
     
