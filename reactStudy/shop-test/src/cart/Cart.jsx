@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './Cart.css';
 import CartList from './CartList';
 function Cart(props) {
+
+
+
         return(
             <div class="cartContainer">
                 <div>
@@ -23,9 +26,9 @@ function Cart(props) {
                 </table>
 
 
-                <div class="text-center mt-3">
-                    <button type="button" class="btn btn-primary btn-lg" onclick="orders()">주문하기</button>
-                </div>
+                {/* <div class="text-center mt-3">
+                    <button type="button" class="btn btn-primary btn-lg" onClick={orders}>주문하기</button>
+                </div> */}
 
                 </div>
             </div>

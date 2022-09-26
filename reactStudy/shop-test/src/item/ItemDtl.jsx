@@ -6,6 +6,27 @@ import Comment from '../comment/Comment';
 
 function ItemDtl() {
 
+    const addCart = (id, count) => {
+
+        const paramData = {
+            itemId: id,
+            count: count
+        }
+
+        const param = JSON.stringify(paramData);
+
+        axios({
+            url: '/cart',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            alert("상품을 장바구니에 담았습니다.");
+            window.location.href='/'+id;
+        })
+    }
+
     const { itemId } = useParams();
     const url = '/item/'+itemId
     console.log(url);
@@ -68,7 +89,7 @@ function ItemDtl() {
 
 
                                     <div class="text-right">
-                                        <button type="button" class="btn btn-light border border-primary btn-lg" onclick="addCart()">장바구니 담기</button>
+                                        <button type="button" class="btn btn-light border border-primary btn-lg" onClick={()=>addCart(item.id, item.stockNumber)}>장바구니 담기</button>
                                         <button type="button" class="btn btn-primary btn-lg" onclick="order();">주문하기</button>
                                     </div>
                                     <div  class="text-right">

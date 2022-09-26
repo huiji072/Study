@@ -6,12 +6,44 @@ import { DeleteOutlined } from '@mui/icons-material';
 function CartList() {
 
     const deletedCart = id => {
-        alert("click");
         axios({
             url: '/cartItem/'+id,
             method: 'DELETE'
         }).then((res) => {
             callback(res.data);
+            alert("해당 상품이 삭제되었습니다.");
+        })
+    }
+
+    const [checkItems, setCheckItems] = useState([]);
+
+    const orders = (checked, id) => {
+        alert("click")
+        if(checked){
+            setCheckItems(prev => [...prev, id]);
+        }
+
+        // const dataList = new Array();
+        // const paramData = new Object();
+
+        // $("input[name=cartChkBox]:checked").each(function() {
+        //     const data = new Object();
+        //     data["cartItemId"] = id;
+        //     dataList.push(data);
+        // });
+
+        // paramData['cartOrderDtoList'] = dataList;
+
+        // const param = JSON.stringify(paramData);
+
+        axios({
+            url: '/cart/orders',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: "data"
+        }).then((res) => {
+            callback(res.data);
+            alert("주문이 완료되었습니다.");
         })
     }
 
@@ -39,13 +71,12 @@ function CartList() {
             <li key={cartItem.itemId}/>
                 return(
                     <tr>
-                        <h1>{cartItem.itemId}</h1>
                     <td class="text-center align-middle">
                         <input type="checkbox" name="cartChkBox" />
                     </td>
                     <td class="d-flex">
                         <div >
-                            <img src='/img/bed.jpg' class = "cartImg"/>
+                            <img src={cartItem.imgUrl} class = "cartImg"/>
                         </div>
                         <div class="align-self-center">
                             <span class="fs24 font-weight-bold">{cartItem.itemNm}</span>
@@ -62,10 +93,13 @@ function CartList() {
                             </div>
                         </div>
                     </td>
-
                 </tr>
+                
                 )
             })}
+            <div class="text-center mt-3">
+                    <button type="button" class="btn btn-primary btn-lg" onClick={()=>orders()}>주문하기</button>
+            </div>
        </>
     )
 }
