@@ -49,6 +49,35 @@ function ItemDtl() {
         })
     }
 
+    // 질문 등록
+    const [question, setQuestion] = useState('');
+
+    const inputQuestion = (event) => {
+        setQuestion(event.target.value);
+      }
+
+    const registerQuestion = (id) => {
+        const paramData = {
+            itemId: id,
+            questionInput: question
+        }
+
+        const param = JSON.stringify(paramData);
+        axios({
+            url: '/registerQuestion',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            alert("질문이 등록되었습니다.");
+            window.location.href='/'+id;
+        }).error((err) => {
+            alert(err);
+        })        
+    }    
+
+
     const { itemId } = useParams();
     const url = '/item/'+itemId
     console.log(url);
@@ -130,7 +159,55 @@ function ItemDtl() {
 
                             <br/>
 
-                            <Comment/>
+{/* 질문과 답변 */}
+         <>
+         <div class="commentQuestionForm" >
+            <textarea onChange={inputQuestion} placeholder=" 질문을 입력하세요." class="question-1"></textarea>
+            <button value="등록" class="commentRegisterBtn"
+            onClick={() => registerQuestion(item.id)}>등록</button>
+        </div>
+
+        {testStr.comment && testStr.comment.map((comment) => {
+            return(
+        <>                
+        { comment.answerDepth == 0 && 
+            <div className="commentWrapper">
+                <div>
+                    <img className="commentImage"
+                        src="/img/comment.png" />
+                </div>
+                    
+                <div className="commentCotentContainer">
+                    <span className="commentNameText">{comment.answerEmail}</span>
+                    <span className="commentRegTime">{comment.answerRegTime}</span>
+                    <span className="commentCommentText">{comment.answerContent}.</span>
+                    <input type="button" value="답변" className="commentRegisterBtn2"/>
+                </div>
+            </div>
+        }
+
+        {comment.answerDepth == 1 &&
+            <div className="commentWrapper2">
+                <div>
+                    <img className="commentImage"
+                    src="/img/comment.png" />
+                </div>
+
+                <div className="commentCotentContainer">
+                    <span className="commentNameText">{comment.answerEmail}</span>
+                    <span className="commentRegTime">{comment.answerRegTime}</span>
+                    <span className="commentCommentText">{comment.answerContent}.</span>                    
+                </div>
+            </div>        
+        }
+
+
+                        
+        </>
+                );
+            })}
+        
+        </>
                             </>
 
                     );
