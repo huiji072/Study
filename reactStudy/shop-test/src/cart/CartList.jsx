@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Cart from "./Cart";
+import { DeleteOutlined } from '@mui/icons-material';
 
-function CartList(props) {
+function CartList() {
+
+    const deletedCart = id => {
+        alert("click");
+        axios({
+            url: '/cartItem/'+id,
+            method: 'DELETE'
+        }).then((res) => {
+            callback(res.data);
+        })
+    }
 
     const [ testStr, setTestStr ] = useState('');
     // 변수 초기화
@@ -23,10 +34,12 @@ function CartList(props) {
 
     return(
         <>
-            {testStr.cartItem && testStr.cartItem.map((cartItem) => {
+            {testStr.cartItem && testStr.cartItem.map((cartItem, id) => {
             {/* {cartItem && cartItem.map((cartItem) => { */}
+            <li key={cartItem.itemId}/>
                 return(
                     <tr>
+                        <h1>{cartItem.itemId}</h1>
                     <td class="text-center align-middle">
                         <input type="checkbox" name="cartChkBox" />
                     </td>
@@ -41,9 +54,9 @@ function CartList(props) {
 
                                     <input type="number" name="count" 
                                          min="1" value={cartItem.count}
-                                        onchange="changeCount(this)" class="form-control mr-2"/>
-                                    <button type="button" class="close" aria-label="Close">
-                                        <span aria-hidden="true" onclick="deleteCartItem(this)">&times;</span>
+                                        onChange="changeCount(this)" class="form-control mr-2"/>
+                                    <button type="button" class="close" aria-label="Close" onClick={()=>deletedCart(cartItem.itemId)}>
+                                        <span aria-hidden="true">&times;</span>
                                     </button>
                                 </span>
                             </div>
