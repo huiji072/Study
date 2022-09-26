@@ -12,6 +12,7 @@ function CartList() {
         }).then((res) => {
             callback(res.data);
             alert("해당 상품이 삭제되었습니다.");
+            window.location.href='/cart/Cart';
         })
     }
 
@@ -19,32 +20,20 @@ function CartList() {
 
     const orders = (checked, id) => {
         alert("click")
-        if(checked){
-            setCheckItems(prev => [...prev, id]);
-        }
+        // if(checked){
+        //     setCheckItems(prev => [...prev, id]);
+        // }
 
-        // const dataList = new Array();
-        // const paramData = new Object();
 
-        // $("input[name=cartChkBox]:checked").each(function() {
-        //     const data = new Object();
-        //     data["cartItemId"] = id;
-        //     dataList.push(data);
-        // });
-
-        // paramData['cartOrderDtoList'] = dataList;
-
-        // const param = JSON.stringify(paramData);
-
-        axios({
-            url: '/cart/orders',
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            data: "data"
-        }).then((res) => {
-            callback(res.data);
-            alert("주문이 완료되었습니다.");
-        })
+        // axios({
+        //     url: '/cart/orders',
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     data: "data"
+        // }).then((res) => {
+        //     callback(res.data);
+        //     alert("주문이 완료되었습니다.");
+        // })
     }
 
     const [ testStr, setTestStr ] = useState('');
@@ -97,9 +86,9 @@ function CartList() {
                 
                 )
             })}
-            <div class="text-center mt-3">
+            {/* <div class="text-center mt-3">
                     <button type="button" class="btn btn-primary btn-lg" onClick={()=>orders()}>주문하기</button>
-            </div>
+            </div> */}
        </>
     )
 }

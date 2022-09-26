@@ -6,6 +6,7 @@ import Comment from '../comment/Comment';
 
 function ItemDtl() {
 
+    // 장바구니에 담기
     const addCart = (id, count) => {
 
         const paramData = {
@@ -23,7 +24,28 @@ function ItemDtl() {
         }).then((res) => {
             callback(res.data);
             alert("상품을 장바구니에 담았습니다.");
-            window.location.href='/'+id;
+            window.location.href='/cart/Cart';
+        })
+    }
+
+    // 주문하기
+    const order = (id, count) => {
+
+        const paramData = {
+            itemId: id,
+            count: count
+        }
+        const param = JSON.stringify(paramData);
+
+        axios({
+            url: '/order',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            alert("구매가 완료 되었습니다.");
+            window.location.href='/order/OrderHist';
         })
     }
 
@@ -90,7 +112,7 @@ function ItemDtl() {
 
                                     <div class="text-right">
                                         <button type="button" class="btn btn-light border border-primary btn-lg" onClick={()=>addCart(item.id, item.stockNumber)}>장바구니 담기</button>
-                                        <button type="button" class="btn btn-primary btn-lg" onclick="order();">주문하기</button>
+                                        <button type="button" class="btn btn-primary btn-lg" onClick={()=>order(item.id, item.stockNumber)}>주문하기</button>
                                     </div>
                                     <div  class="text-right">
                                         {/* <button type="button" class="btn btn-danger btn-lg">{item.sellStatus}</button> */}
