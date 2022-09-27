@@ -20,7 +20,9 @@ function CartList() {
     const [itemList, setItemList] = useState({cartItem: []})
     const dataList = new Array();
     const paramData = new Object();
-    var data = new Object();
+    const data = new Object();
+    const arr = new Array();
+
     const handleCheckbox = (e) => {
         const {value, checked} = e.target;
         const {cartItem} = itemList;
@@ -29,34 +31,42 @@ function CartList() {
 
         if(checked) {
             setItemList({cartItem: [...cartItem, value]});
-            
-            data["cartItemId"] = value;
-            dataList.push(data);
+
+            // data["cartItemId"] = value;
+            // dataList.push(data);
 
         } else {
             setItemList({cartItem: cartItem.filter((e)=> e !== value)});
         }
-            
-
-            
+        
     }
-
 
     // 주문하기
     const orders = (checked, id) => {
 
-        paramData['cartOrderDtoList'] = [{cartItemId: "352"}];
+        arr.push(itemList);
+
+        for(let i=0; i<itemList.cartItem.length; i++){
+            console.log(itemList.cartItem[i]);
+            data["cartItemId"] = itemList.cartItem[i];
+            console.log(data);
+            dataList.push(data);
+
+        }
+        console.log("dataList: ", dataList);
+
+        paramData['cartOrderDtoList'] = dataList;
         const param = JSON.stringify(paramData);
 
-        axios({
-            url: '/cart/orders',
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            data: param
-        }).then((res) => {
-            callback(res.data);
-            alert("주문이 완료되었습니다.");
-        })    
+        // axios({
+        //     url: '/cart/orders',
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     data: param
+        // }).then((res) => {
+        //     callback(res.data);
+        //     alert("주문이 완료되었습니다.");
+        // })   
     }
 
     const [ testStr, setTestStr ] = useState('');
