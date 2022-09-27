@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import Cart from "./Cart";
-import { DeleteOutlined } from '@mui/icons-material';
+import './Cart.css';
 
 function CartList() {
 
+    //장바구니 취소
     const deletedCart = id => {
         axios({
             url: '/cartItem/'+id,
@@ -16,24 +16,47 @@ function CartList() {
         })
     }
 
-    const [checkItems, setCheckItems] = useState([]);
+    // 체크박스 핸들러
+    const [itemList, setItemList] = useState({cartItem: []})
+    const dataList = new Array();
+    const paramData = new Object();
+    var data = new Object();
+    const handleCheckbox = (e) => {
+        const {value, checked} = e.target;
+        const {cartItem} = itemList;
 
+        console.log(`${value} is ${checked}`);
+
+        if(checked) {
+            setItemList({cartItem: [...cartItem, value]});
+            
+            data["cartItemId"] = value;
+            dataList.push(data);
+
+        } else {
+            setItemList({cartItem: cartItem.filter((e)=> e !== value)});
+        }
+            
+
+            
+    }
+
+
+    // 주문하기
     const orders = (checked, id) => {
-        alert("click")
-        // if(checked){
-        //     setCheckItems(prev => [...prev, id]);
-        // }
 
+        paramData['cartOrderDtoList'] = [{cartItemId: "352"}];
+        const param = JSON.stringify(paramData);
 
-        // axios({
-        //     url: '/cart/orders',
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     data: "data"
-        // }).then((res) => {
-        //     callback(res.data);
-        //     alert("주문이 완료되었습니다.");
-        // })
+        axios({
+            url: '/cart/orders',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            alert("주문이 완료되었습니다.");
+        })    
     }
 
     const [ testStr, setTestStr ] = useState('');
@@ -55,13 +78,30 @@ function CartList() {
 
     return(
         <>
-            {testStr.cartItem && testStr.cartItem.map((cartItem, id) => {
+        <div class="cartContainer">
+                <div>
+                    <h2 class="mb-4">장바구니 목록</h2>
+                <div>
+
+                <table class="table">
+                    <thead>
+                    <tr class="cartListTr1">
+                        <td>
+                            <input type="checkbox" id="checkall" onClick="checkAll()"/> 
+                        </td>
+                        <td>상품정보</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {testStr.cartItem && testStr.cartItem.map((cartItem, id) => {
             {/* {cartItem && cartItem.map((cartItem) => { */}
             <li key={cartItem.itemId}/>
                 return(
+                    <>
                     <tr>
                     <td class="text-center align-middle">
-                        <input type="checkbox" name="cartChkBox" />
+                        <input type="checkbox" name="cartItem" value={cartItem.itemId}
+                        onChange={handleCheckbox}/>
                     </td>
                     <td class="d-flex">
                         <div >
@@ -83,12 +123,25 @@ function CartList() {
                         </div>
                     </td>
                 </tr>
+                {cartItem.itemId}
+                </>
                 
                 )
+                
             })}
-            {/* <div class="text-center mt-3">
-                    <button type="button" class="btn btn-primary btn-lg" onClick={()=>orders()}>주문하기</button>
-            </div> */}
+                    </tbody>
+                </table>
+
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-primary btn-lg" 
+                    onClick={()=>orders()}>
+                        주문하기</button>
+                </div>
+                
+                </div>
+            </div>
+
+            </div>
        </>
     )
 }

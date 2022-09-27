@@ -7,7 +7,6 @@ import {  BrowserRouter as Router,  Routes,  Route} from "react-router-dom";
 import Login from '../login/Login';
 import ItemForm from '../item/ItemForm';
 import ItemDtl from '../item/ItemDtl';
-import Cart from '../cart/Cart';
 import OrderHist from '../order/OrderHist';
 import OfferHist from '../offer/OfferHist';
 import Join from '../login/Join';
@@ -25,6 +24,7 @@ import LoginError from '../login/LoginError';
 import ItemFormTest from '../test/ItemFormTest';
 import Login2 from '../test/Login2';
 import ItemUpdate from '../item/ItemUpdate';
+import CheckboxTest from '../test/CheckboxTest';
 
 
 class Header extends Component {
@@ -56,7 +56,7 @@ class Header extends Component {
                     <Route path='/' element={<Main/>} />
                     <Route path='/item/ItemForm' element={<ItemForm/>} />
                     <Route path='/item/ItemMng' element={<ItemMng/>} />
-                    <Route path='/cart/Cart' element={<Cart/>} />
+                    <Route path='/cart/Cart' element={<CartList/>} />
                     <Route path='/order/OrderHist' element={<OrderHist/>} />
                     <Route path='/offer/OfferHist' element={<OfferHist/>} />
                     <Route path='/login/Login' element={<Login/>} />
@@ -70,6 +70,8 @@ class Header extends Component {
                     <Route path='/item/update/:itemId' element={<ItemUpdate/>} />
                     <Route path='/test/itemForm' element={<ItemFormTest/>} />
                     <Route path='/test/login' element={<Login2/>} />
+                    <Route path='/test/checkboxTest' element={<CheckboxTest/>} />
+
                 </Routes>
             </Router>
             </>
