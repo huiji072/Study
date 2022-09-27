@@ -20,7 +20,7 @@ function CartList() {
     const [itemList, setItemList] = useState({cartItem: []})
     const dataList = new Array();
     const paramData = new Object();
-    const data = new Object();
+    
     const arr = new Array();
 
     const handleCheckbox = (e) => {
@@ -48,6 +48,7 @@ function CartList() {
 
         for(let i=0; i<itemList.cartItem.length; i++){
             console.log(itemList.cartItem[i]);
+            const data = new Object();
             data["cartItemId"] = itemList.cartItem[i];
             console.log(data);
             dataList.push(data);
@@ -58,15 +59,15 @@ function CartList() {
         paramData['cartOrderDtoList'] = dataList;
         const param = JSON.stringify(paramData);
 
-        // axios({
-        //     url: '/cart/orders',
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     data: param
-        // }).then((res) => {
-        //     callback(res.data);
-        //     alert("주문이 완료되었습니다.");
-        // })   
+        axios({
+            url: '/cart/orders',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            alert("주문이 완료되었습니다.");
+        })   
     }
 
     const [ testStr, setTestStr ] = useState('');
