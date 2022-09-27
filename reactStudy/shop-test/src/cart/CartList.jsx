@@ -41,6 +41,11 @@ function CartList() {
         
     }
 
+    //체크박스 전부 선택
+    const checkAll = () => {
+        
+    }
+
     // 주문하기
     const orders = (checked, id) => {
 
@@ -98,14 +103,13 @@ function CartList() {
                     <thead>
                     <tr class="cartListTr1">
                         <td>
-                            <input type="checkbox" id="checkall" onClick="checkAll()"/> 
+                            <input type="checkbox" id="checkall" onClick={checkAll}/> 
                         </td>
                         <td>상품정보</td>
                     </tr>
                     </thead>
                     <tbody>
                     {testStr.cartItem && testStr.cartItem.map((cartItem, id) => {
-            {/* {cartItem && cartItem.map((cartItem) => { */}
             <li key={cartItem.itemId}/>
                 return(
                     <>

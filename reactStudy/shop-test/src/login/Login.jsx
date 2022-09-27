@@ -58,7 +58,7 @@ const sendLoginRequest = () => {
     console.log(res.data);
     alert(res.data);
     localStorage.setItem("ACCESS_TOKEN", res.data);
-    // window.location.href = "/";
+    window.location.href = "/";
   }).catch((error) => {
     console.log(error);
   })

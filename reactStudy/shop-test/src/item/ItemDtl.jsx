@@ -214,6 +214,7 @@ function ItemDtl() {
             return(
         <>                
         { comment.answerDepth == 0 && 
+        <>
             <div className="commentWrapper">
                 <div>
                     <img className="commentImage"
@@ -227,7 +228,14 @@ function ItemDtl() {
                     onClick={()=>showAnswerForm(item.id, comment.questionId)}/>
                 </div>
             </div>
-            
+            {answerForm && (
+             <div class="commentAnswerForm" >
+             <textarea onChange={inputAnswer} placeholder=" 답변을 입력하세요." class="question-1"></textarea>
+             <button value="등록" class="commentRegisterBtn"
+             onClick={() => registerAnswer(item.id, comment.groupId)}>등록</button>
+         </div>
+        )}
+        </>    
         }
 
         {comment.answerDepth == 1 &&
@@ -245,13 +253,7 @@ function ItemDtl() {
             </div>        
         }
 
-        {answerForm && (
-             <div class="commentAnswerForm" >
-             <textarea onChange={inputAnswer} placeholder=" 답변을 입력하세요." class="question-1"></textarea>
-             <button value="등록" class="commentRegisterBtn"
-             onClick={() => registerAnswer(item.id, comment.groupId)}>등록</button>
-         </div>
-        )}
+
 
 
                         
