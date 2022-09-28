@@ -26,6 +26,7 @@ import ItemFormTest from '../test/ItemFormTest';
 import Login2 from '../test/Login2';
 import ItemUpdate from '../item/ItemUpdate';
 import CheckboxTest from '../test/CheckboxTest';
+import PaginationTest from '../test/PaginationTest';
 
 
 function Header() {

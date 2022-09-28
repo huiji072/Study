@@ -47,3 +47,8 @@ a{
     white-space: nowrap;
     overflow: hidden;
 }
+.pagenation {
+    margin-top: 20px;
+    margin-left: 260px;
+    text-align: center;
+}

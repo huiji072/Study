@@ -3,6 +3,7 @@ import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';  
 import {Container ,Card,Row, Col, Button} from 'react-bootstrap';  
 import './Main.css';
+import Pagination from "react-js-pagination";
 
 function MainList() {
 
@@ -22,10 +23,16 @@ function MainList() {
           })
         }, []
     );
+
+    // const maxPage = testStr.maxPage[0].maxPage;
+
+    // console.log(maxPage);
+
+    // console.log(testStr.itemsObj)
   
     return(
         <>
-            {testStr.item && testStr.item.map((item) => {
+            {testStr.items && testStr.items.map((item) => {
                 return(
                         <Card className="card">
                             <a href={item.id}>
@@ -39,6 +46,13 @@ function MainList() {
                         </Card>
                 );
             })}
+
+            <div className='pagenation'>
+            <Pagination 
+            />
+
+            </div>
+
         </>
     );
 }

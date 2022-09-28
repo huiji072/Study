@@ -57,6 +57,7 @@ const sendLoginRequest = () => {
     callback(res.data);
     console.log(res.data);
     localStorage.setItem("ACCESS_TOKEN", res.data);
+    window.location.href = "/";
   }).catch((error) => {
     console.log(error);
   })
