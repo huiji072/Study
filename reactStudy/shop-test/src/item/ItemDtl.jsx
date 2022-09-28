@@ -235,52 +235,59 @@ function ItemDtl() {
         onClick={() => registerQuestion(item.id)}>등록</button>
     </div>
 
+    <ul  className="list-group mb-4">
+            {currentPosts.map(comment => (
+                // <li key={comment.id}>
+                        <>                
+                { comment.answerDepth == 0 && 
+                <>
+                    <div className="commentWrapper">
+                        <div>
+                            <img className="commentImage"
+                                src="/img/comment.png" />
+                        </div>
+                        <div className="commentCotentContainer" key={comment.id}>
+                            <span className="commentNameText">{comment.answerEmail}</span>
+                            <span className="commentRegTime">{comment.answerRegTime}</span>
+                            <span className="commentCommentText">{comment.answerContent}.</span>
+                            <input type="button" value="답변" className="commentRegisterBtn2"
+                            onClick={()=>showAnswerForm(item.id, comment.questionId)}/>
+                        </div>
+                    </div>
+                    {answerForm && (
+                    <div class="commentAnswerForm" >
+                    <textarea onChange={inputAnswer} placeholder=" 답변을 입력하세요." class="question-1"></textarea>
+                    <button value="등록" class="commentRegisterBtn"
+                    onClick={() => registerAnswer(item.id, comment.groupId)}>등록</button>
+                </div>
+                )}
+                </>    
+                }
 
-    {testStr.comment && testStr.comment.map((comment) => {
-        return(
-    <>                
-    { comment.answerDepth == 0 && 
-    <>
-        <div className="commentWrapper">
-            <div>
-                <img className="commentImage"
-                    src="/img/comment.png" />
-            </div>
-            <div className="commentCotentContainer">
-                <span className="commentNameText">{comment.answerEmail}</span>
-                <span className="commentRegTime">{comment.answerRegTime}</span>
-                <span className="commentCommentText">{comment.answerContent}.</span>
-                <input type="button" value="답변" className="commentRegisterBtn2"
-                onClick={()=>showAnswerForm(item.id, comment.questionId)}/>
-            </div>
-        </div>
-        {answerForm && (
-         <div class="commentAnswerForm" >
-         <textarea onChange={inputAnswer} placeholder=" 답변을 입력하세요." class="question-1"></textarea>
-         <button value="등록" class="commentRegisterBtn"
-         onClick={() => registerAnswer(item.id, comment.groupId)}>등록</button>
-     </div>
-    )}
-    </>    
-    }
+                {comment.answerDepth == 1 &&
+                    <div className="commentWrapper2">
+                        <div>
+                            <img className="commentImage"
+                            src="/img/comment.png" />
+                        </div>
 
-    {comment.answerDepth == 1 &&
-        <div className="commentWrapper2">
-            <div>
-                <img className="commentImage"
-                src="/img/comment.png" />
-            </div>
+                        <div className="commentCotentContainer" key={comment.id}>
+                            <span className="commentNameText">{comment.answerEmail}</span>
+                            <span className="commentRegTime">{comment.answerRegTime}</span>
+                            <span className="commentCommentText">{comment.answerContent}.</span>                    
+                        </div>
+                    </div>        
+                }                
+            </>
+                    
+                // </li>
+            ))}
+        </ul>
+        <Pagination postsPerPage={postPerPage} totalPosts={posts.length} 
+        paginate={paginate}/>
 
-            <div className="commentCotentContainer">
-                <span className="commentNameText">{comment.answerEmail}</span>
-                <span className="commentRegTime">{comment.answerRegTime}</span>
-                <span className="commentCommentText">{comment.answerContent}.</span>                    
-            </div>
-        </div>        
-    }                
-    </>
-    );
-})}
+
+
     
     </>
         </>
@@ -288,20 +295,6 @@ function ItemDtl() {
 
         );
         })}
-
-{/* 질문 답변 페이징 */}
-        <>
-        <ul  className="list-group mb-4">
-            {currentPosts.map(post => (
-                <li key={post.id} className='list-group-item'>
-                    {post.answerContent}
-                </li>
-            ))}
-        </ul>
-        <Pagination postsPerPage={postPerPage} totalPosts={posts.length} 
-        paginate={paginate}/>
-        </>
-
     </div>
 );        
 }
