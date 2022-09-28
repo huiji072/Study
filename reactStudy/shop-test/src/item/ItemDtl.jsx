@@ -12,7 +12,7 @@ function ItemDtl() {
 
         const paramData = {
             itemId: id,
-            count: count
+            count: orderStockNumber
         }
 
         const param = JSON.stringify(paramData);
@@ -34,7 +34,7 @@ function ItemDtl() {
 
         const paramData = {
             itemId: id,
-            count: count
+            count: orderStockNumber
         }
         const param = JSON.stringify(paramData);
 
@@ -119,6 +119,12 @@ function ItemDtl() {
         })        
     }    
 
+    // 구매수량 가져오기
+    const [orderStockNumber, setOrderStockNumber] = useState('1');
+
+    const handleChangeOrderStockNumber = (event) => {
+        setOrderStockNumber(event.target.value)
+    }
 
     const { itemId } = useParams();
     const url = '/item/'+itemId
@@ -175,7 +181,9 @@ function ItemDtl() {
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">구매수량</span>
                                             </div>
-                                            <input type="number" name="count" id="count" class="form-control" value={item.stockNumber} min="1"/>
+                                            <input type="number" name="count" id="count" class="form-control" 
+                                            min="1" max={item.stockNumber} value={orderStockNumber} defaultValue="1"
+                                            onChange={handleChangeOrderStockNumber}/>
                                         </div>
                                     </div>
                                     <hr class="my-4"/>

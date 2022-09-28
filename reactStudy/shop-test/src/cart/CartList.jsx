@@ -15,6 +15,13 @@ function CartList() {
             window.location.href='/cart/Cart';
         })
     }
+ 
+    // 구매수량 가져오기
+    const [orderStockNumber, setOrderStockNumber] = useState('');
+
+    const handleChangeOrderStockNumber = (event) => {
+        setOrderStockNumber(event.target.value)
+    }    
 
     // 체크박스 핸들러
     const [itemList, setItemList] = useState({cartItem: []})
@@ -128,8 +135,7 @@ function CartList() {
                                 <span class="input-group mt-2">
 
                                     <input type="number" name="count" 
-                                         min="1" value={cartItem.count}
-                                        onChange="changeCount(this)" class="form-control mr-2"/>
+                                         min="1" value={cartItem.count}  class="form-control mr-2"/>
                                     <button type="button" class="close" aria-label="Close" onClick={()=>deletedCart(cartItem.itemId)}>
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -138,7 +144,6 @@ function CartList() {
                         </div>
                     </td>
                 </tr>
-                {cartItem.itemId}
                 </>
                 
                 )

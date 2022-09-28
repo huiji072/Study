@@ -12,7 +12,7 @@ function OrderHistList() {
     useEffect(
         () => {
           axios({
-              url: 'http://localhost:8080/orders',
+              url: '/orders',
               method: 'GET'
           }).then((res) => {
               callback(res.data);
@@ -50,13 +50,12 @@ function OrderHistList() {
 
                     return(
                         <div className="orderHistListForm">
-                            <h1>{orderItem.orderStatus}</h1>
                                 <div class="d-flex mb-3 align-self-center">
                                 <h4 >{orderItem.orderDate}</h4>
                                 <div class="ml-3">
 
                                 {
-                                orderItem.status == "Order"
+                                orderItem.orderStatus == "ORDER"
                                 ? <button type="button" class="btn btn-outline-secondary"  
                                 onClick={()=>cancelOrder(orderItem.id)}> 주문취소</button>
                                 : <h4>(취소 완료)</h4>
