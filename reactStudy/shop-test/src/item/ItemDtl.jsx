@@ -134,9 +134,8 @@ function ItemDtl() {
 
     // 질문답변 페이징
     const[posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postPerPage, setPostPerPage] = useState(3);
+    const [postPerPage, setPostPerPage] = useState(3); //한페이지에 보여줄 갯수
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
