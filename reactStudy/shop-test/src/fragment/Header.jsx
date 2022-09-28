@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
+import axios from 'axios'
 import './Header.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -27,56 +28,85 @@ import ItemUpdate from '../item/ItemUpdate';
 import CheckboxTest from '../test/CheckboxTest';
 
 
-class Header extends Component {
-    render() {
-        return(
-            <>
-            
-            <div class="titleHeader">
-                <h1><a class="title" href="/">❝Donators Market❞</a></h1> <br/>
-            </div>
+function Header() {
 
-            <Navbar bg="primary" variant="dark">
-                <Container>
-                <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
-                    <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
-                    <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
-                    <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
-                    <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
-                    <Nav.Link href="/login/Login">로그인</Nav.Link>
-                    <Nav.Link href="/login/Join">회원가입</Nav.Link>
-                    {/* <Nav.Link href="/members/management">회원관리</Nav.Link> */}
-                </Nav>
-                </Container>
-            </Navbar>
-            <Router>
-                <Routes>
-                    <Route path='/' element={<Main/>} />
-                    <Route path='/item/ItemForm' element={<ItemForm/>} />
-                    <Route path='/item/ItemMng' element={<ItemMng/>} />
-                    <Route path='/cart/Cart' element={<CartList/>} />
-                    <Route path='/order/OrderHist' element={<OrderHist/>} />
-                    <Route path='/offer/OfferHist' element={<OfferHist/>} />
-                    <Route path='/login/Login' element={<Login/>} />
-                    <Route path='/login/Join' element={<Join/>} />
-                    <Route path='/:itemId' element={<ItemDtl/>} />
-                    {/* <Route path='/:itemId' element={<Comment/>} /> */}
-                    <Route path='/test/Hello' element={<Hello/>} />
-                    <Route path='/test/itemDtlTest' element={<ItemDtlTest/>} />
-                    <Route path='/login/success' element={<LoginSuccess/>} />
-                    <Route path='/login/error' element={<LoginError/>} />
-                    <Route path='/item/update/:itemId' element={<ItemUpdate/>} />
-                    <Route path='/test/itemForm' element={<ItemFormTest/>} />
-                    <Route path='/test/login' element={<Login2/>} />
-                    <Route path='/test/checkboxTest' element={<CheckboxTest/>} />
-
-                </Routes>
-            </Router>
-            </>
-        );
+    //로그인 정보
+    const [ testStr, setTestStr ] = useState('');
+    // 변수 초기화
+    function callback(str) {
+      setTestStr(str);
     }
+
+    useEffect(
+        () => {
+          axios({
+              url: '/members/login/success',
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+              console.log(res.data);
+          })
+        }, []
+    );
+
+
+    return(
+        <>
+        
+        <div class="titleHeader">
+            <h1><a class="title" href="/">❝Donators Market❞</a></h1> <br/>
+        </div>
+
+        <div className='loginInfo'>
+        {testStr.loginInfo && testStr.loginInfo.map((loginInfo, id) => {
+                return(
+                    <>
+                    [{loginInfo.loginRole}] {loginInfo.loginName}
+                </>
+                )
+            })}
+        </div>
+
+        <Navbar bg="primary" variant="dark">
+            <Container>
+            <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
+            <Nav className="me-auto">
+                <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
+                <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
+                <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
+                <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
+                <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
+                <Nav.Link href="/login/Login">로그인</Nav.Link>
+                <Nav.Link href="/login/Join">회원가입</Nav.Link>
+                {/* <Nav.Link href="/members/management">회원관리</Nav.Link> */}
+            </Nav>
+            </Container>
+        </Navbar>
+        <Router>
+            <Routes>
+                <Route path='/' element={<Main/>} />
+                <Route path='/item/ItemForm' element={<ItemForm/>} />
+                <Route path='/item/ItemMng' element={<ItemMng/>} />
+                <Route path='/cart/Cart' element={<CartList/>} />
+                <Route path='/order/OrderHist' element={<OrderHist/>} />
+                <Route path='/offer/OfferHist' element={<OfferHist/>} />
+                <Route path='/login/Login' element={<Login/>} />
+                <Route path='/login/Join' element={<Join/>} />
+                <Route path='/:itemId' element={<ItemDtl/>} />
+                {/* <Route path='/:itemId' element={<Comment/>} /> */}
+                <Route path='/test/Hello' element={<Hello/>} />
+                <Route path='/test/itemDtlTest' element={<ItemDtlTest/>} />
+                <Route path='/login/success' element={<LoginSuccess/>} />
+                <Route path='/login/error' element={<LoginError/>} />
+                <Route path='/item/update/:itemId' element={<ItemUpdate/>} />
+                <Route path='/test/itemForm' element={<ItemFormTest/>} />
+                <Route path='/test/login' element={<Login2/>} />
+                <Route path='/test/checkboxTest' element={<CheckboxTest/>} />
+
+            </Routes>
+        </Router>
+        </>
+    );       
 }
 
 

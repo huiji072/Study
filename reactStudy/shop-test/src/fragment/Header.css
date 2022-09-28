@@ -11,3 +11,8 @@ nav{
 .title{
     color: black;
 }
+.loginInfo{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-left: 850px;
+}
