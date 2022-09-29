@@ -18,6 +18,7 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginName, setLoginName] = useState('');
 
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -34,46 +35,40 @@ const sendLoginRequest = () => {
 
     console.log("email: ", email);
 
-    if(email != '' && email != null) {
-
-      // axios({
-      //   url: '/members/login',
-      //   method: "post",
-      //   headers: { 'Content-Type': 'application/json' },
-      //   data: formData
-      // }).then((res) => {
-      //   // callback(res.data);
-      //   console.log("/members/login res : ", res.data);
-      //   // window.location.href = "/";
-      // }).catch((error) => {
-      //   console.log("error !!");
-      //   console.log(error);
-      // })
-
       axios({
-        url: '/members/login/success',
-        method: "get",
-        headers: {},
-        params: {
-          "email": email
-        }
+        url: '/members/login',
+        method: "post",
+        headers: { 'Content-Type': 'application/json' },
+        data: formData
       }).then((res) => {
-        alert(res.data);
-        console.log("/members/login/sucess res : ",res.data)
+        console.log("/members/login res : ", res.data);
+        window.location.href = "/";
       }).catch((error) => {
         console.log(error);
       })
 
-    }
+      axios({
+        url: '/members/login/session',
+        method: "get",
+        headers: {'Content-Type': 'application/json'},
+        params: {
+          "email": email
+        }
+      }).then((res) => {
+        callback(res.data);
+        console.log(res.data);
+      }).catch((error) => {
+        console.log(error);
+      })
 
 }
 
   return(
     <div className="loginContainer">
     <h2 className="mb-4">로그인</h2>
+    {/* <h3>{testStr.loginInfo[0].loginName}</h3> */}
          <form className="loginForm" onSubmit={signInForm}>
             <div className="mb-3">
-              
               <label>Email address</label>
               <input
                 type="email"

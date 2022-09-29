@@ -24,6 +24,7 @@ import ItemFormTest from '../test/ItemFormTest';
 import ItemUpdate from '../item/ItemUpdate';
 import CheckboxTest from '../test/CheckboxTest';
 import PaginationTest from '../test/PaginationTest';
+import Logout from '../login/Logout';
 
 
 function Header() {
@@ -64,7 +65,8 @@ function Header() {
                 <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
                 <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
                 <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
-                <Nav.Link href="/login/Login">로그인</Nav.Link>
+                <Nav.Link href="/members/login">로그인</Nav.Link>
+                <Nav.Link href="/members/logout">로그아웃</Nav.Link>
                 <Nav.Link href="/login/Join">회원가입</Nav.Link>
                 {/* <Nav.Link href="/members/management">회원관리</Nav.Link> */}
             </Nav>
@@ -78,7 +80,7 @@ function Header() {
                 <Route path='/cart/Cart' element={<CartList/>} />
                 <Route path='/order/OrderHist' element={<OrderHist/>} />
                 <Route path='/offer/OfferHist' element={<OfferHist/>} />
-                <Route path='/login/Login' element={<Login/>} />
+                <Route path='/members/login' element={<Login/>} />
                 <Route path='/login/Join' element={<Join/>} />
                 <Route path='/:itemId' element={<ItemDtl/>} />
                 {/* <Route path='/:itemId' element={<Comment/>} /> */}
@@ -87,7 +89,7 @@ function Header() {
                 <Route path='/item/update/:itemId' element={<ItemUpdate/>} />
                 <Route path='/test/itemForm' element={<ItemFormTest/>} />
                 <Route path='/test/checkboxTest' element={<CheckboxTest/>} />
-
+                <Route path='/members/logout' element={<Logout/>} />
             </Routes>
         </Router>
         </>
