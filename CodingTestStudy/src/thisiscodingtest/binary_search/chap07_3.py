@@ -12,4 +12,4 @@ while sum(result) != m:
             result[i] = 0
     cnt += 1
     
-print(cnt-1)
+print(cnt-1)vc
