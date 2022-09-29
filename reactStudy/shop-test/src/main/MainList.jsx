@@ -50,7 +50,6 @@ function MainList() {
         //     end = parseInt(itemTotalPage);
         // }
     }
-    console.log(end)
 
     const showPrevPage = () => {
     }
@@ -60,7 +59,7 @@ function MainList() {
     }
 
 
-
+    let itemNumberStr = parseInt(itemNumber);
 
   
     return(
@@ -86,14 +85,10 @@ function MainList() {
                     <>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                        {/* <li class="page-item">
-                            <a type="button" class="page-link"  disabled={currentPage===1?true:false } 
-                            onClick={showFirstPage}>First
-                            </a>
-                        </li> */}
+
                         <li class="page-item">
-                            <a class="page-link"  disabled={itemNumber==0?true:false} 
-                            href={'?page='+ (itemNumber-1)}
+                            <a class="page-link"  disabled={itemsObj.itemNumber==0?true:false} 
+                            href={'?page='+ (itemNumberStr-1)}
                             >Previous</a>
                         </li>
                         {arr.map((arr) => {
@@ -101,8 +96,8 @@ function MainList() {
                                 <>
                                 <li class="page-item">
                                     <a class="page-link" 
-                                    href={'?page=' + ({arr}-1)}
-                                    >{arr}
+                                    href={'?page=' + (arr-1)}
+                                    >{arr} 
                                     </a>
                                 </li>
                                 </>
@@ -110,16 +105,11 @@ function MainList() {
                         })}
 
                         <li class="page-item">
-                            <a class="page-link"  disabled={(itemNumber+1)==itemTotalPage?true:false } 
-                            href={'?page=' + (itemNumber+1)}
+                            <a class="page-link"  disabled={(itemNumberStr+1)==itemsObj.itemNumber?true:false } 
+                            href={'?page=' + (itemNumberStr+1)}
                             >Next
                             </a>
                         </li>
-                        {/* <li class="page-item">
-                            <a type="button" class="page-link"  disabled={(itemNumber+1)==totalPages?true:false} 
-                            onClick={showLastPage}>Last
-                            </a>
-                        </li> */}
                     </ul>
                     </nav>
                     </>

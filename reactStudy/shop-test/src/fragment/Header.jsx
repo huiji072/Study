@@ -20,10 +20,7 @@ import OrderHistList from '../order/OrderHistList';
 import OfferHistList from '../offer/OfferHistList';
 import Hello from '../test/Hello';
 import ItemDtlTest from '../test/ItemDtlTest';
-import LoginSuccess from '../login/LoginSuccess';
-import LoginError from '../login/LoginError';
 import ItemFormTest from '../test/ItemFormTest';
-import Login2 from '../test/Login2';
 import ItemUpdate from '../item/ItemUpdate';
 import CheckboxTest from '../test/CheckboxTest';
 import PaginationTest from '../test/PaginationTest';
@@ -38,17 +35,7 @@ function Header() {
       setTestStr(str);
     }
 
-    useEffect(
-        () => {
-          axios({
-              url: '/members/login/success',
-              method: 'GET'
-          }).then((res) => {
-              callback(res.data);
-              console.log(res.data);
-          })
-        }, []
-    );
+
 
 
     return(
@@ -97,11 +84,8 @@ function Header() {
                 {/* <Route path='/:itemId' element={<Comment/>} /> */}
                 <Route path='/test/Hello' element={<Hello/>} />
                 <Route path='/test/itemDtlTest' element={<ItemDtlTest/>} />
-                <Route path='/login/success' element={<LoginSuccess/>} />
-                <Route path='/login/error' element={<LoginError/>} />
                 <Route path='/item/update/:itemId' element={<ItemUpdate/>} />
                 <Route path='/test/itemForm' element={<ItemFormTest/>} />
-                <Route path='/test/login' element={<Login2/>} />
                 <Route path='/test/checkboxTest' element={<CheckboxTest/>} />
 
             </Routes>
