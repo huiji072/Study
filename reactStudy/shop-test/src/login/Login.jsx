@@ -48,7 +48,7 @@ const sendLoginRequest = () => {
       })
 
       axios({
-        url: '/members/login/session',
+        url: '/members/login/loginInfo',
         method: "get",
         headers: {'Content-Type': 'application/json'},
         params: {

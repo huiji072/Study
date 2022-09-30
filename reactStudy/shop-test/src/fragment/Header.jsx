@@ -29,11 +29,23 @@ import Logout from '../login/Logout';
 
 function Header() {
 
-    const [ testStr, setTestStr ] = useState('');
+    const [ loginInfo, setLoginInfo ] = useState('');
     // 변수 초기화
     function callback(str) {
-      setTestStr(str);
+      setLoginInfo(str);
     }
+
+    useEffect(
+        () => {
+          axios({
+              url: '/members/loginInfo',
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+              console.log(res.data);
+          })
+        }, []
+    );
 
     return(
         <>
@@ -43,13 +55,12 @@ function Header() {
         </div>
 
         <div className='loginInfo'>
-        {testStr.loginInfo && testStr.loginInfo.map((loginInfo, id) => {
-                return(
-                    <>
-                    [{loginInfo.loginRole}] {loginInfo.loginName}
-                </>
-                )
-            })}
+                {
+                    loginInfo.email == 'anonymousUser'
+                    ?<p></p>
+                    :<p>{loginInfo.email}</p>
+                }
+                
         </div>
 
         <Navbar bg="primary" variant="dark">
