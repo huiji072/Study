@@ -6,6 +6,8 @@ import "./OfferHist.css";
 function OfferHistList() {
 
     const [ testStr, setTestStr ] = useState('');
+    const[pageNum, setPageNum] = useState(0);
+
     // 변수 초기화
     function callback(str) {
       setTestStr(str);
@@ -15,12 +17,63 @@ function OfferHistList() {
         () => {
           axios({
               url: '/offers',
-              method: 'GET'
+              method: 'GET',
+              params: {
+                "pageNum": pageNum
+              }
           }).then((res) => {
               callback(res.data);
+              console.log(res.data);
           })
         }, []
     );
+
+    // 페이징
+    const prevPage = (e) => {
+        e.preventDefault();
+        setPageNum(pageNum - 1);
+        axios({
+            url: '/offers',
+            method: 'GET',
+            params: {
+                "pageNum": pageNum-1
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+    }
+
+    const nextPage = (pageNum, e) => {
+        e.preventDefault();
+        setPageNum(pageNum + 1);
+        console.log("after ", pageNum)
+        axios({
+            url: '/offers',
+            method: 'GET',
+            params: {
+                "pageNum": pageNum+1
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+
+    }
+
+    const clickPage = (arr, e) => {
+        e.preventDefault();
+        console.log(arr)
+        axios({
+            url: '/offers',
+            method: 'GET',
+            params: {
+                "pageNum": arr
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+    }
+
+    const arr = [1, 2, 3, 4, 5]
 
     // 주문취소
     const cancelOffer = (id) => {
@@ -86,6 +139,43 @@ function OfferHistList() {
                 )                    
 
         })}
+
+<>
+
+<div>
+    <ul className='pagination justify-content-center'>
+
+    <li className='page-item'>
+        <a className='page-link'  disabled={pageNum==0?true:false} 
+        href={'?page='+ (pageNum)} type='button'
+        onClick={prevPage}
+        >Previous
+        </a>
+    </li>
+    {arr.map((arr) => {
+        return(
+            <>
+        <li className='page-item'>
+                <a className='page-link'
+                href={'?page=' + (arr-1)} 
+                onClick={(e) => clickPage(arr-1, e)}
+                >{arr} 
+                </a>
+            </li>
+            </>
+        )
+    })}
+
+    <li className='page-item'>
+        <a className="page-link"  disabled={(pageNum+1)==pageNum?true:false } 
+        href={'?page=' + (pageNum)} type='button'
+        onClick={(e)=>nextPage(pageNum, e)} 
+        >Next
+        </a>
+    </li>
+</ul>
+</div>
+</>
         </>
     )
 }
