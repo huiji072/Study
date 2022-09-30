@@ -94,7 +94,7 @@ const sendLoginRequest = () => {
               />
             </div>
 
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <div className="custom-control custom-checkbox">
                 <input
                   type="checkbox"
@@ -105,7 +105,7 @@ const sendLoginRequest = () => {
                   Remember me
                 </label>
               </div>
-            </div>
+            </div> */}
 
             <div className="d-grid">
               <button className="btn btn-primary" id='siginBtn'

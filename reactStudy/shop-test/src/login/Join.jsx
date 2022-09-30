@@ -145,7 +145,7 @@ return(
             <button type="submit" className="btn btn-primary"
             onClick={() => sendJoinRequest()}
              >
-              Submit
+              Sign up
             </button>
           </div>
         </form>

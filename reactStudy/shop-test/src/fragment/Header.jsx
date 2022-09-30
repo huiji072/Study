@@ -88,7 +88,6 @@ function Header() {
                             <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
                             <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
                             <Nav.Link href="/members/logout">로그아웃</Nav.Link>
-                            <Nav.Link href="/login/Join">회원가입</Nav.Link>
                         </Nav>
                         </Container>
                     </Navbar>
@@ -102,10 +101,8 @@ function Header() {
                             <Nav className="me-auto">
                                 <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
                                 <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
-                                <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
                                 <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
                                 <Nav.Link href="/members/logout">로그아웃</Nav.Link>
-                                <Nav.Link href="/login/Join">회원가입</Nav.Link>
                             </Nav>
                             </Container>
                         </Navbar>
@@ -119,7 +116,6 @@ function Header() {
                                 <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
                                 <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
                                 <Nav.Link href="/members/logout">로그아웃</Nav.Link>
-                                <Nav.Link href="/login/Join">회원가입</Nav.Link>
                             </Nav>
                             </Container>
                         </Navbar>
@@ -131,7 +127,6 @@ function Header() {
                             <Nav className="me-auto">
                                 <Nav.Link href="/members/logout">로그아웃</Nav.Link>
                                 <Nav.Link href="/login/Join">회원가입</Nav.Link>
-                                <Nav.Link href="/members/management">회원관리</Nav.Link>
                             </Nav>
                             </Container>
                         </Navbar>
