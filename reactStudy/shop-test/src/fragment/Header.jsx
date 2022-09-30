@@ -29,15 +29,11 @@ import Logout from '../login/Logout';
 
 function Header() {
 
-    //로그인 정보
     const [ testStr, setTestStr ] = useState('');
     // 변수 초기화
     function callback(str) {
       setTestStr(str);
     }
-
-
-
 
     return(
         <>

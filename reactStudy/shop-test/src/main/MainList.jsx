@@ -3,65 +3,88 @@ import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';  
 import {Container ,Card,Row, Col, Button} from 'react-bootstrap';  
 import './Main.css';
+import Pagination from 'react-js-pagination';
 
 function MainList() {
 
-    const [itemTotalPage, setItemTotalPage] = useState('');
-    const [itemNumber, setItemNumber] = useState('');
-    const [maxPage, setMaxPage] = useState('');
-    const [searchQuery, setSearchQuery] = useState('');
 
     const [ testStr, setTestStr ] = useState('');
-        // 변수 초기화
-        function callback(str) {
-        setTestStr(str);
-        }
+    const[pageNum, setPageNum] = useState(0);
 
-        useEffect(
-            () => {
+    // 변수 초기화
+    function callback(str) {
+    setTestStr(str);
+    }
+
+    
+    useEffect(
+        () => {
+         axios({
+            url: '/main',
+            method: 'GET',
+            params: {
+                "pageNum": pageNum
+            }
+        }).then((res) => {
+            callback(res.data);
+            console.log("useEffect ", res.data.itemsObj[0].pageNum);
+        })
+        }, []
+); 
+
+
+        const prevPage = (e) => {
+            e.preventDefault();
+            setPageNum(pageNum - 1);
             axios({
                 url: '/main',
-                method: 'GET'
+                method: 'GET',
+                params: {
+                    "pageNum": pageNum-1
+                }
             }).then((res) => {
                 callback(res.data);
-                console.log(res.data);
-                setItemTotalPage(parseInt(res.data.itemsObj[0].itemsTotalPages));
-                setItemNumber(parseInt(res.data.itemsObj[0].itemsNumber));
-                setMaxPage(parseInt(res.data.maxPage[0].maxPage));
-                setSearchQuery(parseInt(res.data.itemSearchDto[0].searchQuery));
+                console.log("prevPage ", res.data.itemsObj[0].pageNum);
             })
-            }, []
-    );    
+        }
+    
+        const nextPage = (pageNum, e) => {
+            e.preventDefault();
+            setPageNum(pageNum + 1);
+            console.log("after ", pageNum)
+            axios({
+                url: '/main',
+                method: 'GET',
+                params: {
+                    "pageNum": pageNum+1
+                }
+            }).then((res) => {
+                callback(res.data);
+                console.log("nextPage ", res.data.itemsObj[0].pageNum);
+            })
+
+        }
+
+        const clickPage = (arr, e) => {
+            e.preventDefault();
+            console.log(arr)
+            axios({
+                url: '/main',
+                method: 'GET',
+                params: {
+                    "pageNum": arr
+                }
+            }).then((res) => {
+                callback(res.data);
+                console.log("nextPage ", res.data.itemsObj[0].pageNum);
+            })
+        }
+   
 
     const arr = [1, 2, 3, 4, 5]
 
-    // 페이징
-    const start = parseInt((itemNumber/maxPage) * maxPage + 1);
-    const end = itemTotalPage;
-
-    if (parseInt(itemTotalPage) === 0) {
-        end = 1;
-    }
-    else{
-        if(start + (maxPage - 1) < parseInt(itemTotalPage)) {
-            end = start + (parseInt(maxPage) - 1);
-        } 
-        // else {
-        //     end = parseInt(itemTotalPage);
-        // }
-    }
-
-    const showPrevPage = () => {
-    }
-
-    const showNextPage = () => {
-
-    }
 
 
-    let itemNumberStr = parseInt(itemNumber);
-
-  
     return(
         <>
             {testStr.items && testStr.items.map((item) => {
@@ -80,23 +103,25 @@ function MainList() {
                     </>
                 );
             })}
-            {testStr.itemsObj && testStr.itemsObj.map((itemsObj) => {
-            return(
                     <>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
 
-                        <li class="page-item">
-                            <a class="page-link"  disabled={itemsObj.itemNumber==0?true:false} 
-                            href={'?page='+ (itemNumberStr-1)}
-                            >Previous</a>
+                    <div>
+                        <ul className='pagination justify-content-center'>
+
+                        <li className='page-item'>
+                            <a className='page-link'  disabled={pageNum==0?true:false} 
+                            href={'?page='+ (pageNum)} type='button'
+                            onClick={prevPage}
+                            >Previous
+                            </a>
                         </li>
                         {arr.map((arr) => {
                             return(
                                 <>
-                                <li class="page-item">
-                                    <a class="page-link" 
-                                    href={'?page=' + (arr-1)}
+                            <li className='page-item'>
+                                    <a className='page-link'
+                                    href={'?page=' + (arr-1)} 
+                                    onClick={(e) => clickPage(arr-1, e)}
                                     >{arr} 
                                     </a>
                                 </li>
@@ -104,17 +129,16 @@ function MainList() {
                             )
                         })}
 
-                        <li class="page-item">
-                            <a class="page-link"  disabled={(itemNumberStr+1)==itemsObj.itemNumber?true:false } 
-                            href={'?page=' + (itemNumberStr+1)}
+                        <li className='page-item'>
+                            <a className="page-link"  disabled={(pageNum+1)==pageNum?true:false } 
+                            href={'?page=' + (pageNum)} type='button'
+                            onClick={(e)=>nextPage(pageNum, e)} 
                             >Next
                             </a>
                         </li>
                     </ul>
-                    </nav>
-                    </>
-                )
-            })}                
+                    </div>
+                    </>             
 
            
 
