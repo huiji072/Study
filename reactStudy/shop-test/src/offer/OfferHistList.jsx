@@ -62,6 +62,7 @@ function OfferHistList() {
     const clickPage = (arr, e) => {
         e.preventDefault();
         console.log(arr)
+        setPageNum(arr)
         axios({
             url: '/offers',
             method: 'GET',

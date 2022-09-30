@@ -5,7 +5,7 @@ import OrderHist from "./OrderHist";
 function OrderHistList() {
     const [ testStr, setTestStr ] = useState('');
     const[pageNum, setPageNum] = useState(0);
-    
+
     // 변수 초기화
     function callback(str) {
       setTestStr(str);
@@ -59,6 +59,7 @@ function OrderHistList() {
 
     const clickPage = (arr, e) => {
         e.preventDefault();
+        setPageNum(arr)
         console.log(arr)
         axios({
             url: '/orders',

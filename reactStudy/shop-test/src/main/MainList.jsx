@@ -67,6 +67,7 @@ function MainList() {
 
         const clickPage = (arr, e) => {
             e.preventDefault();
+            setPageNum(arr)
             console.log(arr)
             axios({
                 url: '/main',

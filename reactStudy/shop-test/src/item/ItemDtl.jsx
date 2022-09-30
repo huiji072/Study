@@ -128,19 +128,14 @@ function ItemDtl() {
     }
 
     const { itemId } = useParams();
-    const url = '/item/'+itemId
-    console.log(url);
+    
 
-
-    // 질문답변 페이징
-    const[posts, setPosts] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postPerPage, setPostPerPage] = useState(3); //한페이지에 보여줄 갯수
-
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 // 데이터 가져오기
     const [ testStr, setTestStr ] = useState('');
+    const [pageNum, setPageNum] = useState(0)
+    const url = '/item/'+itemId
+
     // 변수 초기화
     function callback(str) {
       setTestStr(str);
@@ -150,20 +145,66 @@ function ItemDtl() {
         () => {
           axios({
               url: url,
-              method: 'GET'
+              method: 'GET',
+              params: {
+                "pageNum": pageNum
+              }
           }).then((res) => {
               callback(res.data);
               console.log(res.data);
-              setPosts(res.data.comment)
           })
         }, []
     );
 
-    const indexOfLastPost = currentPage * postPerPage;
-    const indexOfFirstPost = indexOfLastPost - postPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    // 페이징
+    const prevPage = (e) => {
+        e.preventDefault();
+        setPageNum(pageNum - 1);
+        axios({
+            url: url,
+            method: 'GET',
+            params: {
+                "pageNum": pageNum-1
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+    }
 
-    console.log("posts", posts)
+    const nextPage = (pageNum, e) => {
+        e.preventDefault();
+        setPageNum(pageNum + 1);
+        console.log("after ", pageNum)
+        axios({
+            url: url,
+            method: 'GET',
+            params: {
+                "pageNum": pageNum+1
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+
+    }
+
+    const clickPage = (arr, e) => {
+        e.preventDefault();
+        setPageNum(arr)
+        console.log(arr)
+        axios({
+            url: url,
+            method: 'GET',
+            params: {
+                "pageNum": arr
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+    }
+
+
+const arr = [1, 2, 3, 4, 5]
+
 
     return(
         <div className="itemDtl">
@@ -235,7 +276,7 @@ function ItemDtl() {
     </div>
 
     <ul  className="list-group mb-4">
-            {currentPosts.map(comment => (
+            {testStr.comment && testStr.comment.map(comment => (
                 // <li key={comment.id}>
                         <>                
                 { comment.answerDepth == 0 && 
@@ -282,18 +323,50 @@ function ItemDtl() {
                 // </li>
             ))}
         </ul>
-        <Pagination postsPerPage={postPerPage} totalPosts={posts.length} 
-        paginate={paginate}/>
 
-
-
-    
-    </>
+        </>
         </>
 
 
         );
         })}
+
+<>
+
+        <div>
+            <ul className='pagination justify-content-center'>
+
+            <li className='page-item'>
+                <a className='page-link'  disabled={pageNum==0?true:false} 
+                href={'?page='+ (pageNum)} type='button'
+                onClick={prevPage}
+                >Previous
+                </a>
+            </li>
+            {arr.map((arr) => {
+                return(
+                    <>
+                <li className='page-item'>
+                        <a className='page-link'
+                        href={'?page=' + (arr-1)} 
+                        onClick={(e) => clickPage(arr-1, e)}
+                        >{arr} 
+                        </a>
+                    </li>
+                    </>
+                )
+            })}
+
+            <li className='page-item'>
+                <a className="page-link"  disabled={(pageNum+1)==pageNum?true:false } 
+                href={'?page=' + (pageNum)} type='button'
+                onClick={(e)=>nextPage(pageNum, e)} 
+                >Next
+                </a>
+            </li>
+        </ul>
+        </div>
+</>     
     </div>
 );        
 }
