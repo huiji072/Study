@@ -7,8 +7,12 @@ function App() {
 
   return (
     <>
+    <div className='wrapper1'>
+      <div className='wrapper2'>
     <Header></Header>
+    </div>
     <Footer></Footer>
+    </div>
     </>
   );
 }

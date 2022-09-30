@@ -103,6 +103,7 @@ function ItemForm(props) {
                     </select>
                 </div>
 
+
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">상품명</span>

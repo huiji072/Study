@@ -64,7 +64,7 @@ function Header() {
 
             {
                 email == 'anonymousUser'
-                ? <><p  className='loginInfo'>[기부자&회원] {email}</p>
+                ? <><p  className='loginInfo'></p>
                 <Navbar bg="primary" variant="dark">
                     <Container>
                     <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>

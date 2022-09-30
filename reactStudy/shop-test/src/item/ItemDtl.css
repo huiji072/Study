@@ -139,7 +139,7 @@
 }
 .commentCommentText{
     color: black;
-    font-size: 16px;
+    font-size: 19px;
 }
 .commentRegisterBtn{
     border: none;
@@ -161,4 +161,7 @@
 }
 .commentAnswerForm{
     
+}
+.commentRegTime{
+    font-size: 16px;
 }
