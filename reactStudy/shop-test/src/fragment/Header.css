@@ -1,7 +1,7 @@
 nav{
-    width: 1000px;
-    margin: auto;
+    width: 980px;
     margin-bottom: 20px;
+    margin-left: 115px;
 }
 .titleHeader{
     text-align: center;
@@ -12,7 +12,7 @@ nav{
     color: black;
 }
 .loginInfo{
-    text-align: center;
+    text-align: right;
     margin-bottom: 20px;
-    margin-left: 850px;
+    margin-right: 150px;
 }

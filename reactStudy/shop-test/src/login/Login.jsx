@@ -48,7 +48,7 @@ const sendLoginRequest = () => {
       })
 
       axios({
-        url: '/members/login/loginInfo',
+        url: '/members/login/session',
         method: "get",
         headers: {'Content-Type': 'application/json'},
         params: {
@@ -60,6 +60,8 @@ const sendLoginRequest = () => {
       }).catch((error) => {
         console.log(error);
       })
+
+
 
 }
 

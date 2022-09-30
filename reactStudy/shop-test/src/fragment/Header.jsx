@@ -30,6 +30,8 @@ import Logout from '../login/Logout';
 function Header() {
 
     const [ loginInfo, setLoginInfo ] = useState('');
+    const [role, setRole] = useState('');
+    const [email, setEmail] = useState('');
     // 변수 초기화
     function callback(str) {
       setLoginInfo(str);
@@ -43,9 +45,13 @@ function Header() {
           }).then((res) => {
               callback(res.data);
               console.log(res.data);
+              setEmail(res.data.email);
+              setRole(res.data.role[0].authority)
           })
         }, []
     );
+
+    console.log(email, role);
 
     return(
         <>
@@ -54,31 +60,88 @@ function Header() {
             <h1><a class="title" href="/">❝Donators Market❞</a></h1> <br/>
         </div>
 
-        <div className='loginInfo'>
-                {
-                    loginInfo.email == 'anonymousUser'
-                    ?<p></p>
-                    :<p>{loginInfo.email}</p>
-                }
-                
+        <div>
+
+            {
+                email == 'anonymousUser'
+                ? <><p  className='loginInfo'>[기부자&회원] {email}</p>
+                <Navbar bg="primary" variant="dark">
+                    <Container>
+                    <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
+                        <Nav.Link href="/members/login">로그인</Nav.Link>
+                        <Nav.Link href="/login/Join">회원가입</Nav.Link>
+                    </Nav>
+                    </Container>
+                </Navbar>
+                </>
+                :( role == 'ROLE_ADMIN' )
+                ?<><p  className='loginInfo'>[기부자&회원] {email}</p>
+                    <Navbar bg="primary" variant="dark">
+                        <Container>
+                        <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
+                        <Nav className="me-auto">
+                            <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
+                            <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
+                            <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
+                            <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
+                            <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
+                            <Nav.Link href="/members/logout">로그아웃</Nav.Link>
+                            <Nav.Link href="/login/Join">회원가입</Nav.Link>
+                        </Nav>
+                        </Container>
+                    </Navbar>
+                    </>
+                    
+                    :role == 'ROLE_SELLER'
+                        ?<><p className='loginInfo'>[기부자] {email}</p>
+                        <Navbar bg="primary" variant="dark">
+                            <Container>
+                            <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
+                            <Nav className="me-auto">
+                                <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
+                                <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
+                                <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
+                                <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
+                                <Nav.Link href="/members/logout">로그아웃</Nav.Link>
+                                <Nav.Link href="/login/Join">회원가입</Nav.Link>
+                            </Nav>
+                            </Container>
+                        </Navbar>
+                        </>
+                        :role == 'ROLE_BUYER'
+                            ?<><p className='loginInfo'>[일반회원] {email}</p>
+                            <Navbar bg="primary" variant="dark">
+                            <Container>
+                            <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
+                            <Nav className="me-auto">
+                                <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
+                                <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
+                                <Nav.Link href="/members/logout">로그아웃</Nav.Link>
+                                <Nav.Link href="/login/Join">회원가입</Nav.Link>
+                            </Nav>
+                            </Container>
+                        </Navbar>
+                        </>
+                        :<><p className='loginInfo'>[관리자] {email}</p>
+                        <Navbar bg="primary" variant="dark">
+                            <Container>
+                            <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
+                            <Nav className="me-auto">
+                                <Nav.Link href="/members/logout">로그아웃</Nav.Link>
+                                <Nav.Link href="/login/Join">회원가입</Nav.Link>
+                                <Nav.Link href="/members/management">회원관리</Nav.Link>
+                            </Nav>
+                            </Container>
+                        </Navbar>
+                        </>
+            }
+            
+
         </div>
 
-        <Navbar bg="primary" variant="dark">
-            <Container>
-            <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
-            <Nav className="me-auto">
-                <Nav.Link href="/item/ItemForm">상품등록</Nav.Link>
-                <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
-                <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
-                <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
-                <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
-                <Nav.Link href="/members/login">로그인</Nav.Link>
-                <Nav.Link href="/members/logout">로그아웃</Nav.Link>
-                <Nav.Link href="/login/Join">회원가입</Nav.Link>
-                {/* <Nav.Link href="/members/management">회원관리</Nav.Link> */}
-            </Nav>
-            </Container>
-        </Navbar>
+
         <Router>
             <Routes>
                 <Route path='/' element={<Main/>} />
