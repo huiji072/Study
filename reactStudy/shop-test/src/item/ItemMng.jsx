@@ -1,22 +1,83 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import './ItemMng.css';
 import ItemMngList from './ItemMngList';
 
 function ItemMng(props) {
+
+    const [ testStr, setTestStr ] = useState('');
+    const[pageNum, setPageNum] = useState(0);
+
+    // 변수 초기화
+    function callback(str) {
+    setTestStr(str);
+    }
+
+    
+    useEffect(
+        () => {
+         axios({
+            url: '/item/itemMng',
+            method: 'GET',
+            params: {
+                "pageNum": pageNum
+            }
+        }).then((res) => {
+            callback(res.data);
+            console.log(res.data);
+        })
+        }, []
+); 
+
+    const prevPage = (e) => {
+        e.preventDefault();
+        setPageNum(pageNum - 1);
+        axios({
+            url: '/item/itemMng',
+            method: 'GET',
+            params: {
+                "pageNum": pageNum-1
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+    }
+
+    const nextPage = (pageNum, e) => {
+        e.preventDefault();
+        setPageNum(pageNum + 1);
+        console.log("after ", pageNum)
+        axios({
+            url: '/item/itemMng',
+            method: 'GET',
+            params: {
+                "pageNum": pageNum+1
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+
+    }
+
+    const clickPage = (arr, e) => {
+        e.preventDefault();
+        console.log(arr)
+        axios({
+            url: '/item/itemMng',
+            method: 'GET',
+            params: {
+                "pageNum": arr
+            }
+        }).then((res) => {
+            callback(res.data);
+        })
+    }
+
+
+const arr = [1, 2, 3, 4, 5]
+
         return(
             <div className="containerItemMng">
-
-                <div className="orderByItemMng" >
-                    <div>
-                        {/* <form action="/admin/items"> */}
-                            <button className="btn btn-primary" type="submit" >아이디 내림차순</button>
-                        {/* </form>
-                        <form action="/admin/item/itemMngOrderByItemNmAsc"> */}
-                            <button className="btn btn-primary" type="submit">이름 오름차순</button>
-                        {/* </form> */}
-                    </div>
-                </div>
-            <br/>
 
 
             <form role="form" method="get" className='itemMngForm'>
@@ -33,7 +94,21 @@ function ItemMng(props) {
                     </thead>
 
                     <tbody> 
-                        <ItemMngList/>
+                    {testStr.item && testStr.item.map((item) => {
+                <li key={item.id}/>
+                return(
+                        <tr>
+                            <td >{item.id}</td>
+                            <td>
+                                <a href={'/item/update/'+item.id}>{item.name}</a>
+                            </td>
+                            <td>{item.stockNumber}</td>
+                            <td>{item.sellStatus}</td>
+                            <td>{item.createdBy}</td>
+                            <td>{item.regTime}</td>
+                        </tr>
+                )
+            })}
                     </tbody>
 
                 </table>
@@ -61,6 +136,43 @@ function ItemMng(props) {
                     <button id="searchBtn" type="submit" className="btn btn-primary">검색</button>
                 </div>
             </form>
+
+            <>
+
+            <div>
+                <ul className='pagination justify-content-center'>
+
+                <li className='page-item'>
+                    <a className='page-link'  disabled={pageNum==0?true:false} 
+                    href={'?page='+ (pageNum)} type='button'
+                    onClick={prevPage}
+                    >Previous
+                    </a>
+                </li>
+                {arr.map((arr) => {
+                    return(
+                        <>
+                    <li className='page-item'>
+                            <a className='page-link'
+                            href={'?page=' + (arr-1)} 
+                            onClick={(e) => clickPage(arr-1, e)}
+                            >{arr} 
+                            </a>
+                        </li>
+                        </>
+                    )
+                })}
+
+                <li className='page-item'>
+                    <a className="page-link"  disabled={(pageNum+1)==pageNum?true:false } 
+                    href={'?page=' + (pageNum)} type='button'
+                    onClick={(e)=>nextPage(pageNum, e)} 
+                    >Next
+                    </a>
+                </li>
+            </ul>
+            </div>
+</>     
 
             </div>
         );
