@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useParams} from "react-router"
 import axios from 'axios'
 import './ItemDtl.css';
-import PaginationTest from '../test/PaginationTest';
-import Pagination from '../test/Pagination';
-import Posts from '../test/Posts';
+import Recomment from './Recomment';
 
 function ItemDtl() {
 
@@ -83,12 +81,13 @@ function ItemDtl() {
 
     // 답변 클릭 시 답변 폼
 
-
     const [answerForm, setAnswerForm] = useState(false);
 
-    const showAnswerForm = () => {
+    const showAnswerForm = (itemId, e) => {
         setAnswerForm(!answerForm); 
     }
+
+
 
     //답변 등록
     const [answer, setAnswer] = useState('');
@@ -203,7 +202,6 @@ function ItemDtl() {
         })
     }
 
-
 const arr = [1, 2, 3, 4, 5]
 
 
@@ -247,7 +245,6 @@ const arr = [1, 2, 3, 4, 5]
                                 </div>
                                 <hr class="my-4"/>
 
-
                                 <div class="text-right">
                                     <button type="button" class="btn btn-light border border-primary btn-lg" onClick={()=>addCart(item.id, item.stockNumber)}>장바구니 담기</button>
                                     <button type="button" class="btn btn-primary btn-lg" onClick={()=>order(item.id, item.stockNumber)}>주문하기</button>
@@ -278,7 +275,7 @@ const arr = [1, 2, 3, 4, 5]
 
     <ul  className="list-group mb-4">
             {testStr.comment && testStr.comment.map(comment => (
-                // <li key={comment.id}>
+                <li key={comment.answerId}>
                         <>                
                 { comment.answerDepth == 0 && 
                 <>
@@ -291,16 +288,17 @@ const arr = [1, 2, 3, 4, 5]
                             <span className="commentNameText">{comment.answerEmail}</span>
                             <span className="commentRegTime">{comment.answerRegTime}</span>
                             <span className="commentCommentText">{comment.answerContent}.</span>
-                            <input type="button" value="답변" className="commentRegisterBtn2"
-                            onClick={() => showAnswerForm()}/>
+                            <input type="button" value="답변" className="commentRegisterBtn2" id={comment.answerid}
+                            onClick={(e) => showAnswerForm(comment.answerId, e)}/>
                         </div>
                     </div>
                     {answerForm && (
+                        // <Recomment></Recomment>
                     <div class="commentAnswerForm" >
-                    <textarea onChange={inputAnswer} placeholder=" 답변을 입력하세요." class="question-1"></textarea>
-                    <button value="등록" class="commentRegisterBtn"
-                    onClick={() => registerAnswer(item.id, comment.groupId)}>등록</button>
-                </div>
+                        <textarea onChange={inputAnswer} placeholder=" 답변을 입력하세요." class="question-1"></textarea>
+                        <button value="등록" class="commentRegisterBtn"
+                        onClick={() => registerAnswer(item.id, comment.groupId)}>등록</button>
+                    </div>
                 )}
                 </>    
                 }
@@ -319,9 +317,10 @@ const arr = [1, 2, 3, 4, 5]
                         </div>
                     </div>        
                 }                
+                
             </>
                     
-                // </li>
+            </li>
             ))}
         </ul>
 
