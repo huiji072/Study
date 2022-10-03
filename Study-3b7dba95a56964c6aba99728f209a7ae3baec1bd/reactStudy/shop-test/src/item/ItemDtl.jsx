@@ -83,10 +83,11 @@ function ItemDtl() {
 
     // 답변 클릭 시 답변 폼
 
+
     const [answerForm, setAnswerForm] = useState(false);
 
     const showAnswerForm = () => {
-        setAnswerForm(!answerForm)
+        setAnswerForm(!answerForm); 
     }
 
     //답변 등록
@@ -291,7 +292,7 @@ const arr = [1, 2, 3, 4, 5]
                             <span className="commentRegTime">{comment.answerRegTime}</span>
                             <span className="commentCommentText">{comment.answerContent}.</span>
                             <input type="button" value="답변" className="commentRegisterBtn2"
-                            onClick={()=>showAnswerForm(item.id, comment.questionId)}/>
+                            onClick={() => showAnswerForm()}/>
                         </div>
                     </div>
                     {answerForm && (

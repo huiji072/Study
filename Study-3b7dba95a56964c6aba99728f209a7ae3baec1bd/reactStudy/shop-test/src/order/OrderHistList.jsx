@@ -25,6 +25,8 @@ function OrderHistList() {
         }, []
     );
 
+    console.log(testStr)
+
     // 페이징
 
     const prevPage = (e) => {
@@ -116,26 +118,31 @@ function OrderHistList() {
                                 }
 
                                 </div>
-                                </div>
+                        </div>
     
                         
                             <div class="cardOrderHist">
-                                <div class="d-flex mb-3">
-    
-                                    <div class="repImgDiv">
-                                        <img src={orderItem.itemDtoList[0].imgUrl} class = "imgOrderHist" />
-                                    </div>
-    
-                                    <div class="contentsOrderHist">
-                                        <span  class="fs24 font-weight-bold">{orderItem.itemDtoList[0].itemNm}</span>
-                                        <div class="fs18 font-weight-light">
-                                            <span>{orderItem.itemDtoList[0].count}</span>
-                                        </div>
-                                        <div class="fs18 font-weight-light">
-                                            <span>판매자 </span>
-                                            <span >{orderItem.itemDtoList[0].itemSeller}</span>
-                                        </div>
-                                    </div>
+                                <div>
+                                    {orderItem.itemDtoList && orderItem.itemDtoList.map((items) => {
+                                        return (
+                                            <div className='d-flex mb-3'>
+                                            <div class="repImgDiv">
+                                                <img src={items.imgUrl} class = "imgOrderHist" />
+                                            </div>
+        
+                                            <div class="contentsOrderHist">
+                                                <span  class="fs24 font-weight-bold">{items.itemNm}</span>
+                                                <div class="fs18 font-weight-light">
+                                                    <span>{items.count}</span>
+                                                </div>
+                                                <div class="fs18 font-weight-light">
+                                                    <span>판매자 </span>
+                                                    <span >{items.itemSeller}</span>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        )
+                                    })}
                                     
                                 </div>
                             </div>

@@ -4,6 +4,23 @@ import './Cart.css';
 
 function CartList() {
 
+    const [ testStr, setTestStr ] = useState('');
+    // 변수 초기화
+    function callback(str) {
+      setTestStr(str);
+    }
+
+    useEffect(
+        () => {
+          axios({
+              url: '/cart',
+              method: 'GET'
+          }).then((res) => {
+              callback(res.data);
+          })
+        }, []
+    );
+
     //장바구니 취소
     const deletedCart = id => {
         axios({
@@ -24,45 +41,46 @@ function CartList() {
     }    
 
     // 체크박스 핸들러
-    const [itemList, setItemList] = useState({cartItem: []})
-    const dataList = new Array();
-    const paramData = new Object();
-    
-    const arr = new Array();
+    const [checkItems, setCheckItems] = useState([]);
 
-    const handleCheckbox = (e) => {
-        const {value, checked} = e.target;
-        const {cartItem} = itemList;
-
-        console.log(`${value} is ${checked}`);
+    // 체크박스 하나씩 선택
+    const handleCheckbox = (checked, id) => {
 
         if(checked) {
-            setItemList({cartItem: [...cartItem, value]});
-
-            // data["cartItemId"] = value;
-            // dataList.push(data);
-
+            setCheckItems(prev => [...prev, id]);
         } else {
-            setItemList({cartItem: cartItem.filter((e)=> e !== value)});
+            setCheckItems(checkItems.filter((el) => el != id));
         }
         
     }
 
     //체크박스 전부 선택
-    const checkAll = () => {
-        
+    const checkAll = (checked) => {
+        const {cartItem} = checkItems;
+
+        if(checked) {
+            const idArray = [];
+            testStr.cartItem.forEach((el) => idArray.push(el.itemId));
+            setCheckItems(idArray);
+        } else {
+            setCheckItems([]);
+        }
     }
 
+
     // 주문하기
+
+    const dataList = new Array();
+    const paramData = new Object();
+    const arr = new Array();
+
     const orders = (checked, id) => {
 
-        arr.push(itemList);
+        arr.push(checkItems);
 
-        for(let i=0; i<itemList.cartItem.length; i++){
-            console.log(itemList.cartItem[i]);
+        for(let i=0; i<checkItems.length; i++){
             const data = new Object();
-            data["cartItemId"] = itemList.cartItem[i];
-            console.log(data);
+            data["cartItemId"] = checkItems[i];
             dataList.push(data);
 
         }
@@ -70,6 +88,7 @@ function CartList() {
 
         paramData['cartOrderDtoList'] = dataList;
         const param = JSON.stringify(paramData);
+        console.log(param);
 
         axios({
             url: '/cart/orders',
@@ -82,22 +101,7 @@ function CartList() {
         })   
     }
 
-    const [ testStr, setTestStr ] = useState('');
-    // 변수 초기화
-    function callback(str) {
-      setTestStr(str);
-    }
 
-    useEffect(
-        () => {
-          axios({
-              url: '/cart',
-              method: 'GET'
-          }).then((res) => {
-              callback(res.data);
-          })
-        }, []
-    );
 
     return(
         <>
@@ -110,7 +114,7 @@ function CartList() {
                     <thead>
                     <tr class="cartListTr1">
                         <td>
-                            <input type="checkbox" id="checkall" onClick={checkAll}/> 
+                            <input type="checkbox" id="checkall" onChange={(e)=>checkAll(e.target.checked)}/> 
                         </td>
                         <td>상품정보</td>
                     </tr>
@@ -123,7 +127,8 @@ function CartList() {
                     <tr>
                     <td class="text-center align-middle">
                         <input type="checkbox" name="cartItem" value={cartItem.itemId}
-                        onChange={handleCheckbox}/>
+                        onChange={(e)=>handleCheckbox(e.target.checked, cartItem.itemId)}
+                        checked={checkItems.includes(cartItem.itemId) ? true : false}/>
                     </td>
                     <td class="d-flex">
                         <div >
