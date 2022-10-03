@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+    function findMax() {
+        var i;
+        var max = -Infinity;
+        for(i=0 ; i<arguments.length;i++) {
+        if(arguments[i] > max) {
+        max = arguments[i];
+        }
+        }
+        return max;
+    }
+
+    function sumAll() {
+        var i, sum = 0;
+        for(i = 0;i<arguments.length ; i++) {
+        sum += arguments[i];
+        }
+        return sum;
+        }
+
+        document.write(findMax(1, 2, 66, 2));
+        document.write(sumAll(1, 2, 3, 4));
+  </script>
+</head>
+<body>
+
+</body>
+</html>

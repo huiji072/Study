@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+
+<!--1. $("#xxx") = id-->
+<!--2. $(".xxx") = class-->
+<!--3. $("input[name=xxx]") = tag[속성키=속성값]-->
+<!--4. $("input[name=xxx]:checked")-->
+<!--5. $("div:dq(0)") = $("div").dq(0)-->
+        $(function() {
+
+            var text1 = $(".text1").val();
+            var text2 = $(".text2").val();
+            var checkedRadio = $("input[name=rdo]:checked").val();
+            var class2 = $(".class2:eq(0)").html();
+
+            console.log(text1);
+            console.log(text2);
+            console.log(checkedRadio);
+
+            console.log(class2);
+
+        })
+
+    </script>
+
+</head>
+<body>
+
+<input type="text" class="text1" value="텍스트입니다."><br>
+<input type="text" class="text2" value="텍스트2입니다."><br>
+
+<input type="radio" name="rdo" checked="checked" value="첫번째">
+<input type="radio" name="rdo"  value="두번째">
+
+<div>
+    <h2 class="class2">
+        값입니다.1
+    </h2>
+</div>
+<div class="class2">
+    <h3>값입니다.2</h3>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <script>
+    var num01 = 123/0;
+    var num02 = 123/-0;
+    var num03 = 123;
+    var num04 = "123";
+    var num05 = 0/0;
+
+<!--유한수인가 체크-->
+    document.write("num01 = 123/0 ; " + isFinite(num01) + "<br>");
+    document.write("num02 = 123/0 ; " + isFinite(num02) + "<br>");
+    document.write("num03 = 123/0 ; " + isFinite(num03) + "<br>");
+    document.write("num04 = 123/0 ; " + isFinite(num04) + "<br>");
+    document.write("num05 = 123/0 ; " + isFinite(num05) + "<br>");
+
+<!--숫자인가 체크-->
+        document.write("num03 = 123/0 ; " + isNaN(num03) + "<br>");
+    document.write("num04 = 123/0 ; " + isNaN(num04) + "<br>");
+    document.write("num05 = 123/0 ; " + isNaN(num05) + "<br>");
+  </script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Creaet Object from JSON String</h2>
+<p id="demo"></p>
+
+
+<script>
+
+    var obj = JSON.parse('{ "name" : "hj", "contents" :"좋아요"}');
+    document.getElementById("demo").innerHTML = obj.name + ", " + obj.contents;
+
+
+</script>
+
+</body>
+</html>

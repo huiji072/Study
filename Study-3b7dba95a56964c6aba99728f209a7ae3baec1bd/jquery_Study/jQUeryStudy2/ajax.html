@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $(function() {
+
+<!--리스트 출력-->
+            $.ajax({
+                url : 'list_ajax.jsp',
+                type : 'GET',
+                dataType : 'html',
+                success : function(data) {
+                    console.log(data);
+                    $("table").html(data);
+                }
+            });
+
+<!--            insert-->
+<!--inser후 동적으로 값이 table에 들어감-->
+            $("#submitButton").click(function() {
+
+                $.ajax({
+                    url : '/insert_ajax.jsp';
+                    type = 'POST',
+                    dataType = 'html',
+<!--                    data : {content : $("input[name=content]").val()}, form태그는 name에 값을 줘야 함-->
+                    data : $("form").serialize(),
+                    success : function(data) {
+                        $("table").html(data);
+                    }
+
+<!--publish로 예제-->
+
+                $.ajax({
+                    url : '/publish.html',
+                    type = 'GET',
+                    dataType : 'html',
+                    success : function(data){
+                        $("table").html(data);
+                    }
+
+            })
+
+        })
+
+    </script>
+
+</head>
+<body>
+
+    <form id="frm">
+
+        <input type="text" name="content">
+        <input type="button" id="submitButton" value="전송">
+
+        <table width="100%" border="1">
+
+        </table>
+
+    </form>
+
+</body>
+</html>

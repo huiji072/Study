@@ -32,19 +32,18 @@ function ItemDtl() {
 
     // 주문하기
     const order = (id, count) => {
-
         const paramData = {
             itemId: id,
             count: orderStockNumber
         }
         const param = JSON.stringify(paramData);
-
         axios({
             url: '/order',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             data: param
         }).then((res) => {
+            console.log(res.data);
             callback(res.data);
             alert("구매가 완료 되었습니다.");
             window.location.href='/order/OrderHist';
@@ -59,7 +58,6 @@ function ItemDtl() {
       }
 
     const registerQuestion = (id) => {
-
         const itemId = id;
         const paramData = {
             question: question,

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script>
+
+    function handlerName(event) {
+      $("#demo").text(event.data.msg);
+    }
+
+    $(document).ready(function() {
+        $("p").on("click", {msg : "you just clicked me"}, handlerName)
+    });
+
+  </script>
+</head>
+<body>
+
+<p>Click me</p>
+<p id="demo"></p>
+</body>
+</html>
