@@ -17,6 +17,7 @@ function CartList() {
               method: 'GET'
           }).then((res) => {
               callback(res.data);
+              console.log(res.data);
           })
         }, []
     );
@@ -28,15 +29,20 @@ function CartList() {
             method: 'DELETE'
         }).then((res) => {
             callback(res.data);
+            console.log(res.data)
             alert("해당 상품이 삭제되었습니다.");
-            window.location.href='/cart/Cart';
+            // window.location.href='/cart/Cart';
+        }).catch((error) => {
+            console.log(error);
+
+            alert(error);
         })
     }
  
     // 구매수량 가져오기
-    const [orderStockNumber, setOrderStockNumber] = useState('');
+    const [orderStockNumber, setOrderStockNumber] = useState("1");
 
-    const handleChangeOrderStockNumber = (event) => {
+    const handleChangeOrderStockNumber = (count, event) => {
         setOrderStockNumber(event.target.value)
     }    
 
@@ -147,8 +153,9 @@ function CartList() {
                             <div class="fs18 font-weight-light">
                                 <span class="input-group mt-2">
 
-                                    <input type="number" name="count" 
-                                         min="1" value={cartItem.count}  class="form-control mr-2"/>
+                                    <input type="text" name="count" 
+                                         min="1" value={cartItem.count}  class="form-control mr-2"
+                                         onChange={(e) => handleChangeOrderStockNumber(cartItem.count, e)}/>
                                     <button type="button" class="close" aria-label="Close" onClick={()=>deletedCart(cartItem.itemId)}>
                                         <span aria-hidden="true">&times;</span>
                                     </button>

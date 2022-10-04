@@ -16,3 +16,6 @@ nav{
     margin-bottom: 20px;
     margin-right: 300px;
 }
+.searchForm{
+    display: flex!important;
+}

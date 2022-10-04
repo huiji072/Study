@@ -77,6 +77,31 @@ function ItemMng(props) {
 
 const arr = [1, 2, 3, 4, 5]
 
+// 검색
+    const[search, setSearch] = useState('')
+
+    const handleSearchChange = (event) => {
+        console.log(event.target.value);
+        setSearch(event.target.value);
+    }
+
+    const handleSearchClick = (e) => {
+        e.preventDefault();
+        axios({
+            url: '/item/search',
+            method: 'GET',
+            params: {
+                "search": search
+            }
+        }).then((res) => {
+            callback(res.data);
+            console.log(res.data);
+        }).catch((error) => {
+            alert(error);
+        })
+    }
+
+
         return(
             <div className="containerItemMng">
 
@@ -130,11 +155,13 @@ const arr = [1, 2, 3, 4, 5]
                     </select>
                     <select >
                         <option value="itemNm">상품명</option>
-                        <option value="createdBy">등록자</option>
                     </select>
 
-                    <input type="text" placeholder="검색어를 입력해주세요"/>
-                    <button id="searchBtn" type="submit" className="btn btn-primary">검색</button>
+                    <input type="text" placeholder="검색어를 입력해주세요"
+                    value={search} onChange={handleSearchChange}/>
+                    <button id="searchBtn" type="submit" className="btn btn-primary"
+                     onClick={handleSearchClick}
+                    >검색</button>
                 </div>
             </form>
 
