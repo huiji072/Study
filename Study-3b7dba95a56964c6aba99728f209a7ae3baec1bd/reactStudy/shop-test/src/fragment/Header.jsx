@@ -33,26 +33,6 @@ function Header() {
     const [ loginInfo, setLoginInfo ] = useState('');
     const [role, setRole] = useState('');
     const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
-    const [search, setSearch] = useState('');
-
-    const handleSearch = (event) => {
-        setSearch(event.target.value);
-        console.log(search);
-    }
-
-    // 검색한 결과 찾기
-    const handleSearchClick = () => {
-        axios({
-            url: '/members/loginInfo',
-            method: 'GET',
-            params: {
-                "search": search
-            }
-        }).then((res) => {
-            callback(res.data);
-        })
-    }
 
     // 변수 초기화
     function callback(str) {
@@ -90,18 +70,6 @@ function Header() {
                         <Nav.Link href="/members/login">로그인</Nav.Link>
                         <Nav.Link href="/login/Join">회원가입</Nav.Link>
                     </Nav>
-                    <Form className="searchForm">
-                        <Form.Control
-                        type="search"
-                        placeholder="Search"
-                        className="me-2"
-                        aria-label="Search"
-                        value={search}
-                        onChange={handleSearch}
-                        onClick={handleSearchClick}
-                        />
-                        <Button variant="outline-success">Search</Button>
-                     </Form>
                     </Container>
                 </Navbar>
                 </>
@@ -117,15 +85,6 @@ function Header() {
                             <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
                             <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
                             <Nav.Link href="/members/logout">로그아웃</Nav.Link>
-                            <Form className="searchForm">
-                            <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                            />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
                         </Nav>
                         </Container>
                     </Navbar>
@@ -141,15 +100,6 @@ function Header() {
                                 <Nav.Link href="/item/ItemMng">상품관리</Nav.Link>
                                 <Nav.Link href="/offer/OfferHist">판매이력</Nav.Link>
                                 <Nav.Link href="/members/logout">로그아웃</Nav.Link>
-                                <Form className="searchForm">
-                            <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                            />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
                             </Nav>
                             </Container>
                         </Navbar>
@@ -163,15 +113,6 @@ function Header() {
                                 <Nav.Link href="/cart/Cart">장바구니</Nav.Link>
                                 <Nav.Link href="/order/OrderHist">구매이력</Nav.Link>
                                 <Nav.Link href="/members/logout">로그아웃</Nav.Link>
-                                <Form className="searchForm">
-                            <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                            />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
                             </Nav>
                             </Container>
                         </Navbar>
@@ -184,15 +125,6 @@ function Header() {
                             <Nav className="me-auto">
                                 <Nav.Link href="/members/logout">로그아웃</Nav.Link>
                                 <Nav.Link href="/login/Join">회원가입</Nav.Link>
-                                <Form className="searchForm">
-                            <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                            />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
                             </Nav>
                             </Container>
                         </Navbar>

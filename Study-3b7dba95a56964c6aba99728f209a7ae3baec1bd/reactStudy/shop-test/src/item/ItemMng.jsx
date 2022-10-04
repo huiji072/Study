@@ -77,13 +77,18 @@ function ItemMng(props) {
 
 const arr = [1, 2, 3, 4, 5]
 
-// 검색
+// 상품명 검색
     const[search, setSearch] = useState('')
-
     const handleSearchChange = (event) => {
-        console.log(event.target.value);
         setSearch(event.target.value);
     }
+
+    // 판매상태 검색
+    const [searchSellStatus, setSearchSellStatus] = useState('');
+    const HandleOptionOrderState = (e) => {
+        setSearchSellStatus(e.target.value);
+    }
+
 
     const handleSearchClick = (e) => {
         e.preventDefault();
@@ -91,7 +96,8 @@ const arr = [1, 2, 3, 4, 5]
             url: '/item/search',
             method: 'GET',
             params: {
-                "search": search
+                "searchName": search,
+                "searchStatus": searchSellStatus
             }
         }).then((res) => {
             callback(res.data);
@@ -100,6 +106,7 @@ const arr = [1, 2, 3, 4, 5]
             alert(error);
         })
     }
+
 
 
         return(
@@ -141,15 +148,15 @@ const arr = [1, 2, 3, 4, 5]
 
 
                 <div class="form-control-main-itemMng">
-                    <select  >
+                    {/* <select  >
                         <option value="all">전체기간</option>
                         <option value="1d">1일</option>
                         <option value="1w">1주</option>
                         <option value="1m">1개월</option>
                         <option value="6m">6개월</option>
-                    </select>
-                    <select  >
-                        <option value="">판매상태(전체)</option>
+                    </select> */}
+                    <select  onChange={HandleOptionOrderState}>
+                        <option value="ALL">판매상태(전체)</option>
                         <option value="SELL">판매</option>
                         <option value="SOLD_OUT">품절</option>
                     </select>

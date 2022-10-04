@@ -142,7 +142,7 @@ function ItemDtl() {
 // 데이터 가져오기
     const [ testStr, setTestStr ] = useState('');
     const [pageNum, setPageNum] = useState(0)
-    const url = '/item/'+itemId
+    const url = '/itemDtl/'+itemId
 
     // 변수 초기화
     function callback(str) {
