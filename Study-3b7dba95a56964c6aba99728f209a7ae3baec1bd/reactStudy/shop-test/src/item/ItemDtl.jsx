@@ -46,6 +46,9 @@ function ItemDtl() {
             callback(res.data);
             alert("구매가 완료 되었습니다.");
             window.location.href='/order/OrderHist';
+        }).catch((error) => {
+            callback(error);
+            alert(error);
         })
     }
 
@@ -75,6 +78,7 @@ function ItemDtl() {
             alert("질문이 등록되었습니다.");
             window.location.href='/'+id;
         }).error((err) => {
+            alert(err);
             console.log(err);
         })        
     }    
@@ -82,10 +86,12 @@ function ItemDtl() {
     // 답변 클릭 시 답변 폼
 
     const [answerForm, setAnswerForm] = useState(false);
+    const [answerId, setAnswerId] = useState('');
 
     const showAnswerForm = (itemId, e) => {
-        setAnswerForm(!answerForm); 
+        setAnswerId(itemId);
     }
+    console.log(answerId)
 
 
 
@@ -116,6 +122,8 @@ function ItemDtl() {
             alert("답변이 등록되었습니다.");
             window.location.href='/'+itemId;
         }).error((err) => {
+            callback(err);
+            alert("답변 등록 권한이 없습니다!");
             console.log(err);
         })        
     }    
@@ -288,12 +296,12 @@ const arr = [1, 2, 3, 4, 5]
                             <span className="commentNameText">{comment.answerEmail}</span>
                             <span className="commentRegTime">{comment.answerRegTime}</span>
                             <span className="commentCommentText">{comment.answerContent}.</span>
-                            <input type="button" value="답변" className="commentRegisterBtn2" id={comment.answerid}
+                            <input type="button" value="답변" className="commentRegisterBtn2" id={comment.answerId}
                             onClick={(e) => showAnswerForm(comment.answerId, e)}/>
+                            {/* <p>{answerId}</p> */}
                         </div>
                     </div>
-                    {answerForm && (
-                        // <Recomment></Recomment>
+                    {answerId == comment.answerId && (
                     <div class="commentAnswerForm" >
                         <textarea onChange={inputAnswer} placeholder=" 답변을 입력하세요." class="question-1"></textarea>
                         <button value="등록" class="commentRegisterBtn"

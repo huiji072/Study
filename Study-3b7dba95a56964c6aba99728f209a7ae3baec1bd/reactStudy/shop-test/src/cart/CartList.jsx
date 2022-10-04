@@ -97,8 +97,16 @@ function CartList() {
             data: param
         }).then((res) => {
             callback(res.data);
+            console.log(res.data);
             alert("주문이 완료되었습니다.");
-        })   
+        }).catch((error) => {
+            callback(error);
+            if(window.confirm("비회원은 주문 권한이 없습니다! 로그인 하시겠습니까?")) {
+                window.location.href = "/members/login";
+            }else {
+                window.location.href = "/cart/Cart";
+            }
+        })
     }
 
 

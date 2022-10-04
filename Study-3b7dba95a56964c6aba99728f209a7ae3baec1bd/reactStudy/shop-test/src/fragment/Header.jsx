@@ -29,6 +29,7 @@ function Header() {
     const [ loginInfo, setLoginInfo ] = useState('');
     const [role, setRole] = useState('');
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     // 변수 초기화
     function callback(str) {
       setLoginInfo(str);
@@ -43,10 +44,11 @@ function Header() {
               console.log(res.data);
               setEmail(res.data.email);
               setRole(res.data.role[0].authority)
+              setName(res.data.name);
           })
         }, []
     );
-    console.log(email, role);
+
     return(
         <>
         
@@ -112,7 +114,8 @@ function Header() {
                             </Container>
                         </Navbar>
                         </>
-                        :<><p className='loginInfo'>[관리자] {email}</p>
+                        :(role == 'ROLE_MANAGER' || role == 'MANAGER')
+                        ?<><p className='loginInfo'>[관리자] {email}</p>
                         <Navbar bg="primary" variant="dark">
                             <Container>
                             <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
@@ -123,6 +126,7 @@ function Header() {
                             </Container>
                         </Navbar>
                         </>
+                        :<></>
             }
             
         </div>
