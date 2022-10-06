@@ -33,15 +33,14 @@ function Login() {
 
 const sendLoginRequest = () => {
 
-    console.log("email: ", email);
-
       axios({
         url: '/members/login',
         method: "post",
         headers: { 'Content-Type': 'application/json' },
         data: formData
       }).then((res) => {
-        console.log("/members/login res : ", res.data);
+        callback(res.data);
+        console.log(res.data);
         window.location.href = "/";
       }).catch((error) => {
         console.log(error);
@@ -56,7 +55,6 @@ const sendLoginRequest = () => {
         }
       }).then((res) => {
         callback(res.data);
-        console.log(res.data);
       }).catch((error) => {
         console.log(error);
       })

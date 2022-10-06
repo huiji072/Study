@@ -42,7 +42,7 @@ function Header() {
         () => {
           axios({
               url: '/members/loginInfo',
-              method: 'GET'
+              method: 'GET',
           }).then((res) => {
               callback(res.data);
               console.log(res.data);
