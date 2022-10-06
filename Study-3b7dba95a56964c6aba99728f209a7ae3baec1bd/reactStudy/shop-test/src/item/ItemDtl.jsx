@@ -44,13 +44,29 @@ function ItemDtl() {
             data: param
         }).then((res) => {
             callback(res.data);
+            console.log(res.data);
             alert("구매가 완료 되었습니다.");
             window.location.href='/order/OrderHist';
         }).catch((error) => {
             callback(error);
             alert(error);
         })
+
+        axios({
+            url: '/offer',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            console.log(res.data);
+            alert("판매가 완료 되었습니다.");
+        }).catch((error) => {
+            callback(error);
+            alert(error);
+        })
     }
+
 
     // 질문 등록
     const [question, setQuestion] = useState('');
