@@ -17,7 +17,7 @@ function CartList() {
               method: 'GET'
           }).then((res) => {
               callback(res.data);
-              console.log(res.data);
+              console.log("cart ",res.data);
           })
         }, []
     );

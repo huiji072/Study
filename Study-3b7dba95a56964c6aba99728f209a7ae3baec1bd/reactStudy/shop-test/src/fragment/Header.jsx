@@ -27,6 +27,7 @@ import PaginationTest from '../test/PaginationTest';
 import Logout from '../login/Logout';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import MemberManagement from '../management/MemberManagement';
 
 
 function Header() {
@@ -123,8 +124,8 @@ function Header() {
                             <Container>
                             <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>
                             <Nav className="me-auto">
+                                <Nav.Link href="/members/management">회원목록</Nav.Link>
                                 <Nav.Link href="/members/logout">로그아웃</Nav.Link>
-                                <Nav.Link href="/login/Join">회원가입</Nav.Link>
                             </Nav>
                             </Container>
                         </Navbar>
@@ -151,6 +152,8 @@ function Header() {
                 <Route path='/test/itemForm' element={<ItemFormTest/>} />
                 <Route path='/test/checkboxTest' element={<CheckboxTest/>} />
                 <Route path='/members/logout' element={<Logout/>} />
+                <Route path='/members/management' element={<MemberManagement/>} />
+
             </Routes>
         </Router>
         </>
