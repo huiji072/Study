@@ -113,6 +113,20 @@ function CartList() {
                 window.location.href = "/cart/Cart";
             }
         })
+
+        axios({
+            url: '/cart/offers',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: param
+        }).then((res) => {
+            callback(res.data);
+            console.log(res.data);
+            alert("판매가 완료되었습니다.");
+        }).catch((error) => {
+            callback(error);
+            alert(error);
+        })
     }
 
 

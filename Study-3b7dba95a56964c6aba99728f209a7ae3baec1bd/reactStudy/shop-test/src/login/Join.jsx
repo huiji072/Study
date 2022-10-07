@@ -33,25 +33,21 @@ function Join() {
     setAddress(event.target.value);
   }
 
-  let sellerid=''
-  let buyerid=''
+  let [sellerId, setSellerId] = useState('');
+  let [buyerId, setBuyerId] = useState('');
   const handleCheckboxSeller = (event) => {
     if(event.target.checked){
-      sellerid = event.target.value;
-      console.log(sellerid);
+      setSellerId(event.target.value);
     }else{
-      sellerid = ''
-      console.log(sellerid);
+      setSellerId('');
     }
   }
 
   const handleCheckboxBuyer = (event) => {
     if(event.target.checked){
-      buyerid = event.target.value;
-      console.log(buyerid);
+      setBuyerId(event.target.value);
     }else{
-      buyerid = ''
-      console.log(buyerid);
+      setBuyerId('');
     }
   }
 
@@ -65,17 +61,19 @@ function Join() {
 const jsonData = JSON.stringify(joinData)
 
 const sendJoinRequest = () => {
+  console.log(sellerId)
   axios({
     url: '/members/new',
     method: "post",
     headers: { 'Content-Type': 'application/json' },
     data: jsonData,
     params: {
-      checkSeller: sellerid,
-      checkBuyer: buyerid
+      checkSeller: sellerId,
+      checkBuyer: buyerId
     }
   }).then((res) => {
     callback(res.data);
+    console.log(res.data)
   }).catch((error) => {
     console.log(error);
   })
@@ -94,7 +92,7 @@ return(
         <label className="custom-control-label">기부자</label>
           <br/>
           <input onChange={handleCheckboxBuyer} type='checkbox' name='chk' value='chkbuyer'className="custom-control-input"/>
-        <label className="custom-control-label">일반회원</label>
+        <label className="custom-control-label">피기부 기관</label>
         </div>
 
           <div className="mb-3">

@@ -10,3 +10,5 @@ for i in range(2, n):
     result[i] = max(result[i-2]+data[i], result[i-1])
     
 print(result[n-1])
+
+

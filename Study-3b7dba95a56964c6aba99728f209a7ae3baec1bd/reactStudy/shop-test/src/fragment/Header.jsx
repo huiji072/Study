@@ -106,7 +106,7 @@ function Header() {
                         </Navbar>
                         </>
                         :(role == 'ROLE_BUYER' || role == 'BUYER')
-                            ?<><p className='loginInfo'>[일반회원] {email}</p>
+                            ?<><p className='loginInfo'>[피기부 기관] {email}</p>
                             <Navbar bg="primary" variant="dark">
                             <Container>
                             <Navbar.Brand href="/">DonatorsMarket</Navbar.Brand>

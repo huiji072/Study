@@ -99,7 +99,8 @@ function OfferHistList() {
 
     return(
         <>
-            {testStr.offerItem && testStr.offerItem.map((offerItem, i) => {
+            {testStr.offerItem && testStr.offerItem.map((offerItem) => {
+                <li key={offerItem.id} />
                 return(
                     <div className="offerHistListForm">
                     <div class="d-flex mb-3 align-self-center">
