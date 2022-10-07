@@ -27,7 +27,10 @@ function MainList() {
             }
         }).then((res) => {
             callback(res.data);
-            console.log("useEffect ", res.data.itemsObj[0].pageNum);
+            console.log(res.data.problem);
+            if(res.data.problem != false) {
+                alert("화면을 불러오는데 문제가 발생하였습니다.");
+            }
         })
         }, []
 ); 

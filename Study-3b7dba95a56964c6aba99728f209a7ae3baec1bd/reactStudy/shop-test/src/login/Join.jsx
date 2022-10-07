@@ -73,12 +73,12 @@ const sendJoinRequest = () => {
     }
   }).then((res) => {
     callback(res.data);
-    console.log(res.data)
+    if(buyerId != '') {
+      alert("회원가입이 승인될 때까지 기다려주십시오.")
+    }
+    window.location.href = "/";
   }).catch((error) => {
-    console.log(error);
   })
-  console.log(jsonData)
-  console.log("sending Join Request");
 }
 
 
