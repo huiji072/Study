@@ -18,7 +18,6 @@ import ItemMngList from '../item/ItemMngList';
 import CartList from '../cart/CartList';
 import OrderHistList from '../order/OrderHistList';
 import OfferHistList from '../offer/OfferHistList';
-import Hello from '../test/Hello';
 import ItemDtlTest from '../test/ItemDtlTest';
 import ItemFormTest from '../test/ItemFormTest';
 import ItemUpdate from '../item/ItemUpdate';
@@ -146,7 +145,6 @@ function Header() {
                 <Route path='/login/Join' element={<Join/>} />
                 <Route path='/:itemId' element={<ItemDtl/>} />
                 {/* <Route path='/:itemId' element={<Comment/>} /> */}
-                <Route path='/test/Hello' element={<Hello/>} />
                 <Route path='/test/itemDtlTest' element={<ItemDtlTest/>} />
                 <Route path='/item/update/:itemId' element={<ItemUpdate/>} />
                 <Route path='/test/itemForm' element={<ItemFormTest/>} />
