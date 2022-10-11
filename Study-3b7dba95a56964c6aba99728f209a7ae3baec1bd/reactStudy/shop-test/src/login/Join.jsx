@@ -73,10 +73,13 @@ const sendJoinRequest = () => {
     }
   }).then((res) => {
     callback(res.data);
+    if(res.data.problem  != false) {
+      alert("회원가입 중 문제가 발생하였습니다.")
+    }
     if(buyerId != '') {
       alert("회원가입이 승인될 때까지 기다려주십시오.")
+      window.location.href = "/";
     }
-    window.location.href = "/";
   }).catch((error) => {
   })
 }
