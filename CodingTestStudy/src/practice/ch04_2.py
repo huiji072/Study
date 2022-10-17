@@ -1,25 +1,22 @@
 n, m = 4, 4
 x, y, direction = 1, 1, 0
-
-d = [[0] * m for _ in range(n)]
 map = [(1, 1, 1, 1), (1, 0 ,0, 1), (1, 1, 0, 1), (1, 1, 1, 1)]
 
-# 현재 위치 방문 처리
-d[x][y] = 1
+d = [[0] * m for _ in range(n)]
 
-# 북동남서
+d[x][y] = 1
+cnt = 1
+
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
-
-cnt = 1
 
 def turn_left():
     global direction
     direction -= 1
     if direction == -1:
         direction = 3
-
-turn_time = 0        
+        
+turn_time = 0
 while True:
     turn_left()
     nx = x + dx[direction]
