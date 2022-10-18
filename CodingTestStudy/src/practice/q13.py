@@ -20,7 +20,7 @@ for i in range(n):
             house.append((i, j))
         elif data[i][j] == 2:
             chicken.append((i, j))
-            
+
 
 combi = list(combinations(chicken, m))
 
@@ -29,7 +29,7 @@ def c_sum(c):
     for hx, hy in house:
         temp = 1e9
         for cx, cy in chicken:
-            temp = min(temp, abs(hx-cx)+abs(hy-cy))
+            temp = min(temp, abs(hx-cx) + abs(hy-cy))
         result += temp
     return result
 
