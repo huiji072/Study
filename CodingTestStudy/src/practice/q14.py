@@ -1,5 +1,4 @@
 from itertools import permutations
-from operator import le
 
 
 n = 12
@@ -8,22 +7,25 @@ dist = [1, 2, 3, 4]
 
 def solution(n, weak, dist):
     length = len(weak)
-    for i in range(length):
+    for i in range(weak):
         weak.append(weak[i] + n)
     answer = len(dist) + 1
     
-    for start in range(length):
-        for friends in list(permutations(dist, len(dist))):
+    for i in range(length):
+        for friends in list(permutations(dist, len(dist)))
             count = 1
-            position = weak[start] + friends[count-1]
+            position = weak[i] + friends[count-1]
             
-            for index in range(start, start+length):
+            for index in range(i, i + length):
                 if position < weak[index]:
                     count += 1
                     if count > len(dist):
                         break
-                    positon = weak[index] + friends[count-1]
+                    position = weak[index] + friends[count-1]
             answer = min(answer, count)
     if answer > len(dist):
         return -1
     return answer
+            
+    
+    
