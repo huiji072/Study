@@ -14,3 +14,5 @@ for i in range(k):
         result.pop()
         
 print(sum(result))
+
+# 구현1

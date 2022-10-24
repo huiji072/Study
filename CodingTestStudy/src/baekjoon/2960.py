@@ -13,3 +13,5 @@ for i in range(2, n + 1):
             if temp == k:
                 print(j)
                 break
+            
+구현2
