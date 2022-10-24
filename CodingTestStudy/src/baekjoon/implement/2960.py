@@ -14,4 +14,4 @@ for i in range(2, n + 1):
                 print(j)
                 break
             
-구현2
+# 구현2
