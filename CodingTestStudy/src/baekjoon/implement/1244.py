@@ -25,11 +25,8 @@ for stu in student:
                     
                 cnt += 1
         elif stu[0] == 2:
-            if switch[swtch-1] == 1:
-                switch[swtch-1] = 0
-            else:
-                switch[swtch-1] = 1
             if switch[stu[1] -1 - cnt] == switch[stu[1] -1 + cnt] and stu[1] -1 - cnt >= 0 and stu[1] -1 + cnt < n:
+                print(swtch)
                 if switch[stu[1] -1 - cnt] == 0:
                     switch[stu[1] -1 - cnt] = 1
                     switch[stu[1] -1 + cnt] = 1
