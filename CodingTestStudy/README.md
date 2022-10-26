@@ -1,22 +1,18 @@
 # CodingTestStudy
 
-String에서 특정값 뺴기
-String str = "";
-String[] temp = str.split("");
+#탐색 : 많은 양의 데이터 중에서 원하는 데이터를 찾는 과정
+#대표적인 탐색 알고리즘  - DFS, BFS
 
+#자료구조 : 데이터를 표현하고 관리하고 처리하기 위한 구조
 
+#스택 : 선입후출 구조
 
-오름차순
-int[] array = "오름차순해야 할 수'
-Integer[] temp = Arrays.stream(array).boxed().toArray(Integer[]::new);
-Arrays.sort(temp, Comparator.reverseOrder());
+#큐 : 선입선출 구조
 
+#재귀함수 : 자기자신을 다시 호출하는 함수
 
-파이썬 
-result = sorted(result, key=lambda r:(-r[1]))
+#DFS(깊이우선 탐색)
+-그래프에서 깊은 부분을 우선적으로 탐색하는 알고리즘
 
-result 리스트에 1이 몇 개 있는지 찾을 때
-result.count(1)
-
-result에 첫번째만 출력하고 싶을때
-print([i[0] for i in result])
+#BFS(너비우선 탐색)
+-가까운 노드부터 탐색하는 
