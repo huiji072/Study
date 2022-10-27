@@ -7,6 +7,9 @@ for i in range(m):
     x, y = map(int, input().split())
     bfs_data[x].append(y)
     bfs_data[y].append(x)
+
+for i in bfs_data:
+    i.sort()
     
 dfs_data = bfs_data.copy()
     
@@ -37,3 +40,5 @@ dfs(dfs_data, v, visited)
 print()     
 visited = [False] * (n+1)           
 bfs(bfs_data, v)
+
+# dfs bfs1
