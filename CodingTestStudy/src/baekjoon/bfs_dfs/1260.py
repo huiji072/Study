@@ -1,4 +1,6 @@
 from collections import deque
+
+# n번까지 있고 줄 수는 m개
 n, m, v = map(int, input().split())
 
 bfs_data = [[] for _ in range(n+1)]
@@ -7,6 +9,7 @@ for i in range(m):
     x, y = map(int, input().split())
     bfs_data[x].append(y)
     bfs_data[y].append(x)
+print(bfs_data)
 
 for i in bfs_data:
     i.sort()
