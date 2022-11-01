@@ -5,7 +5,7 @@ data = list(map(int, input().split()))
 data.sort()
 
 m = int(input())
-# 필요한 데이터
+# 찾고자하는 데이터
 order_data = list(map(int, input().split()))
 
 def binary_search(data, target, start, end):
