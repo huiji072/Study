@@ -1,8 +1,3 @@
-# n, m = map(int, input().split())
-
-# data = list(map(int, input().split()))
-
-
 n, m = 4, 6
 data = [19, 15, 10, 17]
 data.sort()
@@ -17,7 +12,7 @@ while start <= end:
     for x in data:
         if x > mid:
             total += x - mid
-            
+    
     if total < m:
         end = mid - 1
     else:
@@ -25,3 +20,4 @@ while start <= end:
         start = mid + 1
         
 print(result)
+        
