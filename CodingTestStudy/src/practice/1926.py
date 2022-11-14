@@ -1,5 +1,7 @@
 from collections import deque
 
+import sys
+input = sys.stdin.readline
 
 n, m = map(int, input().split())
 
@@ -37,6 +39,9 @@ for i in range(n):
         if not visited[i][j] and graph[i][j] == 1:
             count = bfs(i, j)
             result.append(count)
-
-print(len(result))
-print(max(result))
+if len(result) > 0:
+    print(len(result))
+    print(max(result))
+else:
+    print(0)
+    print(0)
