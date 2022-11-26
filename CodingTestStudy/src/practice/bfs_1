@@ -1,0 +1,22 @@
+n, m = map(int, input().split())
+
+graph= [[] for _ in range(n+1)]
+
+for i in range(n):
+    x, y = map(int, input().split())
+    graph[x].append(y)
+    graph[y].append(x)
+
+visited = False * (n+1)
+
+def bfs(start):
+    queue = deque()
+    queue.append(start)
+    visited[start] = False
+    count = 0
+
+    while queue:
+        v = queue.popleft()
+        for i in graph[v]:
+            if not visited[i]:
+                bfs(i)
