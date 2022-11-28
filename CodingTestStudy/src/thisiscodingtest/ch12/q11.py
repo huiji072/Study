@@ -23,9 +23,9 @@ def turn(direction, c):
     return direction
 
 def simulate():
-    x, y = 1, 1 #뱀의 머리 
-    data[x][y] = 2 #뱀이 조재하는 곳은 2로 표시
-    direction = 0 #처음에는 동쪽을 보고 있음
+    x, y = 1, 1 
+    data[x][y] = 2 
+    direction = 0 
     time = 0
     index = 0
     
