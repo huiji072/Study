@@ -1,3 +1,9 @@
+'''
+플로이드 워셜
+1 -> k-> x로 이동시
+최소 이동 시간
+'''
+
 INF = int(1e9)
 
 n, m = map(int, input().split())
@@ -13,17 +19,14 @@ for _ in range(m):
     graph[a][b] = 1
     graph[b][a] = 1
 
-x, y = map(int, input().split())
+x, k = map(int, input().split())
 
 for k in range(1, n+1):
     for a in range(1, n+1):
         for b in range(1, n+1):
             graph[a][b] = min(graph[a][b], graph[a][k]+graph[k][b])
 
-
-
-
-distance = graph[1][y] + graph[y][x]
+distance = graph[1][k] + graph[k][x]
 
 if distance >= INF:
     print("-1")
