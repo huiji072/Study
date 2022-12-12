@@ -6,7 +6,7 @@ n = int(input())
 m = int(input())
 
 data = [[] for _ in range(n+1)]
-visited = [False] * (n+1)
+visited = [False] * m
 
 for i in range(m):
     x, y = map(int, input().split())
