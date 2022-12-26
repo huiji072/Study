@@ -6,8 +6,6 @@ arr = list(map(int, input().split()))
 
 arr.sort()
 
-print(arr)
-
 cnt = len(arr)
 
 result = 0
