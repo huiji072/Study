@@ -1,13 +1,21 @@
+# 반례
+
+import sys
+input = sys.stdin.readline
+
 n = input()
 
-arr = list(n)
-temp = arr[0]
+temp = ['U', 'C', 'P', 'C']
 
-for i in range(1, len(arr)):
-    if arr[i].isupper():
-        temp += arr[i]
+i = 0
+result = 0
+for t in temp:
+    if t in n:
+        n = n[n.find(t)+1:]
+    else:
+        result = -1
 
-if temp == "UCPC" and len(temp) == 4:
-    print("I love UCPC")
-else:
+if result == -1:
     print("I hate UCPC")
+else:
+    print("I love UCPC")
