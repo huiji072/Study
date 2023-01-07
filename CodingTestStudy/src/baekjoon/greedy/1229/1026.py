@@ -5,8 +5,6 @@ b = list(map(int, input().split()))
 
 a.sort()
 
-print(a)
-
 answer = 0
 temp = 0
 for i in range(s):
