@@ -1,24 +1,23 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
-dx = [0, 0, -1, 1]
-dy = [-1, 1, 0, 0]
-
+dx = [0, 0, -1, 1, -1, -1, 1, 1]
+dy = [-1, 1, 0, 0, -1, 1, -1, 1]
 answer = []
 
-t = int(input())
+while True:
 
-for _ in range(t):
+    m, n = map(int, input().split())
+    if m == n == 0:
+        break
 
-    m, n, k = map(int, input().split())
-    graph = [[0] * m for _ in range(n)]
-
-    for _ in range(k):
-        a, b = map(int, input().split())
-        graph[b][a] = 1
+    graph = []
+    for i in range(n):
+        graph.append(list(map(int, input().split())))
 
     visited = [[False] * m for _ in range(n)]
 
-    count = 0
     def bfs(x, y):
         queue = deque()
         queue.append([x, y])
@@ -27,23 +26,25 @@ for _ in range(t):
 
         while queue:
             x, y = queue.popleft()
-            
-            for i in range(4):
+
+            for i in range(8):
                 nx = x + dx[i]
                 ny = y + dy[i]
 
                 if 0<=nx<n and 0<=ny<m:
                     if not visited[nx][ny] and graph[nx][ny] == 1:
-                        count += 1
                         visited[nx][ny] = True
                         queue.append([nx, ny])
+                        count += 1
+
         return count
-    result = []
+
+    temp = []
     for i in range(n):
         for j in range(m):
-            if graph[i][j] == 1 and not visited[i][j]:
-                result.append(bfs(i, j))
+            if not visited[i][j] and graph[i][j] == 1:
+                temp.append(bfs(i,j))
 
-    answer.append(len(result))
+    answer.append(len(temp))
 
-print(*answer)
+print(*answer, sep='\n')
